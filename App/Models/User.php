@@ -27,11 +27,12 @@ class User extends \Core\Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function register($name, $email, $password)
+    public function register($fname, $lname, $email, $password)
     {
-        $query = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+        $query = "INSERT INTO users (fname, lname, email, password) VALUES (:fname,:lname, :email, :password)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':fname', $fname);
+        $stmt->bindParam(':lname', $lname);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
 

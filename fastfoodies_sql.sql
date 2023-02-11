@@ -1,6 +1,7 @@
 
+DROP DATABASE IF EXISTS fastfoodies;
 CREATE DATABASE fastfoodies;
-
+USE fastfoodies;
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fname VARCHAR(255) NOT NULL,
@@ -38,12 +39,15 @@ CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     restaurant_id INT NOT NULL,
-    status ENUM('pending', 'confirmed', 'delivered') DEFAULT 'pending',
+    menu_id INT NOT NULL,
+    status ENUM('pending', 'confirmed', 'delivered', 'cancelled') NOT NULL DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE,
-        INDEX (user_id),
+    FOREIGN KEY (menu_id) REFERENCES menus(id) ON DELETE CASCADE,
+    UNIQUE KEY (user_id, restaurant_id, menu_id),
+    INDEX (user_id),
     INDEX (restaurant_id),
     INDEX (menu_id)
 );

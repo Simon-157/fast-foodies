@@ -2,9 +2,20 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+
 class Auth extends \Core\Controller
 
 {
+
+    private $userController;
+
+    public function __construct()
+    {
+
+        $this->userController = new User();
+    }
+
     public function createAction(): bool
     {
         echo "Submitted successfully";
@@ -19,10 +30,22 @@ class Auth extends \Core\Controller
 
     }
 
-    public function getUser(): bool
+    public function authenticate()
     {
+        session_start();
 
-        return true;
+        if (isset($_GET['email']) && isset($_GET['password'])) {
+            $email = $_GET['email'];
+            $password = $_GET['password'];
 
+            $user = $this->userController->login($email, $password);
+            if ($user) {
+                $_SESSION['user'] = $user;
+                echo 'Welcome, ' . $user['name'] . '!';
+            } else {
+                echo 'Incorrect email or password.';
+            }
+        }
     }
+
 }
