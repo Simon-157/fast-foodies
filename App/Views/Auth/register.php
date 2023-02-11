@@ -7,10 +7,10 @@
     <title>Register</title>
 
     <!-- CSS styling -->
-    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="public\css\index.css" />
 
     <!-- Javascript -->
-    <script defer type="text/javascript" src="main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   </head>
   <body>
     <main>
@@ -26,7 +26,13 @@
         </div>
 
         <!-- Form -->
-        <form action="/fast-foodies/public" method="POST" name="form" id="form" class="form-wrapper">
+        <form
+          action="/fast-foodies/create"
+          method="POST"
+          name="form"
+          id="register"
+          class="form-wrapper"
+        >
           <!-- Alert message -->
           <h6 class="alert">Input fields cannot be empty</h6>
 
@@ -36,7 +42,7 @@
               name="fname"
               placeholder="first name"
               autofocus
-              id=""
+              id="fname"
               class="text"
               type="text"
             />
@@ -47,7 +53,7 @@
               name="lname"
               placeholder="lastname name"
               autofocus
-              id=""
+              id="lname"
               class="text"
               type="text"
             />
@@ -65,9 +71,9 @@
 
           <div class="input-wrapper">
             <input
-            name = "password"
+              name="password"
               placeholder="Password"
-              id="password"
+              id="pass"
               class="password"
               type="password"
             />
@@ -82,7 +88,7 @@
 
           <!-- Submit button -->
           <div class="submit-wrapper">
-            <button type="submit" class="btn">Sign In</button>
+            <button type="" id="sub" class="btn" onclick="clearInput()">Sign In</button>
           </div>
 
           <div class="footer-wrapper">
@@ -90,23 +96,31 @@
               Already have an account? Log in <a href="login.html">here</a>
             </h6>
           </div>
+          <span id="msg"></span>
         </form>
       </div>
     </main>
-    <!-- <script type= "text/javascript">
+    <script type="text/javascript">
+      $("#sub").click(() => {
+        var data = $("#register :input").serializeArray();
 
-        document.form.addEventListener("submit", async function (event) {
-  event.preventDefault();
-  const form = event.target;
-  const result = await fetch(form.action, {
-    method: form.method,
-    body: new URLSearchParams([...new FormData(form)]),
-  })
-    .then((response) => response.json())
-    .then((json) => json)
-    .catch((error) => console.log(error));
-});
+        $.post($("#register").attr("action"), data, (info) => {
+          $("#msg").html(info);
+        });
+        clearInput();
+      });
 
-    </script> -->
+      $("#register").submit(() => {
+        return false;
+      });
+
+      function clearInput (){
+        $("#register :input").each(element => {
+
+        });(() => {
+          $(this).val(' ');
+        });
+      };
+    </script>
   </body>
 </html>

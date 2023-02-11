@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #ff512f;
+  overflow-y: hidden;
+}
+
+main {
+  margin-top: 6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.main-container {
+  width: 460px;
+  height: auto;
+  max-height: 520px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.leaf-wrapper {
+  width: 100px;
+  margin: auto;
+  padding-top: 0.7rem;
+}
+
+.leaf-icon {
+  width: 55px;
+  height: 55px;
+}
+
+.header-message {
+  width: 270px;
+  margin: auto;
+  padding-top: 0.4rem;
+}
+
+.welcome-message {
+  font-weight: 400;
+  font-size: 22px;
+  color: rgb(39, 38, 38);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.desc-wrapper {
+  width: 370px;
+  margin: auto;
+  margin-top: 0.2rem;
+}
+
+.desc-message {
+  text-align: center;
+  font-weight: 300;
+  color: rgb(150, 141, 141);
+  line-height: 18px;
+}
+
+.form-wrapper {
+  width: 420px;
+  height: 100%;
+  margin: auto;
+  margin-top: 0.5rem;
+}
+
+input {
+  width: 420px;
+  height: 55px;
+  padding: 8px;
+  padding-left: 15px;
+  font-size: 17px;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  border: 1px solid #f3f3f3;
+  background-color: #f3f3f3;
+}
+
+.input-wrapper {
+  margin-top: 1.5rem;
+}
+
+.inner-icon {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  padding: 5px;
+  vertical-align: middle;
+  transform: translateY(20%);
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: end;
+  padding-right: 10px;
+}
+
+.forgot-password {
+  margin-top: 1rem;
+}
+
+.forgot-password a {
+  text-decoration: none;
+}
+
+h6 {
+  font-weight: 300;
+  font-size: 14px;
+  text-align: end;
+  color: rgb(150, 141, 141);
+}
+
+.submit-wrapper {
+  width: 420px;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.btn {
+  width: 420px;
+  height: 65px;
+  outline: none;
+  border: none;
+  font-size: 19px;
+  padding: 15px;
+  border-radius: 4px;
+  color: white;
+  background-color: #e46d55;
+  cursor: pointer;
+}
+
+.footer-wrapper {
+  width: 300px;
+  margin: auto;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-wrapper h6 {
+  font-weight: 300;
+  font-size: 16px;
+  text-align: end;
+  color: rgb(85, 81, 81);
+}
+
+.footer-wrapper a {
+  color: #ff512f;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+.error {
+  border: 1.5px solid #d9534f;
+}
+
+.success {
+  border: 1.5px solid #5cb85c;
+}
+
+.alert {
+  color: #d9534f;
+  text-align: center;
+  font-weight: 400;
+  display: none;
+}
+
+.visible {
+  display: block;
+}

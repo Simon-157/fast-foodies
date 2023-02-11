@@ -17,8 +17,9 @@ $router = new Core\Router();
 // Add the routes
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('admin', ['controller' => 'Admin', 'action' => 'admin']);
-$router->add('register', ['controller' => 'Customers', 'action' => 'register']);
+$router->add('create', ['controller' => 'Auth', 'action' => 'create']);
 $router->add('menu', ['controller' => 'Menu', 'action' => 'index']);
+$router->add('register', ['controller' => 'Customers', 'action' => 'register']);
 $router->add('{controller}/{action}');
 $router->add('{controller}/?');
 $router->dispatch($_SERVER['QUERY_STRING']);
