@@ -7,12 +7,6 @@
    <title>Document</title>
 </head>
 <body>
-   <form action="" method="post">
-
-      <input type="password" name="" id=""><br>
-      <input type="email" name="" id=""><br>
-      <button type="submit">add</button>
-
-   </form>
+   <h2>This is the menu page</h2>
 </body>
 </html>

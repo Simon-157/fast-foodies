@@ -10,13 +10,6 @@
 </head>
 <body>
    <h2>This is the admin page</h2>
-    <?php
-$users = $args['data'];
 
-foreach ($users as $user) {
-       echo $user["fname"];
-}
-
-?>
 </body>
 </html>
