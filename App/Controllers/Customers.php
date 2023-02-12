@@ -11,4 +11,9 @@ class Customers extends \Core\Controller
     {
         View::render('Auth/register.php');
     }
+
+    public function loginAction()
+    {
+        View::render('Auth/login.php');
+    }
 }

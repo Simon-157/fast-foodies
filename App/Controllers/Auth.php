@@ -2,7 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
+use Core\View;
+use \App\Models\User;
 
 class Auth extends \Core\Controller
 
@@ -16,32 +17,44 @@ class Auth extends \Core\Controller
         $this->userController = new User();
     }
 
-    public function createAction(): bool
+    public function createAction()
     {
         echo "Submitted successfully";
 
-        $firstname = $_POST['fname'];
-        $lastname = $_POST['lname'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['fname']) && isset($_POST['lname'])) {
 
-        echo "first: " . $firstname . " last: " . $lastname;
-        return true;
+            $firstName = $_POST['fname'];
+            $lastName = $_POST['lname'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            echo "firstName: " . $firstName . " lastName: " . $lastName;
+            $newUser = User::register($firstName, $lastName, $email, $password);
+            if ($newUser) {
+
+                echo '<h2 style="color:green">Successfully registered</h2>';
+                return true;
+                # code...
+            } else {
+                echo '<h2 style="color:red">Registeration Unsuccessful</h2>';
+                return false;
+            }
+
+        }
 
     }
 
-    public function authenticate()
+    public function authenticateAction()
     {
         session_start();
 
         if (isset($_GET['email']) && isset($_GET['password'])) {
             $email = $_GET['email'];
             $password = $_GET['password'];
-
             $user = $this->userController->login($email, $password);
             if ($user) {
-                $_SESSION['user'] = $user;
-                echo 'Welcome, ' . $user['name'] . '!';
+                $_SESSION['current_user'] = $user;
+                echo 'Welcome, ' . $user['fname'] . '!';
+                View::render('Home/index.php');
             } else {
                 echo 'Incorrect email or password.';
             }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
+    <title>Login</title>
 
     <!-- CSS styling -->
     <link rel="stylesheet" href="public\css\login.css" />
@@ -22,48 +22,22 @@
 
         <!-- Welcome message -->
         <div class="header-message">
-          <h3 class="welcome-message">Register a new account🚀</h3>
+          <h3 class="welcome-message">Sign in to your account 🚀</h3>
         </div>
 
         <!-- Form -->
-        <form
-          action="/fast-foodies/create"
-          method="POST"
-          name="form"
-          id="register"
-          class="form-wrapper"
-        >
+        <form action="/fast-foodies/authenticate" method="GET" id="form" class="form-wrapper">
           <!-- Alert message -->
           <h6 class="alert">Input fields cannot be empty</h6>
 
           <!-- Input fields -->
-          <div class="input-wrapper">
-            <input
-              name="fname"
-              placeholder="first name"
-              autofocus
-              id="fname"
-              class="text"
-              type="text"
-            />
-          </div>
 
           <div class="input-wrapper">
             <input
-              name="lname"
-              placeholder="lastname name"
-              autofocus
-              id="lname"
-              class="text"
-              type="text"
-            />
-          </div>
-
-          <div class="input-wrapper">
-            <input
-              name="email"
               placeholder="Email"
+              autofocus
               id="email"
+              name="email"
               class="email"
               type="text"
             />
@@ -71,9 +45,9 @@
 
           <div class="input-wrapper">
             <input
-              name="password"
               placeholder="Password"
-              id="pass"
+              id="password"
+              name="password"
               class="password"
               type="password"
             />
@@ -88,39 +62,17 @@
 
           <!-- Submit button -->
           <div class="submit-wrapper">
-            <button type="" id="sub" class="btn" onclick="clearInput()">Sign In</button>
+            <button type="submit" class="btn">Sign In</button>
           </div>
 
           <div class="footer-wrapper">
             <h6 class="footer-message">
-              Already have an account? Log in <a href="/fast-foodies/login">here</a>
+              Don't have an account? Sign Up
+              <a href="/fast-foodies/register">here</a>
             </h6>
           </div>
-          <span id="msg"></span>
         </form>
       </div>
     </main>
-    <script type="text/javascript">
-      $("#sub").click(() => {
-        var data = $("#register :input").serializeArray();
-
-        $.post($("#register").attr("action"), data, (info) => {
-          $("#msg").html(info);
-        });
-        clearInput();
-      });
-
-      $("#register").submit(() => {
-        return false;
-      });
-
-      function clearInput (){
-        $("#register :input").each(element => {
-
-        });(() => {
-          $(this).val(' ');
-        });
-      };
-    </script>
   </body>
 </html>

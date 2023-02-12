@@ -17,36 +17,43 @@ class User extends \Core\Model
 
     public function __construct()
     {
-        $this->conn = static::getDB();
+
     }
 
     public static function getAll()
     {
-
-        $stmt = static::$conn->query('SELECT cus_id, fname, lname, email FROM customers');
+        $conn = static::getDB();
+        $stmt = $conn->query('SELECT cus_id, fname, lname, email FROM users');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function register($fname, $lname, $email, $password)
+    public static function register($fname, $lname, $email, $pass)
     {
-        $query = "INSERT INTO users (fname, lname, email, password) VALUES (:fname,:lname, :email, :password)";
-        $stmt = $this->conn->prepare($query);
+        echo "I am here";
+        $conn = static::getDB();
+        $query = "INSERT INTO users (fname, lname, email, password) VALUES (:fname,:lname, :email, :pass)";
+        $stmt = $conn->prepare($query);
         $stmt->bindParam(':fname', $fname);
         $stmt->bindParam(':lname', $lname);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
-
+        $password = password_hash($pass, PASSWORD_DEFAULT);
+        $stmt->bindParam(':pass', $password);
+        $stmt->execute();
+        echo "got here";
         if ($stmt->execute()) {
+            echo "Successfully registered";
             return true;
         } else {
             return false;
         }
+
     }
 
     public function login($email, $password)
     {
+        $conn = static::getDB();
         $query = "SELECT * FROM users WHERE email = :email";
-        $stmt = $this->conn->prepare($query);
+        $stmt = $conn->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
