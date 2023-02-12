@@ -61,4 +61,21 @@ class Auth extends \Core\Controller
         }
     }
 
+    public function createUserSession($user)
+    {
+        $_SESSION['usersId'] = $user->usersId;
+        $_SESSION['usersName'] = $user->usersName;
+        $_SESSION['usersEmail'] = $user->usersEmail;
+        View::render('Admin/index.php');
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['usersId']);
+        unset($_SESSION['usersName']);
+        unset($_SESSION['usersEmail']);
+        session_destroy();
+        View::render('Admin/index.php');
+    }
+
 }

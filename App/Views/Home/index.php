@@ -32,20 +32,23 @@
         <div class="nav__menu" id="nav-menu">
           <ul class="nav__list">
             <li class="nav__item">
-              <a href="#home" class="nav__link">Home</a>
+              <a href="/fast-foodies" class="nav__link">Home</a>
             </li>
             <li class="nav__item">
               <a href="menu.html" class="nav__link">Menu</a>
             </li>
 
             <li class="nav__item">
-              <a href="login.html" class="nav__link">Log in</a>
+              <a href="/fast-foodies/login" class="nav__link">Log in</a>
             </li>
             <li class="nav__item">
-              <a href="register.html" class="nav__link">Register</a>
+              <a href="/fast-foodies/register" class="nav__link">Register</a>
             </li>
              <li class="nav__item">
-              <a href="register.html" class="nav__link">welcome <?php echo $_SESSION['current_user']['fname'] ?></a>
+              <a href="" class="nav__link">welcome <?php if (isset($_SESSION['current_user'])) {
+    echo $_SESSION['current_user']['fname'];
+}
+?></a>
             </li>
           </ul>
         </div>
