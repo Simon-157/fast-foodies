@@ -16,7 +16,8 @@ class Error
      */
     public static function errorHandler($level, $message, $file, $line)
     {
-        if (error_reporting() !== 0) {  // to keep the @ operator working
+        if (error_reporting() !== 0) { // to keep the @ operator working
+
             throw new \ErrorException($message, 0, $level, $file, $line);
         }
     }
@@ -54,7 +55,7 @@ class Error
 
             error_log($message);
 
-            View::renderTemplate("$code.html");
+            View::render("ErrorBoundary/$code.php");
         }
     }
 }

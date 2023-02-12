@@ -16,7 +16,8 @@ class Admin extends \Core\Controller
     public function adminAction()
     {
         View::render('Admin/index.php', [
-        'data' => \App\Models\User::getAll()
-    ]);
+            'data' => \App\Models\User::getAll(),
+        ]);
     }
+
 }
