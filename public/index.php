@@ -30,6 +30,7 @@ $router->add('authenticate', ['controller' => 'Auth', 'action' => 'authenticate'
 $router->add('addrestaurant', ['controller' => 'Restaurants', 'action' => 'create']);
 $router->add('getrestaurant', ['controller' => 'Restaurants', 'action' => 'get']);
 $router->add('getrestaurants', ['controller' => 'Restaurants', 'action' => 'getAll']);
+$router->add('analytics', ['controller' => 'Analytic', 'action' => 'analytics']);
 
 $router->add('{controller}/{action}');
 $router->add('{controller}/?');
