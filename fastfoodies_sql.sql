@@ -17,12 +17,16 @@ CREATE TABLE users (
 
 CREATE TABLE restaurants (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    res_name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
     phone_number VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+ALTER TABLE restaurants
+ADD res_email VARCHAR(255) NOT NULL UNIQUE,
+ADD uniquecode INT NOT NULL unique; 
 
 CREATE TABLE menus (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -77,6 +81,9 @@ CREATE TABLE payments (
 
 
 START TRANSACTION;
+
+INSERT INTO users (fname, lname, email, password, address) 
+VALUES ('simon', 'junior', 'junior@gmail.com', '123 Main St');
 
 INSERT INTO users (fname, lname, email, password, address) 
 VALUES 

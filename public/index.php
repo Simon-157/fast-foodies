@@ -11,6 +11,7 @@ set_exception_handler('Core\Error::exceptionHandler');
 
 /**
  * Routing
+
  */
 $router = new Core\Router();
 
@@ -26,6 +27,10 @@ $router->add('login', ['controller' => 'Customers', 'action' => 'login']);
 // Server routes
 $router->add('create', ['controller' => 'Auth', 'action' => 'create']);
 $router->add('authenticate', ['controller' => 'Auth', 'action' => 'authenticate']);
+$router->add('addrestaurant', ['controller' => 'Restaurants', 'action' => 'create']);
+$router->add('getrestaurant', ['controller' => 'Restaurants', 'action' => 'get']);
+$router->add('getrestaurants', ['controller' => 'Restaurants', 'action' => 'getAll']);
+
 $router->add('{controller}/{action}');
 $router->add('{controller}/?');
 $router->dispatch($_SERVER['QUERY_STRING']);

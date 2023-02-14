@@ -4,7 +4,6 @@ namespace App\Models;
 
 use PDO;
 
-
 class User extends \Core\Model
 
 {
@@ -34,7 +33,7 @@ class User extends \Core\Model
         $stmt->bindParam(':email', $email);
         $password = password_hash($pass, PASSWORD_DEFAULT);
         $stmt->bindParam(':pass', $password);
-        $stmt->execute();
+
         echo "got here";
         if ($stmt->execute()) {
             echo "Successfully registered";
@@ -44,6 +43,8 @@ class User extends \Core\Model
         }
 
     }
+
+
 
     public function login($email, $password)
     {
@@ -56,6 +57,7 @@ class User extends \Core\Model
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user) {
             if (password_verify($password, $user['password'])) {
+                echo "Successfully authenticated";
                 return $user;
             } else {
                 return false;

@@ -35,10 +35,12 @@ class Auth extends \Core\Controller
                 return true;
                 # code...
             } else {
-                echo '<h2 style="color:red">Registeration Unsuccessful</h2>';
+                echo '<h2 style="color:red">Registration Unsuccessful</h2>';
                 return false;
             }
 
+        } else {
+            echo "All fields are required";
         }
 
     }
