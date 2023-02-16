@@ -17,6 +17,16 @@ class Auth extends \Core\Controller
         $this->userController = new User();
     }
 
+    public function registerAction()
+    {
+        View::render('Auth/register.php');
+    }
+
+    public function loginAction()
+    {
+        View::render('Auth/login.php');
+    }
+
     public function createAction()
     {
         echo "Submitted successfully";
@@ -28,7 +38,7 @@ class Auth extends \Core\Controller
             $email = $_POST['email'];
             $password = $_POST['password'];
             echo "firstName: " . $firstName . " lastName: " . $lastName;
-            $newUser = User::register($firstName, $lastName, $email, $password);
+            $newUser = User::register($firstName, $lastName, $email, $password, '', 'native');
             if ($newUser) {
 
                 echo '<h2 style="color:green">Successfully registered</h2>';
@@ -65,6 +75,7 @@ class Auth extends \Core\Controller
 
     public function createUserSession($user)
     {
+
         $_SESSION['usersId'] = $user->usersId;
         $_SESSION['usersName'] = $user->usersName;
         $_SESSION['usersEmail'] = $user->usersEmail;
@@ -73,11 +84,11 @@ class Auth extends \Core\Controller
 
     public function logout()
     {
-        unset($_SESSION['usersId']);
-        unset($_SESSION['usersName']);
-        unset($_SESSION['usersEmail']);
+        session_start();
+        unset($_SESSION['current_user']);
+        setcookie("user_id", "", time() - 3600);
         session_destroy();
-        View::render('Admin/index.php');
+        View::render('Home/index.php');
     }
 
 }

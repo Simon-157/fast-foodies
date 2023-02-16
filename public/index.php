@@ -15,23 +15,22 @@ set_exception_handler('Core\Error::exceptionHandler');
  */
 $router = new Core\Router();
 
-// Add the routes
-$router->add('', ['controller' => 'Home', 'action' => 'index']);
-$router->add('admin', ['controller' => 'Admin', 'action' => 'admin']);
-
-// client routes
-$router->add('menu', ['controller' => 'Menu', 'action' => 'index']);
-$router->add('register', ['controller' => 'Customers', 'action' => 'register']);
-$router->add('login', ['controller' => 'Customers', 'action' => 'login']);
+// placeholder for connecting the client to the server
+require './client-routes.php';
 
 // Server routes
 $router->add('create', ['controller' => 'Auth', 'action' => 'create']);
 $router->add('authenticate', ['controller' => 'Auth', 'action' => 'authenticate']);
+$router->add('logout', ['controller' => 'Auth', 'action' => 'logout']);
 $router->add('addrestaurant', ['controller' => 'Restaurants', 'action' => 'create']);
 $router->add('getrestaurant', ['controller' => 'Restaurants', 'action' => 'get']);
 $router->add('getrestaurants', ['controller' => 'Restaurants', 'action' => 'getAll']);
 $router->add('analytics', ['controller' => 'Analytic', 'action' => 'analytics']);
+$router->add('googleauth', ['controller' => 'GoogleAuth', 'action' => 'index']);
+$router->add('allmenus', ['controller' => 'Menus', 'action' => 'allmenus']);
+$router->add('cart', ['controller' => 'Carts', 'action'=>'getCart']);
 
+//default routes
 $router->add('{controller}/{action}');
 $router->add('{controller}/?');
 $router->dispatch($_SERVER['QUERY_STRING']);

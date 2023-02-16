@@ -35,7 +35,7 @@
               <a href="/fast-foodies" class="nav__link">Home</a>
             </li>
             <li class="nav__item">
-              <a href="menu.html" class="nav__link">Menu</a>
+              <a href="/fast-foodies/menu" class="nav__link">Menu</a>
             </li>
 
             <li class="nav__item">

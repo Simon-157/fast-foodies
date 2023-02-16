@@ -12,12 +12,16 @@ class Menu extends \Core\Model
         $this->db = $db;
     }
 
-    public function getAllMenus()
+    public static function getAllMenus()
     {
-        $stmt = $this->db->prepare("SELECT * FROM menus");
+        $conn = static::getDB();
+        $stmt = $conn->prepare("SELECT * FROM menus");
         $stmt->execute();
+        $result = $stmt->fetchAll();
 
-        return $stmt->fetchAll();
+        // Return the data in JSON format
+        echo json_encode($result);
+        return json_encode($result);
     }
 
     public function getMenuById($id)

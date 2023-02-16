@@ -1,45 +1,54 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
-class MobileMoneyPaymentGateway extends \Core\Controller
+use App\Config;
+use Core\View;
+
+class PaymentGateway extends \Core\Controller
 
 {
-    private $api_key;
+    private static $api_key = Config::MOMO_PAY_API_KEY;
 
-    public function __construct($api_key)
+    public function __construct()
     {
-        $this->api_key = $api_key;
+
     }
 
-    public function process_payment($phone_number, $amount, $description)
+    public function testAction()
     {
-        $request = [
-            'phone_number' => $phone_number,
-            'amount' => $amount,
-            'description' => $description,
+        View::render('Test/test.php');
+    }
+
+    // public function process_paymentAction($phone_number, $amount, $description)
+    public static function process_paymentAction()
+    {
+        $url = 'https://mobilemoneyapi.mtn.com/collection/v1_0/requesttopay';
+        $data = [
+            'phone_number' => '0552592929',
+            'amount' => 10,
+            'description' => 'Fried rice payment',
+        ];
+        $headers = [
+            'Content-Type: application/json',
+            'Ocp-Apim-Subscription-Key: 87c728fa540d4c91b6773b25d9316952',
+            'X-Reference-Id: ' . uniqid(),
         ];
 
-        // Send request to MTN Mobile Money API using cURL
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://mobilemoneyapi.mtn.com/collection/v1_0/requesttopay');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($request));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'X-Reference-Id: ' . uniqid(),
-            'Content-Type: application/json',
-            'Ocp-Apim-Subscription-Key: ' . $this->api_key,
-        ]);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
         $response = curl_exec($ch);
         curl_close($ch);
 
-        // Parse response and return payment status
         $data = json_decode($response, true);
         if (isset($data['transaction_reference'])) {
-            return 'pending';
-        } else {
-            return 'failed';
-        }
+            echo 'transaction successful';
+            return true;
+        } else {echo "transaction failed";}
+        return false;
     }
 }

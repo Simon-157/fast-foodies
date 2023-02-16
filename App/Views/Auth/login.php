@@ -26,52 +26,61 @@
         </div>
 
         <!-- Form -->
-        <form action="/fast-foodies/authenticate" method="GET" id="form" class="form-wrapper">
-          <!-- Alert message -->
-          <h6 class="alert">Input fields cannot be empty</h6>
+        <div class="form-wrapper">
 
-          <!-- Input fields -->
 
-          <div class="input-wrapper">
-            <input
-              placeholder="Email"
-              autofocus
-              id="email"
-              name="email"
-              class="email"
-              type="text"
-            />
-          </div>
+          <form action="/fast-foodies/authenticate" method="GET" id="form" >
+            <!-- Alert message -->
+            <h6 class="alert">Input fields cannot be empty</h6>
 
-          <div class="input-wrapper">
-            <input
-              placeholder="Password"
-              id="password"
-              name="password"
-              class="password"
-              type="password"
-            />
-          </div>
+            <!-- Input fields -->
 
-          <!-- Forgot password -->
-          <div class="forgot-password">
-            <a href="#">
-              <h6>Forgot Password?</h6>
-            </a>
-          </div>
+            <div class="input-wrapper">
+              <input
+                placeholder="Email"
+                autofocus
+                id="email"
+                name="email"
+                class="email"
+                type="text"
+              />
+            </div>
 
-          <!-- Submit button -->
-          <div class="submit-wrapper">
-            <button type="submit" class="btn">Sign In</button>
-          </div>
+            <div class="input-wrapper">
+              <input
+                placeholder="Password"
+                id="password"
+                name="password"
+                class="password"
+                type="password"
+              />
+            </div>
 
-          <div class="footer-wrapper">
-            <h6 class="footer-message">
-              Don't have an account? Sign Up
-              <a href="/fast-foodies/register">here</a>
-            </h6>
-          </div>
-        </form>
+            <!-- Forgot password -->
+            <div class="forgot-password">
+              <a href="#">
+                <h6>Forgot Password?</h6>
+              </a>
+            </div>
+
+            <!-- Submit button -->
+            <div class="submit-wrapper">
+              <button type="submit" class="btn">Sign In</button>
+            </div>
+
+            <div class="footer-wrapper">
+              <h6 class="footer-message">
+                Don't have an account? Sign Up
+                <a href="/fast-foodies/register">here</a>
+              </h6>
+            </div>
+          </form>
+          <form action="/fast-foodies/googleauth" method ="POST">
+            <div class="submit-wrapper">
+              <button type="submit" name = "sign-in"class="btn">Sign In</button>
+            </div>
+          </form>
+        </div>
       </div>
     </main>
   </body>

@@ -1,18 +1,23 @@
 <?php
 
 namespace App\Models;
-use PDOException;
-use PDO;
 
-class CartController extends \Core\Model{
+use PDO;
+use PDOException;
+
+class Cart extends \Core\Model
+
+{
 
     private $db;
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->db = $db;
     }
 
-    public function addToCart($user_id, $menu_id, $quantity) {
+    public function addToCart($user_id, $menu_id, $quantity)
+    {
         $menu = $this->db->query("SELECT price FROM menus WHERE id = {$menu_id}")->fetch(PDO::FETCH_ASSOC);
         $price = $menu['price'];
         $subtotal = $price * $quantity;
@@ -28,13 +33,14 @@ class CartController extends \Core\Model{
             $stmt->execute();
             $this->db->commit();
             return true;
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             $this->db->rollback();
             return false;
         }
     }
 
-    public function removeFromCart($user_id, $menu_id) {
+    public function removeFromCart($user_id, $menu_id)
+    {
         $stmt = $this->db->prepare("DELETE FROM cart_items WHERE user_id = :user_id AND menu_id = :menu_id");
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':menu_id', $menu_id);
@@ -42,15 +48,17 @@ class CartController extends \Core\Model{
         return true;
     }
 
-    public function getCartItems($user_id) {
-        $stmt = $this->db->prepare("SELECT * FROM cart_items WHERE user_id = :user_id");
+    public static function getCartItems($user_id)
+    {$conn = static::getDB();
+        $stmt = $conn->prepare("SELECT * FROM cart_items WHERE user_id = :user_id");
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
         $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $cartItems;
     }
 
-    public function clearCart($user_id) {
+    public function clearCart($user_id)
+    {
         $stmt = $this->db->prepare("DELETE FROM cart_items WHERE user_id = :user_id");
         $stmt->bindParam(':user_id', $user_id);
         $stmt->execute();
@@ -58,4 +66,3 @@ class CartController extends \Core\Model{
     }
 
 }
-

@@ -22,4 +22,7 @@ class Home extends \Core\Controller
     {
         View::render('Home/index.php');
     }
+
+
+
 }

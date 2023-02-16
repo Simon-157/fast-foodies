@@ -2,36 +2,21 @@
 
 namespace Core;
 
-/**
- * Error and exception handler
- *
- * PHP version 7.0
- */
 class Error
 {
 
-    /**
-     * Error handler. Convert all errors to Exceptions by throwing an ErrorException.
-     * @return void
-     */
+
     public static function errorHandler($level, $message, $file, $line)
     {
-        if (error_reporting() !== 0) { // to keep the @ operator working
-
+        if (error_reporting() !== 0) {
+            View::render("ErrorBoundary/404.php");
             throw new \ErrorException($message, 0, $level, $file, $line);
         }
     }
 
-    /**
-     * Exception handler.
-     *
-     * @param Exception $exception  The exception
-     *
-     * @return void
-     */
+
     public static function exceptionHandler($exception)
     {
-        // Code is 404 (not found) or 500 (general error)
         $code = $exception->getCode();
         if ($code != 404) {
             $code = 500;
@@ -39,6 +24,8 @@ class Error
         http_response_code($code);
 
         if (\App\Config::SHOW_ERRORS) {
+            View::render("ErrorBoundary/$code.php");
+            header('location: 404.php');
             echo "<h1>Fatal error</h1>";
             echo "<p>Uncaught exception: '" . get_class($exception) . "'</p>";
             echo "<p>Message: '" . $exception->getMessage() . "'</p>";
@@ -54,7 +41,6 @@ class Error
             $message .= "\nThrown in '" . $exception->getFile() . "' on line " . $exception->getLine();
 
             error_log($message);
-
             View::render("ErrorBoundary/$code.php");
         }
     }

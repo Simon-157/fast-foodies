@@ -15,6 +15,8 @@ CREATE TABLE users (
     CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
 );
 
+
+
 CREATE TABLE restaurants (
     id INT AUTO_INCREMENT PRIMARY KEY,
     res_name VARCHAR(255) NOT NULL,
@@ -94,178 +96,24 @@ CREATE TABLE payments (
 );
 
 
-
-START TRANSACTION;
-
-INSERT INTO users (fname, lname, email, password, address)
-VALUES ('simon', 'junior', 'junior@gmail.com', '123 Main St');
-
-INSERT INTO users (fname, lname, email, password, address)
+INSERT INTO restaurants (res_name, address, phone_number, res_email, uniquecode)
 VALUES
-('John', 'Doe', 'johndoe@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '123 Main St'),
-('Jane', 'Doe', 'janedoe@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '456 Elm St'),
-('Jim', 'Smith', 'jimsmith@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '789 Oak St'),
-('Jane', 'Smith', 'janesmith@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '987 Pine St'),
-('Jack', 'Johnson', 'jackjohnson@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '654 Cedar St'),
-('Jill', 'Johnson', 'jilljohnson@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '321 Maple St'),
-('James', 'Brown', 'jamesbrown@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '654 Cedar St'),
-('Janet', 'Brown', 'janetbrown@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '987 Pine St'),
-('Joe', 'Davis', 'joedavis@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '123 Main St'),
-('Jessica', 'Davis', 'jessicadavis@email.com', '$2y$10', '986 cantonment');
+('Burger Joint', '123 Main St, Anytown USA', '555-1234', 'burgerjoint@example.com', 1001),
+('Pizzeria', '456 First Ave, Anytown USA', '555-5678', 'pizzeria@example.com', 1002),
+('Indian Restaurant', '789 Second St, Anytown USA', '555-9012', 'indianrestaurant@example.com', 1003),
+('Sushi Bar', '012 Third Ave, Anytown USA', '555-3456', 'sushibar@example.com', 1004),
+('Mexican Restaurant', '345 Fourth St, Anytown USA', '555-7890', 'mexicanrestaurant@example.com', 1005);
 
--- Users
-INSERT INTO users (fname, lname, email, password, address) VALUES
-("John", "Doe", "johndoe1@email.com", SHA2("password1", 256), "123 Main St"),
-("Jane", "Doe", "janedoe1@email.com", SHA2("password2", 256), "456 Main St"),
-("Jim", "Smith", "jimsmith1@email.com", SHA2("password3", 256), "789 Main St"),
-("Sarah", "Johnson", "sarahjohnson1@email.com", SHA2("password4", 256), "246 Main St"),
-("Tom", "Brown", "tombrown1@email.com", SHA2("password5", 256), "369 Main St"),
-("Amy", "Williams", "amywilliams1@email.com", SHA2("password6", 256), "159 Main St"),
-("Michael", "Jones", "michaeljones1@email.com", SHA2("password7", 256), "753 Main St"),
-("Emily", "Davis", "emilydavis1@email.com", SHA2("password8", 256), "951 Main St"),
-("William", "Martin", "williammartin1@email.com", SHA2("password9", 256), "147 Main St"),
-("Ashley", "Anderson", "ashleyanderson1@email.com", SHA2("password10", 256), "753 Main St");
-
--- Restaurants
-INSERT INTO restaurants (name, address, phone_number) VALUES
-("McDonald's", "111 Main St", "111-111-1111"),
-("Burger King", "222 Main St", "222-222-2222"),
-("Wendy's", "333 Main St", "333-333-3333"),
-("Taco Bell", "444 Main St", "444-444-4444"),
-("KFC", "555 Main St", "555-555-5555"),
-("Pizza Hut", "666 Main St", "666-666-6666"),
-("Subway", "777 Main St", "777-777-7777"),
-("Dunkin' Donuts", "888 Main St", "888-888-8888"),
-("Domino's", "999 Main St", "999-999-9999"),
-("Starbucks", "000 Main St", "000-000-0000");
-
--- Menu
-INSERT INTO menus (restaurant_id, name, description, price)
-VALUES (20, 'Pizza', 'Pepperoni, sausage, and extra cheese', 12.99),
-(21, 'Tacos', 'Ground beef, lettuce, and tomato', 6.99),
-(22, 'Salad', 'Romaine lettuce, croutons, and parmesan cheese', 7.99),
-(20, 'Burger', '100% beef patty with cheese and bacon', 10.99),
-(23, 'Fries', 'Freshly cut potatoes', 2.99),
-(20, 'Soup', 'Loaded Potato', 3.99),
-(21, 'Lasagna', 'Ground beef, ricotta, and marinara sauce', 9.99),
-(22, 'Fried Rice', 'Shrimp, egg, and vegetables', 8.99),
-(23, 'Wings', 'Jumbo wings served with ranch sauce', 10.99),
-(20, 'Grilled Cheese', 'White bread with cheddar cheese', 4.99),
-(21, 'Chicken Tenders', 'Crispy chicken tenders served with honey mustard', 8.99),
-(22, 'Spaghetti', 'Spaghetti noodles with marinara sauce', 9.99),
-(20, 'Calamari', 'Fried squid served with marinara sauce', 9.99),
-(23, 'Pancakes', 'Fluffy buttermilk pancakes', 4.99),
-(20, 'Omelette', 'Three-egg omelette with cheese', 6.99),
-(21, 'Sushi', 'California roll and spicy tuna roll', 13.99),
-(22, 'Cheesesteak', 'Thinly sliced steak with melted cheese', 11.99),
-(20, 'Fish and Chips', 'Beer-battered cod and french fries', 10.99),
-(23, 'Pork Chops', 'Grilled pork chops with mashed potatoes', 12.99),
-(20, 'Seafood Pasta', 'Shrimp, scallops, and linguine', 16.99),
-(21, 'Quesadilla', 'Grilled flour tortilla with cheese', 5.99),
-(22, 'Stir Fry', 'Vegetables and grilled chicken', 8.99),
-(20, 'Fajitas', 'Grilled steak, onions, and peppers', 11.99),
-(23, 'Pot Roast', 'Slow-cooked beef with potatoes and carrots', 11.99),
-(20, 'Mac & Cheese', 'Creamy cheese sauce and elbow macaroni', 7.99),
-(21, 'Pho', 'Rice noodles in beef broth', 8.99),
-(22, 'Chicken Parmesan', 'Breaded chicken with marinara sauce and mozzarella', 10.99),
-(20, 'Chili', 'Ground beef, beans, and spices', 5.99),
-(23, 'Cobb Salad', 'Romaine lettuce, bacon, tomato, and hard-boiled egg', 7.99),
-(20, 'Ribs', 'St. Louis-style ribs with BBQ sauce', 13.99),
-(21, 'Gnocchi', 'Potato dumplings with pesto sauce', 9.99),
-(22, 'Tuna Sandwich', 'Albacore tuna salad on wheat bread', 7.99),
-(20, 'Avocado Toast', 'Toasted wheat bread with mashed avocado', 5.99),
-(23, 'Stuffed Peppers', 'Ground beef, rice, and cheese', 9.99),
-(20, 'Bruschetta', 'Grilled bread with diced tomatoes and basil', 4.99),
-(21, 'Tofu Stir Fry', 'Fried tofu with vegetables', 8.99),
-(22, 'Rolls', 'Sushi rolls with assorted fish', 11.99),
-(20, 'Clams', 'Fried clams with tartar sauce', 9.99),
-(23, 'Shrimp Scampi', 'Sauteed shrimp in garlic-butter sauce', 14.99);
-
-
-INSERT INTO restaurants (name, address, phone_number)
-VALUES
-    ('Pizza Palace', '123 Main St', '555-555-5555'),
-    ('Burger Joint', '456 Elm St', '555-555-5556'),
-    ('Mexican Grill', '789 Oak St', '555-555-5557');
 
 INSERT INTO menus (restaurant_id, name, description, price)
 VALUES
-    (1, 'Pepperoni Pizza', 'A classic pepperoni pizza with tomato sauce and mozzarella cheese', 15.99),
-    (1, 'Margherita Pizza', 'A traditional margherita pizza with tomato sauce, mozzarella cheese and basil', 14.99),
-    (2, 'Cheeseburger', 'A juicy beef patty with melted cheese, lettuce, tomato and pickles', 8.99),
-    (2, 'Bacon Cheeseburger', 'A juicy beef patty with melted cheese, bacon, lettuce, tomato and pickles', 10.99),
-    (3, 'Beef Tacos', 'Three soft tacos with grilled beef, cheese, lettuce, tomato and sour cream', 9.99),
-    (3, 'Chicken Quesadilla', 'A large quesadilla filled with grilled chicken and cheese', 11.99);
-
-INSERT INTO orders (user_id, restaurant_id, menu_id, status)
-VALUES
-    (1, 1, 1, 'confirmed'),
-    (1, 2, 2, 'confirmed'),
-    (2, 3, 5, 'delivered'),
-    (3, 1, 2, 'pending'),
-    (3, 3, 6, 'confirmed');
-
-INSERT INTO order_items (order_id, menu_id, quantity)
-VALUES
-    (1, 1, 1),
-    (1, 2, 2),
-    (2, 2, 1),
-    (2, 3, 2),
-    (3, 5, 3),
-    (4, 2, 2),
-    (5, 6, 1);
-
-INSERT INTO payments (order_id, amount, payment_method)
-VALUES
-    (1, 25.98, 'credit_card'),
-    (2, 23.97, 'debit_card'),
-    (3, 29.97, 'paypal'),
-    (4, 23.98, 'credit_card'),
-    (5, 11.99, 'cash');
-
-
-INSERT INTO orders (user_id, restaurant_id, menu_id)
-VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 5);
-
-INSERT INTO order_items (order_id, menu_id, quantity)
-VALUES
-(1, 1, 2),
-(2, 2, 1),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 5);
-
-INSERT INTO payments (order_id, amount, payment_method)
-VALUES
-(1, 20.00, 'credit_card'),
-(2, 10.00, 'debit_card'),
-(3, 30.00, 'paypal'),
-(4, 40.00, 'cash'),
-(5, 50.00, 'credit_card');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-select * from orders;
-select * from menus;
-select * from payments;
-select * from users;
+(1, 'Cheeseburger', 'Juicy beef patty with melted cheese', 9.99),
+(1, 'Fries', 'Crispy and golden fries', 3.99),
+(1, 'Milkshake', 'Creamy vanilla milkshake', 4.99),
+(2, 'Margherita Pizza', 'Classic pizza with tomato sauce and mozzarella cheese', 12.99),
+(2, 'Caesar Salad', 'Romaine lettuce with croutons, parmesan cheese and caesar dressing', 8.99),
+(2, 'Garlic Bread', 'Toasty garlic bread with a sprinkle of parsley', 3.99),
+(3, 'Chicken Tikka Masala', 'Grilled chicken in creamy tomato sauce', 14.99),
+(3, 'Naan Bread', 'Soft and fluffy bread', 2.99),
+(3, 'Samosa', 'Crispy pastry filled with spiced vegetables or meat', 5.99),
+(4, 'Sushi Roll', 'Assorted fresh fish and vegetables wrapped in rice and seaweed', 16.99);
