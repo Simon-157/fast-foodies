@@ -101,7 +101,7 @@ VALUES
 ('Indian Restaurant', '789 Second St, Anytown USA', '555-9012', 'indianrestaurant@example.com', 1003),
 ('Sushi Bar', '012 Third Ave, Anytown USA', '555-3456', 'sushibar@example.com', 1004),
 ('Mexican Restaurant', '345 Fourth St, Anytown USA', '555-7890', 'mexicanrestaurant@example.com', 1005);
-
+('Mexican Restaurant', '345 Fourth Arena, Anytown USA', '555-7890', 'mexicanrestaurant@example.com', 1005);
 
 INSERT INTO menus (restaurant_id, name, description, price)
 VALUES
