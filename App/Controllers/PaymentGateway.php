@@ -52,3 +52,60 @@ class PaymentGateway extends \Core\Controller
         return false;
     }
 }
+
+
+
+// <?php
+// require_once('vendor/autoload.php');
+
+// class PaymentGateway {
+//   private $stripe_secret_key;
+//   private $db_servername;
+//   private $db_username;
+//   private $db_password;
+//   private $db_name;
+
+//   public function __construct($stripe_secret_key, $db_servername, $db_username, $db_password, $db_name) {
+//     $this->stripe_secret_key = $stripe_secret_key;
+//     $this->db_servername = $db_servername;
+//     $this->db_username = $db_username;
+//     $this->db_password = $db_password;
+//     $this->db_name = $db_name;
+//     \Stripe\Stripe::setApiKey($this->stripe_secret_key);
+//   }
+
+//   public function processPayment($token, $amount) {
+//     try {
+//       // Create the charge with Stripe
+//       $charge = \Stripe\Charge::create([
+//         'amount' => $amount,
+//         'currency' => 'usd',
+//         'description' => 'Example charge',
+//         'source' => $token,
+//       ]);
+
+//       // Insert the payment details into the database
+//       $conn = new mysqli($this->db_servername, $this->db_username, $this->db_password, $this->db_name);
+
+//       if ($conn->connect_error) {
+//         die('Connection failed: ' . $conn->connect_error);
+//       }
+
+//       $sql = "INSERT INTO orders (amount, payment_method) VALUES ('$amount', 'stripe')";
+//       if ($conn->query($sql) === TRUE) {
+//         return 'Payment successful';
+//       } else {
+//         return 'Error: ' . $sql . '<br>' . $conn->error;
+//       }
+
+//       $conn->close();
+//     } catch (Exception $e) {
+//       return 'Error: ' . $e->getMessage();
+//     }
+//   }
+// }
+
+
+
+
+

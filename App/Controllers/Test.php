@@ -4,12 +4,17 @@ namespace App\Controllers;
 
 use \Core\View;
 
-class Home extends \Core\Controller
+
+class Test extends \Core\Controller
 
 {
+
+
     public function indexAction()
     {
-        View::render('Home/index.php');
+        View::render('Test/test.php');
     }
+
+
 
 }

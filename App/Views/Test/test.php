@@ -70,6 +70,8 @@
         background-color: #e55d00;
       }
     </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWuUAWi5PARG0gVGYmPNdwdONphMgmLuY&callback=initMap" async defer></script>
+
   </head>
   <body>
     <h1>My Cart</h1>
@@ -104,10 +106,37 @@
     </div>
     <p class="total">Total: $46.94</p>
     <button onclick="clearCart()">Clear Cart</button>
-<form id="order-form"><input id="address-input" name ="" /><br><br><button type="submit" onclick="orderinitMap()">Submit</button></form>
+<form id="order-form"><input id="address-input" name ="" /><br><br><button type="" onclick="initMap()">Submit</button></form>
 
 <div id="map"></div>
-<script type="text/javascript" src="public/scripts/deliveryMap.js"></script>
+<!-- Include the Uploadcare script -->
+<script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+
+<!-- Your HTML code here -->
+<div>
+  <input type="hidden" role="uploadcare-uploader"
+         data-public-key="e2ac7ad8c06a4a0b28b2"
+         data-images-only="true">
+  <img id="uploaded-image">
+</div>
+
+<script type="text/javascript" src="public\scripts\deliveryMap.js"></script>
+<!-- Your JavaScript code here -->
+<script>
+  // Initialize the Uploadcare widget
+  var widget = uploadcare.Widget('[role=uploadcare-uploader]');
+
+  // Listen for when a file is uploaded
+  widget.onUploadComplete(function(info) {
+    console.log('File uploaded:', info.cdnUrl);
+
+    // Display the uploaded image in the img element
+    var imgElement = document.getElementById('uploaded-image');
+    imgElement.src = info.cdnUrl;
+  });
+</script>
+
+
     <script>
   function deleteItem(element) {
     // Find the card element and remove it

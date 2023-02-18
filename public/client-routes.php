@@ -5,4 +5,4 @@ $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('menu', ['controller' => 'Menus', 'action' => 'index']);
 $router->add('register', ['controller' => 'Auth', 'action' => 'register']);
 $router->add('login', ['controller' => 'Auth', 'action' => 'login']);
-$router->add('test', ['controller' => 'PaymentGateway', 'action' => 'test']);
+$router->add('test', ['controller' => 'Test', 'action' => 'index']);
