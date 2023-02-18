@@ -37,7 +37,7 @@ class User extends \Core\Model
         $password = password_hash($pass, PASSWORD_DEFAULT);
         switch ($mode) {
             case 'native':
-                $query = "INSERT INTO users (fname, lname, user_email, password) VALUES (:fname,:lname, :email, :pass)";
+                $query = "INSERT INTO users (fname, lname, user_email, user_password) VALUES (:fname,:lname, :email, :pass)";
                 $stmt = $conn->prepare($query);
                 $stmt->bindParam(':fname', $fname);
                 $stmt->bindParam(':lname', $lname);
@@ -55,7 +55,7 @@ class User extends \Core\Model
                     return true;
                 } else {
 
-                    $stmt = $conn->prepare('INSERT INTO users (fname, lname, user_email, password, profileImg) VALUES (:fname, :lname, :email, :pass, :profileImg)');
+                    $stmt = $conn->prepare('INSERT INTO users (fname, lname, user_email, user_password, profileImg) VALUES (:fname, :lname, :email, :pass, :profileImg)');
                     $stmt->execute([
                         'fname' => $fname,
                         'lname' => $lname,
@@ -87,7 +87,7 @@ class User extends \Core\Model
 
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user) {
-            if (password_verify($password, $user['password'])) {
+            if (password_verify($password, $user['user_password'])) {
                 echo "Successfully authenticated";
                 return $user;
             } else {

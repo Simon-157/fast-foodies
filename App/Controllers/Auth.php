@@ -42,7 +42,7 @@ class Auth extends \Core\Controller
             if ($newUser) {
 
                 echo '<h2 style="color:green">Successfully registered</h2>';
-                return true;
+                return false;
                 # code...
             } else {
                 echo '<h2 style="color:red">Registration Unsuccessful</h2>';
