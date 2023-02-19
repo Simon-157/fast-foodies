@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use \App\Models\Restaurant;
+use Core\View;
+
 
 class Restaurants extends \Core\Controller
 
@@ -15,7 +17,9 @@ class Restaurants extends \Core\Controller
     }
 
     public function viewAction()
-    {}
+    {
+        View::render('Admin/index.php');
+    }
 
     public function createAction()
     {
