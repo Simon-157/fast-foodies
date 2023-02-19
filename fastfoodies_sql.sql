@@ -6,13 +6,12 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fname VARCHAR(255) NOT NULL,
     lname VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
+    user_email VARCHAR(255) NOT NULL UNIQUE,
+    user_password VARCHAR(255) NOT NULL UNIQUE,
+    profileImg VARCHAR(255) DEFAULT 'https://i.pravatar.cc/75',
+    user_address VARCHAR(255) NOT NULL DEFAULT("Accra Ghana"),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	UNIQUE KEY (email),
-    CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
@@ -20,15 +19,14 @@ CREATE TABLE users (
 CREATE TABLE restaurants (
     id INT AUTO_INCREMENT PRIMARY KEY,
     res_name VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
+    res_address VARCHAR(255) NOT NULL,
     phone_number VARCHAR(255) NOT NULL,
+    res_email VARCHAR(255) NOT NULL UNIQUE,
+    uniquecode INT NOT NULL unique,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-ALTER TABLE restaurants
-ADD res_email VARCHAR(255) NOT NULL UNIQUE,
-ADD uniquecode INT NOT NULL unique;
 
 CREATE TABLE menus (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -96,14 +94,14 @@ CREATE TABLE payments (
 );
 
 
-INSERT INTO restaurants (res_name, address, phone_number, res_email, uniquecode)
+INSERT INTO restaurants (res_name, res_address, phone_number, res_email, uniquecode)
 VALUES
 ('Burger Joint', '123 Main St, Anytown USA', '555-1234', 'burgerjoint@example.com', 1001),
 ('Pizzeria', '456 First Ave, Anytown USA', '555-5678', 'pizzeria@example.com', 1002),
 ('Indian Restaurant', '789 Second St, Anytown USA', '555-9012', 'indianrestaurant@example.com', 1003),
 ('Sushi Bar', '012 Third Ave, Anytown USA', '555-3456', 'sushibar@example.com', 1004),
 ('Mexican Restaurant', '345 Fourth St, Anytown USA', '555-7890', 'mexicanrestaurant@example.com', 1005);
-
+('Mexican Restaurant', '345 Fourth Arena, Anytown USA', '555-7890', 'mexicanrestaurant@example.com', 1005);
 
 INSERT INTO menus (restaurant_id, name, description, price)
 VALUES

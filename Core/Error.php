@@ -25,7 +25,7 @@ class Error
 
         if (\App\Config::SHOW_ERRORS) {
             View::render("ErrorBoundary/$code.php");
-            header('location: 404.php');
+            // header('location: 404.php');
             echo "<h1>Fatal error</h1>";
             echo "<p>Uncaught exception: '" . get_class($exception) . "'</p>";
             echo "<p>Message: '" . $exception->getMessage() . "'</p>";
@@ -41,7 +41,7 @@ class Error
             $message .= "\nThrown in '" . $exception->getFile() . "' on line " . $exception->getLine();
 
             error_log($message);
-            View::render("ErrorBoundary/$code.php");
+            // View::render("ErrorBoundary/$code.php");
         }
     }
 }
