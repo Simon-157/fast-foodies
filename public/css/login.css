@@ -11,17 +11,24 @@ body {
 }
 
 main {
-  margin-top: 6rem;
+  margin-top: 7rem;
   display: flex;
   justify-content: center;
+}
+
+.top {
+  margin-top: 4rem;
 }
 
 .main-container {
   width: 460px;
   height: auto;
-  max-height: 520px;
   background-color: white;
   border-radius: 8px;
+}
+
+.reg {
+  height: 600px;
 }
 
 .leaf-wrapper {
@@ -68,7 +75,8 @@ main {
   margin-top: 0.5rem;
 }
 
-input {
+input[type="password"],
+input[type="text"] {
   width: 420px;
   height: 55px;
   padding: 8px;
@@ -81,8 +89,29 @@ input {
   background-color: #f3f3f3;
 }
 
+.radio_wrapper {
+  width: 500px;
+  display: flex;
+  gap: 7rem;
+  margin: 0.7rem auto;
+}
+
 .input-wrapper {
   margin-top: 1.5rem;
+}
+
+.iama {
+  font-size: 18px;
+  color: rgb(85, 81, 81);
+}
+
+.wr {
+  display: flex;
+  gap: 1rem;
+}
+
+.spacer {
+  height: 7px;
 }
 
 .inner-icon {

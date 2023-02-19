@@ -78,6 +78,20 @@
               type="password"
             />
           </div>
+                          <div class="input-wrapper">
+                    <p class="iama">I am a:</p>
+                    <div class="radio_wrapper">
+                        <div class="wr">
+                            <input id="password" class="password" type="radio" />
+                            <label>Customer 🧑</label>
+                        </div>
+                        <div class="wr">
+                            <input id="password" class="password" type="radio" />
+                            <label>Restaurant 🏪</label>
+                        </div>
+                    </div>
+
+                </div>
 
           <!-- Forgot password -->
           <div class="forgot-password">
