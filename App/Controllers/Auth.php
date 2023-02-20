@@ -74,12 +74,14 @@ class Auth extends \Core\Controller
 
 
         else if (isset($_GET['email']) && isset($_GET['password']) && isset($_GET['admin-key'])) {
+           
             $email = $_GET['email'];
             $password = $_GET['password'];
             $res_secret_code = $_GET['admin-key'];
             $restaurant = $this->userController->loginRestaurantAdmin($email, $password, $res_secret_code); 
             if ($restaurant) {
                 $_SESSION['admin_key'] = $restaurant['uniquecode'];
+                $_SESSION['restaurant_id'] = $restaurant['id'];
                 $_SESSION['res_email'] = $restaurant['res_email'];
                 $_SESSION['res_logo'] = $restaurant['img_url'];
                 $_SESSION['res_name'] = $restaurant['res_name'];

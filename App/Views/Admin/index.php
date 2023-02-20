@@ -86,27 +86,28 @@
 
             <!-- Add new food -->
             <div class="new_food_wrapper">
+                <span  id="msg"></span>
                 <form id="food-form" class="form" name="food-form">
 
                     <div class="input_wrapper">
                         <label for="food_name">Food Name</label>
-                        <input class="food_name" type="text" >
+                        <input class="food_name" name= "food_name" type="text" >
                     </div>
 
                     <div class="input_wrapper">
                         <label for="food_name">Food Description</label>
-                        <input class="food_desc" type="text" >
+                        <input class="food_desc" name = "food_description" type="text" >
                     </div>
 
                     
                     <div class="input_wrapper">
                         <label for="food_name">Price</label>
-                        <input class="food_desc" type="number" >
+                        <input class="food_desc" type="number" name= "price">
                     </div>
                     
                     <div class="input_wrapper">
                         <label for="food_name">Quantity</label>
-                        <input class="food_qty" type="number" >
+                        <input class="food_qty" type="number" name = "quantity">
                     </div>
 
                     <div class="input_wrapper_img   ">

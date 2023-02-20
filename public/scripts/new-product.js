@@ -9,7 +9,8 @@ $(document).ready(function() {
   
       if (file) {
         file.done(function(fileInfo) {
-          formData.set("food_image", fileInfo.cdnUrl);
+          formData.set("food_imgUrl", fileInfo.cdnUrl);
+          console.log(formData)
           // Submit form data with image URL via AJAX
           $.ajax({
             url: "/fast-foodies/addmenu",
@@ -18,8 +19,9 @@ $(document).ready(function() {
             processData: false,
             contentType: false,
             success: function(response) {
-                
+               $('#msg').text(response.message);
               console.log("Form data submitted successfully");
+              return false;
             },
             error: function(xhr, status, error) {
               console.log("Error submitting form data");

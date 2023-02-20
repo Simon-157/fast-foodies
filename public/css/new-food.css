@@ -24,6 +24,14 @@ a {
   color: inherit;
 }
 
+#msg {
+
+    color: rgba(85, 246, 85, 0.781);
+    text-align: center;
+    font-weight: 400;
+  
+}
+
 /* Image upload button styles */
 .uploadcare--widget__button {
   background-color: #ec7b4e;

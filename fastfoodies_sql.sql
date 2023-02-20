@@ -28,7 +28,7 @@ CREATE TABLE restaurants (
 );
 
 
-CREATE TABLE menus (
+CREATE TABLE menu (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     restaurant_id INT(11) UNSIGNED NOT NULL,
     food_name VARCHAR(255) NOT NULL,

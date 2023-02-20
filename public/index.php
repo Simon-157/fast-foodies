@@ -28,7 +28,9 @@ $router->add('getrestaurants', ['controller' => 'Restaurants', 'action' => 'getA
 $router->add('analytics', ['controller' => 'Analytic', 'action' => 'analytics']);
 $router->add('googleauth', ['controller' => 'GoogleAuth', 'action' => 'index']);
 $router->add('allmenus', ['controller' => 'Menus', 'action' => 'allmenus']);
+$router->add('addmenu', ['controller' => 'Menus', 'action' => 'addmenu']);
 $router->add('cart', ['controller' => 'Carts', 'action'=>'getCart']);
+
 
 //default routes
 $router->add('{controller}/{action}');

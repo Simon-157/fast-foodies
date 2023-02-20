@@ -59,7 +59,7 @@ class Restaurants extends \Core\Controller
         if (array_key_exists('id', $_GET)) {
 
             $res_id = $_GET['id'];
-            $restaurant = Restaurant::getRestaurantById($res_id);
+            $restaurant = Restaurant::getRestaurantById($res_id, 'yes');
             if ($restaurant) {
                 echo $restaurant['res_name'];
             } else {
