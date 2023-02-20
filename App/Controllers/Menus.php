@@ -73,4 +73,47 @@ class Menus extends \Core\Controller
     }
 
 
+
+    public function updatemenuAction()
+    {
+        if (isset($_POST['food_name'], $_POST['food_description'], $_POST['food_price'], $_POST['food_quantity'])) {
+            session_start();
+            $menuId = $_POST['menu_id'];
+            $foodName = $_POST['food_name'];
+            $foodDescription = $_POST['food_description'];
+            $price = $_POST['food_price'];
+            $quantity = $_POST['food_quantity'];
+
+            // Update existing menu item
+            $menuModel = new Menu();
+            $menu_Id = $menuModel->updateMenu($menuId, $foodName, $foodDescription, $price, $quantity);
+
+            if ($menu_Id) {
+                // Return success response
+                $response = [
+                    'status' => 'success',
+                    'message' => 'Menu updated successfully',
+                    'menu_id' => $menuId
+                ];
+            } else {
+                // Return error response
+                $response = [
+                    'status' => 'error',
+                    'message' => 'Unable to update menu'
+                ];
+            }
+
+        } else {
+            // Return error response if any field is missing
+            $response = [
+                'status' => 'error',
+                'message' => 'All fields are required'
+            ];
+        }
+
+        // Convert the response to JSON and return it
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+
 }

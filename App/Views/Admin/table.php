@@ -43,21 +43,22 @@
     <!-- Modal PopUp-->
     
     <dialog id="mySizeChartModal" class="ebcf_modal">
-        
         <div class="ebcf_modal-content">
             <span class="ebcf_close">&times;</span>
             <h2 class="modal_header">Edit food details</h2>
             <div class="new_food_wrapper_edit">
-                <form class="table_form" class="form" name="food-form">
+                <form class="table_form" class="form" name="food-form" id="food-form" >
+                    <span id="msg"></span>
                     
                     <div class="input_wrapper">
                         <label for="food_name">Food Name</label>
                         <input id="food_name" name="food_name" class="food_name" autofocus type="text">
                     </div>
-                    
+                   
+
                     <div class="input_wrapper">
                         <label for="food_name">Food Description</label>
-                        <input id="food_desc" name="food_desc" class="food_desc" type="text">
+                        <input id="food_desc" name="food_description" class="food_desc" type="text">
                     </div>
                     
                     <div class="input_wrapper">
@@ -153,6 +154,7 @@
                 
                 <div class="table_wrapper">
                     <!-- TABLE STARTS -->
+                   
                     <table>
                         <thead id="table-header">
                             <tr>

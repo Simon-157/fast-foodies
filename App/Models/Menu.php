@@ -3,7 +3,6 @@
 namespace App\Models;
 
 class Menu extends \Core\Model
-
 {
     private $db;
 
@@ -49,14 +48,24 @@ class Menu extends \Core\Model
             return false;
         }
     }
-    
 
-    public function updateMenu($id, $restaurantId, $name, $description, $price)
+
+    public function updateMenu($menuId, $food_name, $food_description, $price, $quantity)
     {
-        $stmt = $this->db->prepare("UPDATE menu SET restaurant_id = ?, name = ?, description = ?, price = ? WHERE id = ?");
-        $stmt->execute([$restaurantId, $name, $description, $price, $id]);
-        
-        return $stmt->rowCount();
+        $conn = static::getDB();
+        $restaurantId = $_SESSION['restaurant_id'];
+        $stmt = $conn->prepare("UPDATE menu SET food_name=?, food_description=?, price=?, quantity=?  WHERE id=? AND restaurant_id=?");
+        $stmt->bindParam(1, $food_name);
+        $stmt->bindParam(2, $food_description);
+        $stmt->bindParam(3, $price);
+        $stmt->bindParam(4, $quantity);
+        $stmt->bindParam(5, $menuId);
+        $stmt->bindParam(6, $restaurantId);
+        if ($stmt->execute()) {
+            return $menuId;
+        } else {
+            return false;
+        }
     }
 
     public function deleteMenu($id)
