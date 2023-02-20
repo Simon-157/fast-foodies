@@ -45,13 +45,13 @@
                  </li>
 
                 <li>
-                   <a class="s-sidebar__nav-link" href="new-food.html">
+                   <a class="s-sidebar__nav-link" href="/fast-foodies/new_food">
                       <i class="bx bx-plus"></i><em>New Food</em>
                    </a>
                 </li>
 
                 <li>
-                   <a class="s-sidebar__nav-link" href="table.html">
+                   <a class="s-sidebar__nav-link" href="/fast-foodies/published">
                      <i class="bx bx-dish"></i><em>Published Foods</em>
                    </a>
                 </li>

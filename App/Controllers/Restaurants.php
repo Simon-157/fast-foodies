@@ -25,6 +25,11 @@ class Restaurants extends \Core\Controller
         View::render('Admin/index.php');
     }
 
+    public function publishedAction()
+    {
+        View::render('Admin/table.php');
+    }
+
     public function createAction()
     {
         if (isset($_POST['res_name']) && isset($_POST['res_phone']) && isset($_POST['res_email']) && isset($_POST['res_address'])) {

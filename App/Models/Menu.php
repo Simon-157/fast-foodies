@@ -15,7 +15,7 @@ class Menu extends \Core\Model
     public static function getAllMenus()
     {
         $conn = static::getDB();
-        $stmt = $conn->prepare("SELECT * FROM menus");
+        $stmt = $conn->prepare("SELECT * FROM menu");
         $stmt->execute();
         $result = $stmt->fetchAll();
 
@@ -26,7 +26,7 @@ class Menu extends \Core\Model
 
     public function getMenuById($id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM menus WHERE id = ?");
+        $stmt = $this->db->prepare("SELECT * FROM menu WHERE id = ?");
         $stmt->execute([$id]);
 
         return $stmt->fetch();
