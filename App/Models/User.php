@@ -98,4 +98,29 @@ class User extends \Core\Model
         }
     }
 
+
+    public function loginRestaurantAdmin($email, $password, $admin_key)
+    {
+        $conn = static::getDB();
+        $query = "SELECT * FROM restaurants WHERE res_email = :email and uniquecode = :unique_key";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':unique_key', $admin_key);
+        $stmt->execute();
+
+        $restaurant_admin = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($restaurant_admin) {
+                return $restaurant_admin;
+            /** to do: hash the random unique key before this line will be uncommented **/
+            // if (password_verify($password, $restaurant_admin['user_password'])) {
+            //     echo "Successfully authenticated";
+            //     return $user;
+            // } else {
+            //     return false;
+            // }
+        } else {
+            return false;
+        }
+    }
+
 }

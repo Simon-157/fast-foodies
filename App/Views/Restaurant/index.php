@@ -11,105 +11,141 @@
       <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
       <link rel="stylesheet" href="public\css\styles.css" />
       <link rel="stylesheet" href="public\css\new-food.css" />
-      <script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
-      <!-- <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script> -->
+      <link rel="stylesheet" href="public\css\login.css" />
+      <!-- <script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script> -->
+      <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
 
 </head>
 <body>
 
-    <div class="s-layout">
-        <!-- Main Content -->
-        <main class="s-layout__content">
-            <nav class="nav bd-container">
-                <a href="/fast-foodies" class="header_name"><h1>Foodies</h1></a>
+<main>
+      <div class="main-container">
+  
+        <!-- Welcome message -->
+        <div class="header-message">
+          <h3 class="welcome-message">Register a new account🚀</h3>
+        </div>
+        
+        <!-- Form -->
+        <form
+          action = "/fa st-foodies/addrestaurant" 
+          name="register" id="register"
+          class="form-wrapper"
+        >
+        <!-- Alert message -->
+        <span id="msg"></span>
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="index.html" class="nav__link ">Jack Maaye </a></li>
-                    </ul>
-                </div>
-            </nav>
+          <!-- Input fields -->
+          <div class="input-wrapper">
+            <input
+              name= "res_name"
+              placeholder="Restaurant Name"
+              autofocus
+              id="fname"
+              class="text"
+              type="text"
+            />
+          </div>
 
-            <!-- Foods Published  -->
-            <div class="text_wrapper">
-                <h2>Register Your Restaurant</h2>
-            </div>
+          <div class="input-wrapper">
+            <input
+              name= "res_email"
+              placeholder="Restaurant Email"
+              autofocus
+              id="lname"
+              class="text"
+              type="text"
+            />
+          </div>
 
-            <!-- Add new food -->
-            <div class="new_food_wrapper">
-               <h3 id="msg"></h3>
-                <form action = "/fast-foodies/addrestaurant" class="form" name="register" id="register">
+          <div class="input-wrapper">
+            <input
+              name= "res_address"
+              placeholder="Location"
+              id="email"
+              class="email"
+              type="text"
+            />
+          </div>
 
-                    <div class="input_wrapper">
-                        <label for="food_name">Restaurant Name</label>
-                        <input class="food_name" name= "res_name" type="text" placeholder="Shawa Eatery">
-                    </div>
-                    <div class="input_wrapper">
-                        <label for="food_name">Restaurant Email</label>
-                        <input class="food_name" type="text" name= "res_email" placeholder = "e.g fastfoodies@gmail.com">
-                    </div>
+          <div class="input-wrapper">
+            <input
+              name="res_phone"
+              placeholder="Phone Number"
+              id="pass"
+              class="password"
+              type="text"
+            />
+          </div>
+          <input
+              name="image_url"
+              id="img_up"
+              type="hidden"
+            />
 
-                    <div class="input_wrapper">
-                       <label for="food_name">Location</label>
-                       <input class="food_desc" type="text" name= "res_address" placeholder="e.g Accra, COCOBOD" >
-                     </div>
+          <div class="input-wrapper">
+            <input type="hidden" role="uploadcare-uploader" 
+                data-public-key="e2ac7ad8c06a4a0b28b2"
+                data-images-only  class="uploadcare-widget"
+            >
 
-                     <div class="input_wrapper">
-                        <label for="food_name">Phone Number</label>
-                        <input class="food_qty" type="text" name= "res_phone" placeholder="e.g +233 552 592 929">
-                     </div>
-                     <div class="input_wrapper">
-                         <label for="food_name">Restaurant Image/Logo</label>
-                         <input type="hidden" role="uploadcare-uploader" data-public-key="e2ac7ad8c06a4a0b28b2"  data-images-only  class="uploadcare-widget">
-                     </div>
-                      <!-- <img id="uploaded-image"> -->
-                     <div class="input_wrapper" >
-                        <input class="submit_btn" type="button" name= "register_btn" id="sub"   value="Submit">
-                     </div>
-                </form>
-            </div>
+          </div>
 
-        </main>
+          <!-- Submit button -->
+          <div class="submit-wrapper">
+            <button  id="sub" name= "register_btn"  class="btn">Register</button>
+          </div>
 
-    </div>
+          <div class="footer-wrapper">
+            <h6 class="footer-message">
+              Already have an account? Log in <a href="/fast-foodies/login">here</a>
+            </h6>
+          </div>
+        </form>
+        
+
+      </div>
+   </main>
+
    <script  type = "">
 
-      // Initialize the Uploadcare widget
-var widget = uploadcare.Widget('[role=uploadcare-uploader]');
+              // Initialize the Uploadcare widget
+        var widget = uploadcare.Widget('[role=uploadcare-uploader]');
 
-// Listen for when a file is uploaded
-widget.onUploadComplete(function(info) {
-  console.log('File uploaded:', info.cdnUrl);
+        // Listen for when a file is uploaded
+        widget.onUploadComplete(function(info) {
+          console.log('File uploaded:', info.cdnUrl);
 
-  // Display the uploaded image in the img element
-  var imgElement = document.getElementById('uploaded-image');
-  imgElement.src = info.cdnUrl;
+          // Display the uploaded image in the img element
+          var imgElement = document.getElementById('uploaded-image');
+          imgElement.src = info.cdnUrl;
+          $('#img_up').value = info.cdnUrl;-
 
-  // Add the image URL to the post data
-  $("#register").append('<input type="hidden" name="image_url" value="' + info.cdnUrl + '">');
-});
+          // Add the image URL to the post data
+          $("#register").append('<input type="hidden" name="image_url" value="' + info.cdnUrl + '">');
+        });
 
-// form submission script for registering a restaurant
-$("#sub").click(() => {
-  const data = $("#register :input").serializeArray();
+        // form submission script for registering a restaurant
+        $("#sub").click(() => {
+          const data = $("#register :input").serializeArray();
 
-  console.log(data);
+          console.log(data);
 
-  $.post($("#register").attr("action"), data, (info) => {
-    $("#msg").html(info);
-  });
-  clearInput();
-});
+          $.post($("#register").attr("action"), data, (info) => {
+            $("#msg").html(info);
+          });
+          clearInput();
+        });
 
-$("#register").submit(() => {
-  return false;
-});
+        $("#register").submit(() => {
+          return false;
+        });
 
-function clearInput (){
-  $("#register :input").each(() => {
-    $(this).val(' ');
-  });
-};
+        function clearInput (){
+          $("#register :input").each(() => {
+            $(this).val(' ');
+          });
+        };
 
    </script>
 </body>

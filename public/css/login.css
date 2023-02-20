@@ -10,8 +10,8 @@ body {
   overflow-y: hidden;
 }
 
-main {
-  margin-top: 7rem;
+main{
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
 }
@@ -44,7 +44,7 @@ main {
 
 .header-message {
   width: 270px;
-  margin: auto;
+  margin:1rem auto;
   padding-top: 0.4rem;
 }
 
@@ -72,7 +72,6 @@ main {
   width: 420px;
   height: 100%;
   margin: auto;
-  margin-top: 0.5rem;
 }
 
 input[type="password"],
@@ -97,7 +96,7 @@ input[type="text"] {
 }
 
 .input-wrapper {
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
 }
 
 .iama {
@@ -111,7 +110,7 @@ input[type="text"] {
 }
 
 .spacer {
-  height: 7px;
+  height: 20px;
 }
 
 .inner-icon {
@@ -152,16 +151,51 @@ h6 {
 
 .btn {
   width: 420px;
-  height: 65px;
+  height: 45px;
   outline: none;
   border: none;
   font-size: 19px;
-  padding: 15px;
+  padding: 10px;
   border-radius: 4px;
   color: white;
   background-color: #e46d55;
   cursor: pointer;
 }
+
+
+/* Goole sign in button */
+.google-btn {
+  display: inline-block;
+  justify-content: center;
+  background-color: #f3f3f3;
+  color: #757575;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  padding: 0 16px;
+  border-radius: 2px;
+  border: 1px solid #dadce0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  height: 36px;
+  line-height: 36px;
+  transition: box-shadow 0.2s;
+}
+
+.google_div{
+  width:200px;
+  margin:1rem auto;
+}
+
+.google-btn:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.google-btn img {
+  height: 18px;
+  margin-right: 16px;
+  vertical-align: middle;
+}
+
 
 .footer-wrapper {
   width: 300px;

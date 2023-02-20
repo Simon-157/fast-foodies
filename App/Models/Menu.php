@@ -7,9 +7,9 @@ class Menu extends \Core\Model
 {
     private $db;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $this->db = static::getDB();
     }
 
     public static function getAllMenus()
@@ -32,19 +32,30 @@ class Menu extends \Core\Model
         return $stmt->fetch();
     }
 
-    public function addMenu($restaurantId, $name, $description, $price)
+    public function addMenu($restaurantId, $food_name, $food_description, $price, $quantity, $food_imgUrl)
     {
-        $stmt = $this->db->prepare("INSERT INTO menus (restaurant_id, name, description, price) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$restaurantId, $name, $description, $price]);
-
-        return $this->db->lastInsertId();
+        $conn = static::getDB();
+        $stmt = $conn->prepare("INSERT INTO menus (restaurant_id, food_name, food_description, price, quantity, food_imgUrl) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bindParam(1, $restaurantId);
+        $stmt->bindParam(2, $food_name);
+        $stmt->bindParam(3, $food_description);
+        $stmt->bindParam(4, $price);
+        $stmt->bindParam(5, $quantity);
+        $stmt->bindParam(6, $food_imgUrl);
+        if ($stmt->execute()) {
+            $id = $conn->lastInsertId();
+            return $id;
+        } else {
+            return false;
+        }
     }
+    
 
     public function updateMenu($id, $restaurantId, $name, $description, $price)
     {
         $stmt = $this->db->prepare("UPDATE menus SET restaurant_id = ?, name = ?, description = ?, price = ? WHERE id = ?");
         $stmt->execute([$restaurantId, $name, $description, $price, $id]);
-
+        
         return $stmt->rowCount();
     }
 

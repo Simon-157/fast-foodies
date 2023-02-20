@@ -59,7 +59,7 @@ class Auth extends \Core\Controller
     {
         session_start();
 
-        if (isset($_GET['email']) && isset($_GET['password'])) {
+        if (isset($_GET['email']) && isset($_GET['password']) && !isset($_GET['admin-key'])) {
             $email = $_GET['email'];
             $password = $_GET['password'];
             $user = $this->userController->login($email, $password);
@@ -71,6 +71,26 @@ class Auth extends \Core\Controller
                 echo 'Incorrect email or password.';
             }
         }
+
+
+        else if (isset($_GET['email']) && isset($_GET['password']) && isset($_GET['admin-key'])) {
+            $email = $_GET['email'];
+            $password = $_GET['password'];
+            $res_secret_code = $_GET['admin-key'];
+            $restaurant = $this->userController->loginRestaurantAdmin($email, $password, $res_secret_code); 
+            if ($restaurant) {
+                $_SESSION['admin_key'] = $restaurant['uniquecode'];
+                $_SESSION['res_email'] = $restaurant['res_email'];
+                $_SESSION['res_logo'] = $restaurant['img_url'];
+                $_SESSION['res_name'] = $restaurant['res_name'];
+                // echo 'Welcome, ' . $user['fname'] . '!';
+                View::render('Admin/index.php');
+            } else {
+                echo 'Incorrect email or secret key';
+            }
+        }
+
+
     }
 
     public function createUserSession($user)

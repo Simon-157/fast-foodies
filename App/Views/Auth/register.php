@@ -17,7 +17,7 @@
       <div class="main-container">
         <!-- Leaf icon -->
         <div class="leaf-wrapper">
-          <img class="leaf-icon" src="img/dish.svg" alt="leaf-icon" />
+          <img class="leaf-icon" src="public/assets/dish.svg" alt="leaf-icon" />
         </div>
 
         <!-- Welcome message -->
@@ -78,20 +78,7 @@
               type="password"
             />
           </div>
-                          <div class="input-wrapper">
-                    <p class="iama">I am a:</p>
-                    <div class="radio_wrapper">
-                        <div class="wr">
-                            <input id="password" class="password" type="radio" />
-                            <label>Customer 🧑</label>
-                        </div>
-                        <div class="wr">
-                            <input id="password" class="password" type="radio" />
-                            <label>Restaurant 🏪</label>
-                        </div>
-                    </div>
 
-                </div>
 
           <!-- Forgot password -->
           <div class="forgot-password">
@@ -102,7 +89,7 @@
 
           <!-- Submit button -->
           <div class="submit-wrapper">
-            <button type="" id="sub" class="btn" onclick="clearInput()">Sign In</button>
+            <button type="" id="sub" class="btn" onclick="clearInput()">Register</button>
           </div>
 
           <div class="footer-wrapper">

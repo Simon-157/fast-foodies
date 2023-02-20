@@ -29,30 +29,30 @@
         <div class="nav__menu" id="nav-menu">
           <ul class="nav__list">
             <li class="nav__item">
-              <a href="/" class="nav__link">Home</a>
+              <a href="/fast-foodies" class="nav__link">Home</a>
             </li>
             <li> <a href="" class="nav__link">
               <?php
 
-session_start();
-if (isset($_SESSION['current_user'])) {
-  echo "
-  <img class='profile-img' src='{$_SESSION["current_user"]["profileImg"]}' />
-  <li class='nav__item'>
-  <a href='/fast-foodies/logout' class='nav__link'>logout</a>
-  </li>
-  ";
-} else {
-  echo
-  '<li class="nav__item">
-          <a href="/fast-foodies/login" class="nav__link">Log in</a>
-        </li>
-        <li class="nav__item">
-          <a href="/fast-foodies/register" class="nav__link">Register</a>
-        </li>';
-}
-
-?></li>
+                    session_start();
+                    if (isset($_SESSION['current_user'])) {
+                      echo "
+                      <img class='profile-img' src='{$_SESSION["current_user"]["profileImg"]}' />
+                      <li class='nav__item'>
+                      <a href='/fast-foodies/logout' class='nav__link'>logout</a>
+                      </li>
+                      ";
+                    } else {
+                      echo
+                      '<li class="nav__item">
+                              <a href="/fast-foodies/login" class="nav__link">Log in</a>
+                            </li>
+                            <li class="nav__item">
+                              <a href="/fast-foodies/register" class="nav__link">Register</a>
+                            </li>';
+                    }
+              ?>
+            </li>
             <li class="nav__item">
               <button id="cart" class="cart__button"
                 ><i class="bx bx-cart-alt"></i

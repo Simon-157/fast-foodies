@@ -70,6 +70,7 @@
               Order delicious food at the comfort of your home
             </h3>
             <a href="/fast-foodies/register" class="button">Sign Up Now</a>
+            <a href="/fast-foodies/register_restaurant" class="button">Register Your Business</a>
           </div>
 
           <img src="assets/new_dish.png" alt="" class="home__img" />

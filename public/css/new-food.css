@@ -34,7 +34,17 @@ a {
   background-color: white;
   border: 1px solid #ec7b4e;
   color: black;
+} 
+
+
+.input_wrapper_img {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
 }
+
 
 /* Layout */
 .s-layout {

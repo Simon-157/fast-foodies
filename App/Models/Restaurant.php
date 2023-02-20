@@ -22,28 +22,27 @@ class Restaurant extends \Core\Model
         return $result;
     }
 
-    public static function addRestaurant($res_name, $res_email, $res_phone, $res_address)
+    public static function addRestaurant($res_name, $res_email, $res_phone, $res_address, $image_url)
     {
         $conn = static::getDB();
-        $query = "INSERT INTO restaurants (res_name, res_email, phone_number, address, uniquecode) VALUES (:res_name, :res_email, :res_phone, :res_address, :pass)";
+        $query = "INSERT INTO restaurants (res_name, res_email, phone_number, res_address, uniquecode, img_url) VALUES (:res_name, :res_email, :res_phone, :res_address, :pass, :img_url)";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':res_name', $res_name);
         $stmt->bindParam(':res_email', $res_email);
         $stmt->bindParam(':res_phone', $res_phone);
         $stmt->bindParam(':res_address', $res_address);
+        $stmt->bindParam(':img_url', $image_url);
         $key = static::generateNumericOTP(5);
-        //   $password = password_hash($key, PASSWORD_DEFAULT);
         $stmt->bindParam(':pass', $key);
-        echo "got here";
+    
         if ($stmt->execute()) {
-            echo "Successfully registered A Restaurant";
-            return true;
+            $id = $conn->lastInsertId();
+            return $id;
         } else {
-            echo "Failed to regist A restaurant";
             return false;
         }
-
     }
+    
 
     public static function getAllRestaurants()
     {
@@ -58,18 +57,37 @@ class Restaurant extends \Core\Model
         }
     }
 
-    public static function getRestaurantById($id)
+    public static function getRestaurantById($id, $unique)
     {
         $conn = static::getDB();
-        try {
-            $stmt = $conn->prepare("SELECT * FROM restaurants WHERE id = :id");
-            $stmt->bindParam(":id", $id);
-            $stmt->execute();
-            $restaurant = $stmt->fetch();
+        switch ($unique){
+            case 'no':
 
-            return $restaurant;
-        } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
+                    try {
+                        $stmt = $conn->prepare("SELECT * FROM restaurants WHERE id = :id");
+                        $stmt->bindParam(":id", $id);
+                        $stmt->execute();
+                        $restaurant = $stmt->fetch();
+                        return $restaurant;
+
+                    } catch (PDOException $e) {
+                        echo 'Error: ' . $e->getMessage();
+                        return null;
+                    }
+            case 'yes':
+                try {
+                    $stmt = $conn->prepare("SELECT uniquecode FROM restaurants WHERE id = :id");
+                    $stmt->bindParam(":id", $id);
+                    $stmt->execute();
+                    $code = $stmt->fetch();
+                    return $code['uniquecode'];
+        
+                } catch (PDOException $e) {
+                    echo 'Error: ' . $e->getMessage();
+                    return null;
+                }
+            default:
+                return false;
         }
     }
 
@@ -92,4 +110,5 @@ class Restaurant extends \Core\Model
             return false;
         }
     }
+
 }

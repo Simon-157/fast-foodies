@@ -2,10 +2,8 @@
 
 namespace Core;
 
-
 class Router
 {
-
     /**
      * Associative array of routes (the routing table)
      * @var array

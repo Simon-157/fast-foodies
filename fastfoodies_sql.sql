@@ -29,15 +29,18 @@ CREATE TABLE restaurants (
 
 
 CREATE TABLE menus (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    restaurant_id INT NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    restaurant_id INT(11) UNSIGNED NOT NULL,
+    food_name VARCHAR(255) NOT NULL,
+    food_description TEXT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    quantity INT(11) NOT NULL,
+    food_imgUrl VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
 );
+
 
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -9,7 +9,7 @@ class Error
     public static function errorHandler($level, $message, $file, $line)
     {
         if (error_reporting() !== 0) {
-            View::render("ErrorBoundary/404.php");
+            // View::render("ErrorBoundary/404.php");
             throw new \ErrorException($message, 0, $level, $file, $line);
         }
     }
@@ -24,7 +24,7 @@ class Error
         http_response_code($code);
 
         if (\App\Config::SHOW_ERRORS) {
-            View::render("ErrorBoundary/$code.php");
+            // View::render("ErrorBoundary/$code.php");
             // header('location: 404.php');
             echo "<h1>Fatal error</h1>";
             echo "<p>Uncaught exception: '" . get_class($exception) . "'</p>";

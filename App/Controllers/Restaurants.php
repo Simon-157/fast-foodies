@@ -33,16 +33,18 @@ class Restaurants extends \Core\Controller
             $restaurant_phone = $_POST['res_phone'];
             $restaurant_email = $_POST['res_email'];
             $restaurant_address = $_POST['res_address'];
-            $restaurant_email = $_POST['image_url'];
+            $restaurant_imageUrl = $_POST['image_url'];
             // echo "restaurant name: " . $restaurant_name . " res_emai;: " . $restaurant_email;
-            $newResturant = Restaurant::addRestaurant($restaurant_name, $restaurant_email, $restaurant_phone, $restaurant_address);
+            $newResturant = Restaurant::addRestaurant($restaurant_name, $restaurant_email, $restaurant_phone, $restaurant_address, $restaurant_imageUrl);
             if ($newResturant) {
+                $code = Restaurant::getRestaurantById($newResturant, 'yes');
 
-                echo '<h2 style="color:green">Successfully registered</h2>';
+                echo '<h3 style="color:green">Successfully registered your restaurant: ' . $code . '</h2>';
+
                 return true;
                 # code...
             } else {
-                echo '<h2 style="color:red">Registration Unsuccessful</h2>';
+                echo '<h3 style="color:red">Registration Unsuccessful</h2>';
                 return false;
             }
 
