@@ -7,3 +7,4 @@ $router->add('register', ['controller' => 'Auth', 'action' => 'register']);
 $router->add('login', ['controller' => 'Auth', 'action' => 'login']);
 $router->add('test', ['controller' => 'Test', 'action' => 'index']);
 $router->add('restaurant', ['controller' => 'Restaurants', 'action' => 'view']);
+$router->add('register_restaurant', ['controller' => 'Restaurants', 'action' => 'index']);

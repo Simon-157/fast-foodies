@@ -16,6 +16,10 @@ class Restaurants extends \Core\Controller
 
     }
 
+    public function indexAction(){
+        View::render('Restaurant/index.php');
+    }
+
     public function viewAction()
     {
         View::render('Admin/index.php');
@@ -23,13 +27,14 @@ class Restaurants extends \Core\Controller
 
     public function createAction()
     {
-        if (isset($_POST['res_name']) && isset($_POST['res_phone']) && isset($_POST['res_email']) && isset($_POST['address'])) {
+        if (isset($_POST['res_name']) && isset($_POST['res_phone']) && isset($_POST['res_email']) && isset($_POST['res_address'])) {
 
             $restaurant_name = $_POST['res_name'];
             $restaurant_phone = $_POST['res_phone'];
             $restaurant_email = $_POST['res_email'];
-            $restaurant_address = $_POST['address'];
-            echo "restaurant name: " . $restaurant_name . " res_emai;: " . $restaurant_email;
+            $restaurant_address = $_POST['res_address'];
+            $restaurant_email = $_POST['image_url'];
+            // echo "restaurant name: " . $restaurant_name . " res_emai;: " . $restaurant_email;
             $newResturant = Restaurant::addRestaurant($restaurant_name, $restaurant_email, $restaurant_phone, $restaurant_address);
             if ($newResturant) {
 

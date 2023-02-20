@@ -24,6 +24,18 @@ a {
   color: inherit;
 }
 
+/* Image upload button styles */
+.uploadcare--widget__button {
+  background-color: #ec7b4e;
+  cursor: pointer;
+}
+
+.uploadcare--widget__button:hover {
+  background-color: white;
+  border: 1px solid #ec7b4e;
+  color: black;
+}
+
 /* Layout */
 .s-layout {
   display: flex;
@@ -128,7 +140,7 @@ input:focus {
   outline: 2px solid #ec7b4e;
 }
 
-input[type="submit"] {
+input[type="button"] {
   margin-top: 1rem;
   background-color: #ec7b4e;
   color: white;
@@ -136,7 +148,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-input[type="submit"]:hover {
+input[type="button"]:hover {
   background-color: #f09470;
 }
 

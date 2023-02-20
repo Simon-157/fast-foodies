@@ -114,27 +114,8 @@
         </form>
       </div>
     </main>
-    <script type="text/javascript">
-      $("#sub").click(() => {
-        var data = $("#register :input").serializeArray();
+    <script type="text/javascript" src="public/scripts/auth.js">
 
-        $.post($("#register").attr("action"), data, (info) => {
-          $("#msg").html(info);
-        });
-        clearInput();
-      });
-
-      $("#register").submit(() => {
-        return false;
-      });
-
-      function clearInput (){
-        $("#register :input").each(element => {
-
-        });(() => {
-          $(this).val(' ');
-        });
-      };
     </script>
   </body>
 </html>
