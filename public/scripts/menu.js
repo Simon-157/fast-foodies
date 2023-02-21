@@ -12,7 +12,7 @@ $(document).ready(function () {
                 + '<h3 class="menu__name">' + item.food_name + '</h3>'
                 + '<span class="menu_detail">' + item.food_description + '</span>'
                 + '<span class="menu__price"> '+ 'GHC ' + item.price+  '</span>'
-                + '<a href="cart.html" class="button-order">Order</a>'
+                + '<a href="/fast-foodies/cart" class="button-order">Order</a>'
                 + '</div>';
             });
             $('.menu__container').empty().append(table_body);
