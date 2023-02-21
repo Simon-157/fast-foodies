@@ -25,7 +25,13 @@ class Menus extends \Core\Controller
 
     public function allmenusAction()
     {
-        $data = Menu::getAllMenus();
+        $data = Menu::getAllMenus(false);
+        return $data;
+    }
+
+    public function allmenus_resAction()
+    {
+        $data = Menu::getAllMenus(true);
         return $data;
     }
 

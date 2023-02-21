@@ -28,6 +28,8 @@ $router->add('getrestaurants', ['controller' => 'Restaurants', 'action' => 'getA
 $router->add('analytics', ['controller' => 'Analytic', 'action' => 'analytics']);
 $router->add('googleauth', ['controller' => 'GoogleAuth', 'action' => 'index']);
 $router->add('allmenus', ['controller' => 'Menus', 'action' => 'allmenus']);
+$router->add('allmenus_res', ['controller' => 'Menus', 'action' => 'allmenus_res']);
+
 $router->add('addmenu', ['controller' => 'Menus', 'action' => 'addmenu']);
 $router->add('update_menu', ['controller' => 'Menus', 'action' => 'updatemenu']);
 $router->add('delete_menu', ['controller' => 'Menus', 'action' => 'deletemenu']);

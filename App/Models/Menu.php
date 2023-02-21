@@ -11,16 +11,34 @@ class Menu extends \Core\Model
         $this->db = static::getDB();
     }
 
-    public static function getAllMenus()
+    public static function getAllMenus($unique)
     {
-        $conn = static::getDB();
-        $stmt = $conn->prepare("SELECT * FROM menu");
-        $stmt->execute();
-        $result = $stmt->fetchAll();
 
-        // Return the data in JSON format
-        echo json_encode($result);
-        return json_encode($result);
+        $conn = static::getDB();
+
+        switch($unique){
+            case true:
+                session_start();
+                $restaurantId = $_SESSION['restaurant_id'];
+                $stmt = $conn->prepare("SELECT * FROM menu where restaurant_id = ?");
+                $stmt->bindParam(1, $restaurantId);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+        
+                // Return the data in JSON format
+                echo json_encode($result);
+                return json_encode($result);
+
+            case false:
+                $stmt = $conn->prepare("SELECT * FROM menu");
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+        
+                // Return the data in JSON format
+                echo json_encode($result);
+                return json_encode($result);
+
+        }
     }
 
     public function getMenuById($id)

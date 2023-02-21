@@ -143,8 +143,8 @@ img {
 }
 
 /*========== CLASS CSS ==========*/
-.section {
-}
+/* .section {
+} */
 
 .section-title,
 .section-subtitle {
@@ -429,6 +429,7 @@ img {
 
 .menu__detail {
   margin-bottom: var(--mb-1);
+  
 }
 
 .menu__button {

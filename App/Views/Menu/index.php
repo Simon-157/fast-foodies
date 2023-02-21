@@ -74,7 +74,7 @@
       <!-- ========== ITEMS ==========-->
       <div class="menu__container bd-grid">
         <div class="menu__content">
-          <img src="img/burger.png" alt="" class="menu__img" />
+          <img src="public/assets/burger.png" alt="" class="menu__img" />
           <h3 class="menu__name">Hot Burger</h3>
           <span class="menu_detail"> A nice food for you</span>
           <span class="menu__price">GHC 20.00</span>
@@ -82,7 +82,7 @@
         </div>
 
         <div class="menu__content">
-          <img src="img/burger.png" alt="" class="menu__img" />
+          <img src="public/assets/burger.png" alt="" class="menu__img" />
           <h3 class="menu__name">Hot Burger</h3>
           <span class="menu_detail"> A nice food for you</span>
           <span class="menu__price">GHC 20.00</span>
@@ -90,7 +90,7 @@
         </div>
 
         <div class="menu__content">
-          <img src="img/burger.png" alt="" class="menu__img" />
+          <img src="public/assets/burger.png" alt="" class="menu__img" />
           <h3 class="menu__name">Hot Burger</h3>
           <span class="menu_detail"> A nice food for you</span>
           <span class="menu__price">GHC 20.00</span>
@@ -98,7 +98,7 @@
         </div>
 
         <div class="menu__content">
-          <img src="img/burger.png" alt="" class="menu__img" />
+          <img src="public/assets/burger.png" alt="" class="menu__img" />
           <h3 class="menu__name">Hot Burger</h3>
           <span class="menu_detail"> A nice food for you</span>
           <span class="menu__price">GHC 20.00</span>
@@ -106,7 +106,7 @@
         </div>
 
         <div class="menu__content">
-          <img src="img/burger.png" alt="" class="menu__img" />
+          <img src="public/assets/burger.png" alt="" class="menu__img" />
           <h3 class="menu__name">Hot Burger</h3>
           <span class="menu_detail"> A nice food for you</span>
           <span class="menu__price">GHC 20.00</span>
@@ -114,7 +114,7 @@
         </div>
 
         <div class="menu__content">
-          <img src="img/burger.png" alt="" class="menu__img" />
+          <img src="public/assets/burger.png" alt="" class="menu__img" />
           <h3 class="menu__name">Hot Burger</h3>
           <span class="menu_detail"> A nice food for you</span>
           <span class="menu__price">GHC 20.00</span>
@@ -206,28 +206,7 @@
   });
 </script>
 
-      <script>
-
-window.onload = function() {
-  fetch('/fast-foodies/allmenus')
-    .then(response => response.json())
-    .then(data => {
-        data.map(menu => {
-        // Create an HTML element for each menu item
-        const menuItem = document.createElement('div');
-        menuItem.className = 'menu-item';
-        menuItem.innerHTML = `<h2>${menu.name}</h2><p>${menu.description}</p>`;
-
-        // Add the HTML element to the DOM
-        document.getElementById('menu-container').appendChild(menuItem);
-      });
-
-      console.log(data); // Do something with the data
-    })
-    .catch(error => {
-      console.error(error); // Handle error
-    });
-}
+      <script src="public/scripts/menu.js">
 
       </script>
   </body>

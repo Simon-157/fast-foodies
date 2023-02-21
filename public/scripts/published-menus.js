@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.ajax({
-        url: '/fast-foodies/allmenus',
+        url: '/fast-foodies/allmenus_res',
         type: 'GET',
         dataType: 'json',
         success: function (data) {
