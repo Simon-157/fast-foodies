@@ -28,19 +28,18 @@ class Auth extends \Core\Controller
 
     public function createAction()
     {
-        echo "Submitted successfully";
-
+        // echo "Submitted successfully";
         if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['fname']) && isset($_POST['lname'])) {
 
             $firstName = $_POST['fname'];
             $lastName = $_POST['lname'];
             $email = $_POST['email'];
             $password = $_POST['password'];
-            echo "firstName: " . $firstName . " lastName: " . $lastName;
+            // echo "firstName: " . $firstName . " lastName: " . $lastName;
             $newUser = User::register($firstName, $lastName, $email, $password, '', 'native');
             if ($newUser) {
 
-                echo '<h2 style="color:green">Successfully registered</h2>';
+                echo '<h3 style="color:green">Successfully registered</h3>';
                 return false;
                 # code...
             } else {

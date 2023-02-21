@@ -19,7 +19,7 @@
         <div class="leaf-wrapper">
           <img class="leaf-icon" src="public/assets/dish.svg" alt="leaf-icon" />
         </div>
-
+        
         <!-- Welcome message -->
         <div class="header-message">
           <h3 class="welcome-message">Register a new account🚀</h3>
@@ -27,15 +27,14 @@
 
         <!-- Form -->
         <form
-          action="/fast-foodies/create"
-          method="POST"
-          name="form"
-          id="register"
-          class="form-wrapper"
+        name="form"
+        id="register"
+        class="form-wrapper"
         >
-          <!-- Alert message -->
-          <h6 class="alert">Input fields cannot be empty</h6>
-
+        <!-- Alert message -->
+        <h6 class="alert">Input fields cannot be empty</h6>
+        <span id="msg"></span>
+        
           <!-- Input fields -->
           <div class="input-wrapper">
             <input
@@ -89,7 +88,7 @@
 
           <!-- Submit button -->
           <div class="submit-wrapper">
-            <button type="" id="sub" class="btn" onclick="clearInput()">Register</button>
+            <button type="" id="sub" class="btn">Register</button>
           </div>
 
           <div class="footer-wrapper">
@@ -97,7 +96,6 @@
               Already have an account? Log in <a href="/fast-foodies/login">here</a>
             </h6>
           </div>
-          <span id="msg"></span>
         </form>
       </div>
     </main>
