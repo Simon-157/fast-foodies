@@ -19,15 +19,22 @@ class Menu extends \Core\Model
         switch($unique){
             case true:
                 session_start();
-                $restaurantId = $_SESSION['restaurant_id'];
-                $stmt = $conn->prepare("SELECT * FROM menu where restaurant_id = ?");
-                $stmt->bindParam(1, $restaurantId);
-                $stmt->execute();
-                $result = $stmt->fetchAll();
-        
-                // Return the data in JSON format
-                echo json_encode($result);
-                return json_encode($result);
+                if(isset($_SESSION['restaurant_id'])){
+
+                    $restaurantId = $_SESSION['restaurant_id'];
+                    $stmt = $conn->prepare("SELECT * FROM menu where restaurant_id = ?");
+                    $stmt->bindParam(1, $restaurantId);
+                    $stmt->execute();
+                    $result = $stmt->fetchAll();
+            
+                    // Return the data in JSON format
+                    echo json_encode($result);
+                    return json_encode($result);
+                }
+                else{
+                    header("location: /fast-foodies/login");
+                    exit();
+                }
 
             case false:
                 $stmt = $conn->prepare("SELECT * FROM menu");

@@ -31,6 +31,7 @@ class Menus extends \Core\Controller
 
     public function allmenus_resAction()
     {
+        
         $data = Menu::getAllMenus(true);
         return $data;
     }

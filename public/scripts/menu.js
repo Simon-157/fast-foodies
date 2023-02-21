@@ -11,7 +11,7 @@ $(document).ready(function () {
                 + '<img src="' + item.food_imgUrl + '" alt="" class="menu__img" />'
                 + '<h3 class="menu__name">' + item.food_name + '</h3>'
                 + '<span class="menu_detail">' + item.food_description + '</span>'
-                + '<span class="menu__price">'+ item.food_price+  '</span>'
+                + '<span class="menu__price"> '+ 'GHC ' + item.price+  '</span>'
                 + '<a href="cart.html" class="button-order">Order</a>'
                 + '</div>';
             });

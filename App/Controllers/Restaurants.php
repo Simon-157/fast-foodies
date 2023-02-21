@@ -25,6 +25,11 @@ class Restaurants extends \Core\Controller
         View::render('Admin/index.php');
     }
 
+    public function newmenuAction()
+    {
+        View::render('Admin/new_menu.php');
+    }
+
     public function publishedAction()
     {
         View::render('Admin/table.php');
