@@ -68,11 +68,18 @@ class Menu extends \Core\Model
         }
     }
 
-    public function deleteMenu($id)
+    public function deleteMenu($menuId)
     {
-        $stmt = $this->db->prepare("DELETE FROM menu WHERE id = ?");
-        $stmt->execute([$id]);
-
-        return $stmt->rowCount();
+        $conn = static::getDB();
+        $restaurantId = $_SESSION['restaurant_id'];
+        $stmt = $conn->prepare("DELETE FROM menu WHERE id=? AND restaurant_id=?");
+        $stmt->bindParam(1, $menuId);
+        $stmt->bindParam(2, $restaurantId);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
+    
 }

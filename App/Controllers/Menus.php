@@ -116,4 +116,44 @@ class Menus extends \Core\Controller
         echo json_encode($response);
     }
 
+
+    public function deletemenuAction()
+    {
+        if (isset($_POST['menu_id'])) {
+            session_start();
+            $menuId = $_POST['menu_id'];
+
+            // Delete existing menu item
+            $menuModel = new Menu();
+            $isDeleted = $menuModel->deleteMenu($menuId);
+
+            if ($isDeleted) {
+                // Return success response
+                $response = [
+                    'status' => 'success',
+                    'message' => 'Menu deleted successfully',
+                    'menu_id' => $menuId
+                ];
+            } else {
+                // Return error response
+                $response = [
+                    'status' => 'error',
+                    'message' => 'Unable to delete menu'
+                ];
+            }
+
+        } else {
+            // Return error response if menu id is missing
+            $response = [
+                'status' => 'error',
+                'message' => 'Menu ID is required'
+            ];
+        }
+
+        // Convert the response to JSON and return it
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+
+
 }

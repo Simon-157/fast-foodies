@@ -30,6 +30,8 @@ $router->add('googleauth', ['controller' => 'GoogleAuth', 'action' => 'index']);
 $router->add('allmenus', ['controller' => 'Menus', 'action' => 'allmenus']);
 $router->add('addmenu', ['controller' => 'Menus', 'action' => 'addmenu']);
 $router->add('update_menu', ['controller' => 'Menus', 'action' => 'updatemenu']);
+$router->add('delete_menu', ['controller' => 'Menus', 'action' => 'deletemenu']);
+
 $router->add('cart', ['controller' => 'Carts', 'action'=>'getCart']);
 
 

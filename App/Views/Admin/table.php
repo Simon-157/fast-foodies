@@ -48,13 +48,12 @@
             <h2 class="modal_header">Edit food details</h2>
             <div class="new_food_wrapper_edit">
                 <form class="table_form" class="form" name="food-form" id="food-form" >
-                    <span id="msg"></span>
                     
                     <div class="input_wrapper">
                         <label for="food_name">Food Name</label>
                         <input id="food_name" name="food_name" class="food_name" autofocus type="text">
                     </div>
-                   
+
 
                     <div class="input_wrapper">
                         <label for="food_name">Food Description</label>
@@ -76,6 +75,7 @@
                     </div>
                     
                 </form>
+                <div style="text-align:center"id="msg"></div>
             </div>
         </div>
 
@@ -147,6 +147,7 @@
             <!-- Foods Published  -->
             <div class="text_wrapper">
                 <h2 style="text-align: center;">Foods Published</h2>
+                <span id="msg"></span>
             </div>
             
             <div class="table_wrapper">
