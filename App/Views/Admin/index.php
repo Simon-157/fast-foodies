@@ -9,7 +9,7 @@
 
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <title>
-        <?php session_start();
+        <?php 
         if (isset($_SESSION['res_name']))
             echo $_SESSION['res_name'];
         else

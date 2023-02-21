@@ -21,6 +21,7 @@ require './client-routes.php';
 // Server routes
 $router->add('create', ['controller' => 'Auth', 'action' => 'create']);
 $router->add('authenticate', ['controller' => 'Auth', 'action' => 'authenticate']);
+$router->add('auth_res', ['controller' => 'Auth', 'action' => 'auth_res']);
 $router->add('logout', ['controller' => 'Auth', 'action' => 'logout']);
 $router->add('addrestaurant', ['controller' => 'Restaurants', 'action' => 'create']);
 $router->add('getrestaurant', ['controller' => 'Restaurants', 'action' => 'get']);

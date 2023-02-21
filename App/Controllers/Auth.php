@@ -6,7 +6,6 @@ use Core\View;
 use \App\Models\User;
 
 class Auth extends \Core\Controller
-
 {
 
     private $userController;
@@ -55,31 +54,21 @@ class Auth extends \Core\Controller
 
     }
 
+    public function auth_resAction()
+    {
+
+    }
+
     public function authenticateAction()
     {
         session_start();
 
-        if (isset($_GET['email']) && isset($_GET['password']) && !isset($_GET['admin-key'])) {
-            $email = $_GET['email'];
-            $password = $_GET['password'];
-            $user = $this->userController->login($email, $password);
-            if ($user) {
-                $_SESSION['current_user'] = $user;
-                $_SESSION['user_id'] = $user['id'];
-                echo 'Welcome, ' . $user['fname'] . '!';
-                View::render('Home/index.php');
-            } else {
-                echo 'Incorrect email or password.';
-            }
-        }
+        if (isset($_GET['email']) && isset($_GET['password']) && isset($_GET['admin-key'])) {
 
-
-        else if (isset($_GET['email']) && isset($_GET['password']) && isset($_GET['admin-key'])) {
-           
             $email = $_GET['email'];
             $password = $_GET['password'];
             $res_secret_code = $_GET['admin-key'];
-            $restaurant = $this->userController->loginRestaurantAdmin($email, $password, $res_secret_code); 
+            $restaurant = $this->userController->loginRestaurantAdmin($email, $password, $res_secret_code);
             if ($restaurant) {
                 $_SESSION['admin_key'] = $restaurant['uniquecode'];
                 $_SESSION['restaurant_id'] = $restaurant['id'];
@@ -93,6 +82,19 @@ class Auth extends \Core\Controller
             }
         }
 
+        else  {
+            $email = $_GET['email'];
+            $password = $_GET['password'];
+            $user = $this->userController->login($email, $password);
+            if ($user) {
+                $_SESSION['current_user'] = $user;
+                $_SESSION['user_id'] = $user['id'];
+                echo 'Welcome, ' . $user['fname'] . '!';
+                View::render('Home/index.php');
+            } else {
+                echo 'Incorrect email or password.';
+            }
+        }
 
     }
 
