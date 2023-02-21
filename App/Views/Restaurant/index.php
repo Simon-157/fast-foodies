@@ -21,15 +21,13 @@
 <body>
   <?php
 
-  if (!isset($_SESSION['restaurant_id'])) {
-    header("Location: /fast-foodies/login");
-    exit();
+  // if (!isset($_SESSION['current_user'])) {
+  //   header("Location: /fast-foodies/login");
+  //   exit();
 
-  }
-  ?>
+  // }
+  // ?>
 
-
-  ?>
 
   <main>
     <div class="main-container">
@@ -40,7 +38,7 @@
       </div>
 
       <!-- Form -->
-      <form action="/fa st-foodies/addrestaurant" name="register" id="register" class="form-wrapper">
+      <form action="/fast-foodies/addrestaurant" name="register" id="register" class="form-wrapper">
         <!-- Alert message -->
         <span id="msg"></span>
 

@@ -12,3 +12,4 @@ function generateNumericOTP($n)
 
     return $result;
 }
+

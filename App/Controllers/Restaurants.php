@@ -48,7 +48,8 @@ class Restaurants extends \Core\Controller
             $newResturant = Restaurant::addRestaurant($restaurant_name, $restaurant_email, $restaurant_phone, $restaurant_address, $restaurant_imageUrl);
             if ($newResturant) {
                 $code = Restaurant::getRestaurantById($newResturant, 'yes');
-
+                $mail = new Email();
+                $mail->sendEmail($restaurant_email, strval($code));
                 echo '<h3 style="color:green">Successfully registered your restaurant: ' . $code . '</h2>';
 
                 return true;

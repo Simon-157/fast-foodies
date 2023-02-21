@@ -15,4 +15,6 @@ class Config
     const GOOGLE_API_KEY = 'AIzaSyCWuUAWi5PARG0gVGYmPNdwdONphMgmLuY';
     const MOMO_PAY_API_KEY = '1f7d95846db4493dadf6d57948b9f505';
     const UPLOAD_CARE_KEY = 'e2ac7ad8c06a4a0b28b2';
+    const SENDGRID_API_KEY = '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';
+
 }
