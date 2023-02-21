@@ -88,7 +88,7 @@ class User extends \Core\Model
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user) {
             if (password_verify($password, $user['user_password'])) {
-                echo "Successfully authenticated";
+               
                 return $user;
             } else {
                 return false;

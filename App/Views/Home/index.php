@@ -537,7 +537,6 @@
     <!--========== SCROLL REVEAL ==========-->
     <script src="https://unpkg.com/scrollreveal"></script>
 
-    <!--========== MAIN JS ==========-->
-    <script src="/js/main.js"></script>
+    <!--========== MAIN JS ==========-->ss
   </body>
 </html>

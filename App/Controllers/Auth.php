@@ -58,43 +58,63 @@ class Auth extends \Core\Controller
 
     }
 
+
     public function authenticateAction()
     {
         session_start();
 
-        if (isset($_GET['email']) && isset($_GET['password']) && isset($_GET['admin-key'])) {
+        if (isset($_GET['email']) && isset($_GET['password'])) {
 
-            $email = $_GET['email'];
-            $password = $_GET['password'];
-            $res_secret_code = $_GET['admin-key'];
-            $restaurant = $this->userController->loginRestaurantAdmin($email, $password, $res_secret_code);
-            if ($restaurant) {
-                $_SESSION['admin_key'] = $restaurant['uniquecode'];
-                $_SESSION['restaurant_id'] = $restaurant['id'];
-                $_SESSION['res_email'] = $restaurant['res_email'];
-                $_SESSION['res_logo'] = $restaurant['img_url'];
-                $_SESSION['res_name'] = $restaurant['res_name'];
-                // echo 'Welcome, ' . $user['fname'] . '!';
-                View::render('Admin/index.php');
+            if ($_GET['user-type'] === "admin") {
+
+                $email = $_GET['email'];
+                $password = $_GET['password'];
+                $res_secret_code = $_GET['admin-key'];
+                $restaurant = $this->userController->loginRestaurantAdmin($email, $password, $res_secret_code);
+                if ($restaurant) {
+                    $_SESSION['admin_key'] = $restaurant['uniquecode'];
+                    $_SESSION['restaurant_id'] = $restaurant['id'];
+                    $_SESSION['res_email'] = $restaurant['res_email'];
+                    $_SESSION['res_logo'] = $restaurant['img_url'];
+                    $_SESSION['res_name'] = $restaurant['res_name'];
+                    $response = array(
+                        'success' => true,
+                        'message' => 'admin'
+                    );
+                } else {
+                    $response = array(
+                        'success' => false,
+                        'message' => 'Incorrect email or secret key'
+                    );
+                }
             } else {
-                echo 'Incorrect email or secret key';
+                $email = $_GET['email'];
+                $password = $_GET['password'];
+                $user = $this->userController->login($email, $password);
+                if ($user) {
+                    $_SESSION['current_user'] = $user;
+                    $_SESSION['user_id'] = $user['id'];
+                    $response = array(
+                        'success' => true,
+                        'message' => 'customer'
+                    );
+                } else {
+                    $response = array(
+                        'success' => false,
+                        'message' => 'Incorrect email or password'
+                    );
+                }
             }
+
+        } else {
+            $response = array(
+                'success' => false,
+                'message' => 'Email and password required'
+            );
         }
 
-        else  {
-            $email = $_GET['email'];
-            $password = $_GET['password'];
-            $user = $this->userController->login($email, $password);
-            if ($user) {
-                $_SESSION['current_user'] = $user;
-                $_SESSION['user_id'] = $user['id'];
-                echo 'Welcome, ' . $user['fname'] . '!';
-                View::render('Home/index.php');
-            } else {
-                echo 'Incorrect email or password.';
-            }
-        }
-
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 
     public function createUserSession($user)

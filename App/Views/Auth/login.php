@@ -130,5 +130,6 @@
         </div>
       </div>
     </main>
+    <script src="public/scripts/login.js"></script>
   </body>
 </html>
