@@ -32,7 +32,7 @@ class GoogleAuth extends \Core\Controller
     {
 
         // If user is already signed in, redirect to home page
-        if (isset($_SESSION['current_user'])) {
+        if (isset($_SESSION['user_id'])) {
             header('Location: /fast-foodies/menu');
             exit();
         } else {
@@ -65,6 +65,7 @@ class GoogleAuth extends \Core\Controller
                 if ($newUser) {
                     session_start();
                     $_SESSION['current_user'] = User::findByEmail($email);
+                    $_SESSION['user_id'] = User::findByEmail($email)['id'];
                     echo '<h2 style="color:green">Successfully registered</h2>';
                     header('Location: /fast-foodies/menu');
                     exit();

@@ -6,7 +6,6 @@ use PDO;
 use PDOException;
 
 class Cart extends \Core\Model
-
 {
 
     private $db;
@@ -49,13 +48,34 @@ class Cart extends \Core\Model
     }
 
     public static function getCartItems($user_id)
-    {$conn = static::getDB();
-        $stmt = $conn->prepare("SELECT * FROM cart_items WHERE user_id = :user_id");
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->execute();
-        $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $cartItems;
+    {
+        $response = array();
+        try {
+            $conn = static::getDB();
+            $stmt = $conn->prepare(
+                "SELECT *
+                FROM cart_items 
+                INNER JOIN menu ON cart_items.menu_id = menu.id 
+                WHERE cart_items.user_id = :user_id ");
+            $stmt->bindParam(':user_id', $user_id);
+            $stmt->execute();
+            $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+            if ($cartItems) {
+                $response['status'] = 'success';
+                $response['data'] = $cartItems;
+            } else {
+                $response['status'] = 'error';
+                $response['message'] = 'No items found in cart';
+            }
+        } catch (PDOException $e) {
+            $response['status'] = 'error';
+            $response['message'] = 'Error retrieving cart items: ' . $e->getMessage();
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
+    
 
     public function clearCart($user_id)
     {

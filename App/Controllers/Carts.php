@@ -13,12 +13,16 @@ class Carts extends \Core\Controller
 
     }
 
+    public function viewAction(){
+        View::render('Menu/cart.php');
+    }
+
     public function getCartAction()
     {
         if(isset($_GET['id'])){
             $id = $_GET['id'];
-           $items = Cart::getCartItems($id);
-           echo  json_encode($items);
+          Cart::getCartItems($id);
+        //    echo  json_encode($items);
         }
         else{
             echo "a user must login ";

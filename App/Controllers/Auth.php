@@ -65,6 +65,7 @@ class Auth extends \Core\Controller
             $user = $this->userController->login($email, $password);
             if ($user) {
                 $_SESSION['current_user'] = $user;
+                $_SESSION['user_id'] = $user['id'];
                 echo 'Welcome, ' . $user['fname'] . '!';
                 View::render('Home/index.php');
             } else {

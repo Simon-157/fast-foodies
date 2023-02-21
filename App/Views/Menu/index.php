@@ -53,6 +53,8 @@
                     }
               ?>
             </li>
+
+            <!-- cart button -->
             <li class="nav__item">
               <button id="cart" class="cart__button"
                 ><i class="bx bx-cart-alt"></i
