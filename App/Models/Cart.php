@@ -53,14 +53,25 @@ class Cart extends \Core\Model
         try {
             $conn = static::getDB();
             $stmt = $conn->prepare(
-                "SELECT *
+                
+
+                " SELECT cart_items.quantity,
+                cart_items.created_at,
+                menu.food_name,
+                menu.food_description,
+                menu.food_imgUrl,
+                menu.price as price_per_one,
+                menu.price * cart_items.quantity as subtotal
                 FROM cart_items 
                 INNER JOIN menu ON cart_items.menu_id = menu.id 
-                WHERE cart_items.user_id = :user_id ");
+                WHERE cart_items.user_id = :user_id
+                GROUP BY (menu.id);
+                "
+            );
             $stmt->bindParam(':user_id', $user_id);
             $stmt->execute();
             $cartItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
             if ($cartItems) {
                 $response['status'] = 'success';
                 $response['data'] = $cartItems;
@@ -75,7 +86,7 @@ class Cart extends \Core\Model
         header('Content-Type: application/json');
         echo json_encode($response);
     }
-    
+
 
     public function clearCart($user_id)
     {

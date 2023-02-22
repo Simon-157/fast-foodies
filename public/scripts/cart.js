@@ -13,7 +13,9 @@ $(document).ready(function() {
             $(".Cart-Items").html("");
             
             // Replace cart content div with cart items
-            $.each(response.data, (index, item) =>{
+            var total_amt = 0;
+            $.each(response.data, (index, item) =>{ 
+                total_amt += parseInt(item.subtotal);
               var item_html = `
                 <div class="item">
                   <div class="image-box">
@@ -28,14 +30,19 @@ $(document).ready(function() {
                     <div class="count">${item.quantity}</div>
                     <div class="btn">-</div>
                   </div>
+                  <div class="Subtotal">GHC ${item.price_per_one
+                  }</div>
+                  <div class="amount">Sub Total: ${item.subtotal}</div>
                   <div class="prices">
-                    <div class="amount">GHC ${item.price}</div>
                     <div class="remove"><i class='bx bxs-trash-alt'></i></div>
                   </div>
                 </div>
               `;
               $(".Cart-Items").append(item_html);
             });
+
+            $('#total-amt').html(total_amt);
+            $('#total-items').html(length(response.data));
         }
 
         else {

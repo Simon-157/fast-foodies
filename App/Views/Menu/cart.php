@@ -28,24 +28,10 @@
 
         <div class="Cart-Items">
 
-            <div class="image-box">
-                <img src="public/assets/chicken.png" alt="" class="menu__img">
-            </div>
 
             <div class="about">
-                <h1 class="title"> Chicken </h1>
-                <h3 class="subtitle"> Braised whole chicken</h3>
-            </div>
-
-            <div class="counter">
-                <div class="btn">+</div>
-                <div class="count">1</div>
-                <div class="btn">-</div>
-            </div>
-
-            <div class="prices">
-                <div class="amount">GHC 20.00</div>
-                <div class="remove"><i class='bx bxs-trash-alt'></i></div>
+           
+                <h3 class="subtitle"> Your cart is empty</h3>
             </div>
 
         </div>
@@ -54,10 +40,10 @@
         <div class="checkout">
             <div class="total">
                 <div>
-                    <div class="Subtotal">Sub-Total</div>
-                    <div class="items"> 2 items</div>
+                    <span>Total: </span>
+                    <div  id= "total-items"class="items"> </div>
                 </div>
-                <div class="total-amount">GHC 49.00</div>
+                <div  id= "total-amt" class="total-amount"></div>
             </div>
 
         </div>
