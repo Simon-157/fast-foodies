@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use PDO;
 use PDOException;
 
@@ -10,52 +11,61 @@ class Cart extends \Core\Model
 
     private $db;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+
     }
 
+    
     public function addToCart($user_id, $menu_id, $quantity)
     {
-        $menu = $this->db->query("SELECT price FROM menus WHERE id = {$menu_id}")->fetch(PDO::FETCH_ASSOC);
-        $price = $menu['price'];
-        $subtotal = $price * $quantity;
-
-        $this->db->beginTransaction();
+        $conn = static::getDB();
         try {
-            $stmt = $this->db->prepare("INSERT INTO cart_items (user_id, menu_id, quantity, price, subtotal) VALUES (:user_id, :menu_id, :quantity, :price, :subtotal)");
+            $stmt = $conn->prepare("INSERT INTO cart_items (user_id, menu_id, quantity) VALUES (:user_id, :menu_id, :quantity)");
             $stmt->bindParam(':user_id', $user_id);
             $stmt->bindParam(':menu_id', $menu_id);
             $stmt->bindParam(':quantity', $quantity);
-            $stmt->bindParam(':price', $price);
-            $stmt->bindParam(':subtotal', $subtotal);
             $stmt->execute();
-            $this->db->commit();
             return true;
         } catch (PDOException $e) {
-            $this->db->rollback();
+
             return false;
         }
     }
 
+
     public function removeFromCart($user_id, $menu_id)
     {
-        $stmt = $this->db->prepare("DELETE FROM cart_items WHERE user_id = :user_id AND menu_id = :menu_id");
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->bindParam(':menu_id', $menu_id);
-        $stmt->execute();
-        return true;
+        try {
+            $conn = static::getDB();
+            $stmt = $conn->prepare("DELETE FROM cart_items WHERE user_id = :user_id AND id = :menu_id");
+            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            $stmt->bindParam(':menu_id', $menu_id, PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            
+            error_log("Error removing item from cart: " . $e->getMessage());
+            return false;
+        } catch (Exception $e) {
+            
+            error_log("Error removing item from cart: " . $e->getMessage());
+            return false;
+        }
     }
+
 
     public static function getCartItems($user_id)
     {
+        // echo $user_id;
         $response = array();
         try {
             $conn = static::getDB();
             $stmt = $conn->prepare(
-                
+
 
                 " SELECT cart_items.quantity,
+                cart_items.id,
                 cart_items.created_at,
                 menu.food_name,
                 menu.food_description,

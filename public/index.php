@@ -34,7 +34,8 @@ $router->add('allmenus_res', ['controller' => 'Menus', 'action' => 'allmenus_res
 $router->add('addmenu', ['controller' => 'Menus', 'action' => 'addmenu']);
 $router->add('update_menu', ['controller' => 'Menus', 'action' => 'updatemenu']);
 $router->add('delete_menu', ['controller' => 'Menus', 'action' => 'deletemenu']);
-
+$router->add('remove_cart', ['controller' => 'Carts', 'action' => 'removefromCart']);
+$router->add('add_cartitem', ['controller' => 'Carts', 'action' => 'add_cartItem']);
 $router->add('getuser_cart', ['controller' => 'Carts', 'action'=>'getCart']);
 
 

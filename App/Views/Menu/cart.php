@@ -28,7 +28,7 @@
 
         <div class="Cart-Items">
 
-
+            <span id = "msg"></span>
             <div class="about">
            
                 <h3 class="subtitle"> Your cart is empty</h3>

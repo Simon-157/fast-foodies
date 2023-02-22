@@ -80,47 +80,7 @@
           <h3 class="menu__name">Hot Burger</h3>
           <span class="menu_detail"> A nice food for you</span>
           <span class="menu__price">GHC 20.00</span>
-          <a href="cart.html" class="button-order">Order</a>
-        </div>
-
-        <div class="menu__content">
-          <img src="public/assets/burger.png" alt="" class="menu__img" />
-          <h3 class="menu__name">Hot Burger</h3>
-          <span class="menu_detail"> A nice food for you</span>
-          <span class="menu__price">GHC 20.00</span>
-          <a href="cart.html" class="button-order">Order</a>
-        </div>
-
-        <div class="menu__content">
-          <img src="public/assets/burger.png" alt="" class="menu__img" />
-          <h3 class="menu__name">Hot Burger</h3>
-          <span class="menu_detail"> A nice food for you</span>
-          <span class="menu__price">GHC 20.00</span>
-          <a href="cart.html" class="button-order">Order</a>
-        </div>
-
-        <div class="menu__content">
-          <img src="public/assets/burger.png" alt="" class="menu__img" />
-          <h3 class="menu__name">Hot Burger</h3>
-          <span class="menu_detail"> A nice food for you</span>
-          <span class="menu__price">GHC 20.00</span>
-          <a href="cart.html" class="button-order">Order</a>
-        </div>
-
-        <div class="menu__content">
-          <img src="public/assets/burger.png" alt="" class="menu__img" />
-          <h3 class="menu__name">Hot Burger</h3>
-          <span class="menu_detail"> A nice food for you</span>
-          <span class="menu__price">GHC 20.00</span>
-          <a href="cart.html" class="button-order">Order</a>
-        </div>
-
-        <div class="menu__content">
-          <img src="public/assets/burger.png" alt="" class="menu__img" />
-          <h3 class="menu__name">Hot Burger</h3>
-          <span class="menu_detail"> A nice food for you</span>
-          <span class="menu__price">GHC 20.00</span>
-          <a href="cart.html" class="button-order">Order</a>
+          <a href="" class="button-order">Order</a>
         </div>
       </div>
       <?php echo $title ?>
@@ -188,25 +148,7 @@
 
     <!--========== MAIN JS ==========-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script>
-  $(document).ready(function() {
-    const id = <?php echo $_SESSION['current_user']['id']; ?>;
-    console.log(id);
-    $('#cart').click(function() {
-      $.ajax({
-        url: "/fast-foodies/cart?id=" + id,
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-          console.log(data); // Do something with the data
-        },
-        error: function(xhr, status, error) {
-          console.log(xhr.responseText); // Handle error
-        }
-      });
-    });
-  });
-</script>
+
 
       <script src="public/scripts/menu.js">
 
