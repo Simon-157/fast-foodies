@@ -9,5 +9,6 @@ $router->add('test', ['controller' => 'Test', 'action' => 'index']);
 $router->add('restaurant', ['controller' => 'Restaurants', 'action' => 'view']);
 $router->add('register_restaurant', ['controller' => 'Restaurants', 'action' => 'index']);
 $router->add('published', ['controller' => 'Restaurants', 'action' => 'published']);
+$router->add('orders', ['controller' => 'Restaurants', 'action' => 'orders']);
 $router->add('new_menu', ['controller' => 'Restaurants', 'action' => 'newmenu']);
 $router->add('cart', ['controller' => 'Carts', 'action' => 'view']);

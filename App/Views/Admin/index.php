@@ -41,7 +41,7 @@
                     </li>
 
                     <li>
-                        <a class="s-sidebar__nav-link" href="index.html">
+                        <a class="s-sidebar__nav-link" href="/fast-foodies/restaurant">
                             <i class="bx bx-home"></i><em>Home</em>
                         </a>
                     </li>
@@ -55,6 +55,12 @@
                     <li>
                         <a class="s-sidebar__nav-link" href="/fast-foodies/published">
                             <i class="bx bx-dish"></i><em>Published Foods</em>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="s-sidebar__nav-link" href="/fast-foodies/orders">
+                            <i class="bx bx-dish"></i><em>Orders Placed</em>
                         </a>
                     </li>
 

@@ -58,7 +58,7 @@
                     </li>
 
                     <li>
-                        <a class="s-sidebar__nav-link" href="/fast-foodies/">
+                        <a class="s-sidebar__nav-link" href="/fast-foodies/restaurant">
                             <i class="bx bx-home"></i><em>Home</em>
                         </a>
                     </li>
@@ -89,7 +89,7 @@
         <!-- Main Content -->
         <main class="s-layout__content">
             <nav class="nav bd-container">
-                <a href="#" class="header_name">
+                <a href="/fast-foodies" class="header_name">
                     <h1>Foodie</h1>
                 </a>
 

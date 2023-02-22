@@ -32,6 +32,17 @@ a {
   
 }
 
+
+.fimg{
+  height:30px;
+  width: 30px;
+}
+
+.fimg:hover{
+  height:40px;
+  width: 40px;
+}
+
 /* Image upload button styles */
 .uploadcare--widget__button {
   background-color: #ec7b4e;

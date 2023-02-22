@@ -29,9 +29,6 @@ class Carts extends \Core\Controller
         }
     }
 
-
-
-
     public function removefromCartAction()
     {
             session_start();

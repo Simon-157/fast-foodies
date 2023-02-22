@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        <?php 
+        <?php
         if (isset($_SESSION['res_name'])) {
             echo $_SESSION['res_name'];
             echo "-Published Foods";
@@ -18,7 +18,15 @@
 
         ?>
     </title>
+    <style>
+        .bx-street-view {
+            color: greenyellow;
+        }
 
+        .bx-street-view:hover {
+            color: #F65F3E
+        }
+    </style>
     <!-- icons cdn -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
@@ -29,19 +37,11 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="public/scripts/published-menus.js" defer></script>
-
+    
     <!-- JS scripts-->
-
-    <style>
-        .bx-trash {
-            color: red;
-        }
-
-        .bx-edit {
-            color: greenyellow
-        }
-    </style>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCijWSH4--ZN34vfPan6N88A-LUwC9FTbI"></script>
+    <script src="public/scripts/orders.js" defer></script>
+    <script src="public/scripts/deliveryMap.js"></script>
 
 
 
@@ -62,34 +62,10 @@
     <dialog id="mySizeChartModal" class="ebcf_modal">
         <div class="ebcf_modal-content">
             <span class="ebcf_close">&times;</span>
-            <h2 class="modal_header">Edit food details</h2>
+            <h2 class="modal_header">Track Customer Location</h2>
             <div class="new_food_wrapper_edit">
                 <form class="table_form" class="form" name="food-form" id="food-form">
-
-                    <div class="input_wrapper">
-                        <label for="food_name">Food Name</label>
-                        <input id="food_name" name="food_name" class="food_name" autofocus type="text">
-                    </div>
-
-
-                    <div class="input_wrapper">
-                        <label for="food_name">Food Description</label>
-                        <input id="food_desc" name="food_description" class="food_desc" type="text">
-                    </div>
-
-                    <div class="input_wrapper">
-                        <label for="food_name">Price</label>
-                        <input id="food_price" name="food_price" class="food_price" type="number">
-                    </div>
-
-                    <div class="input_wrapper">
-                        <label for="food_name">Quantity</label>
-                        <input id="food_quantity" name="food_quantity" class="food_qty" type="number">
-                    </div>
-
-                    <div class="input_wrapper">
-                        <input id="sub-btn" class="submit_btn" type="submit" value="Update Details">
-                    </div>
+                    <div id="map" style="width: 100%; height: 400px;"></div>
 
                 </form>
                 <div style="text-align:center" id="msg"></div>
@@ -163,7 +139,7 @@
 
             <!-- Foods Published  -->
             <div class="text_wrapper">
-                <h2 style="text-align: center;">Foods Published</h2>
+                <h2 style="text-align: center;">Your Orders Placed</h2>
                 <span id="msg"></span>
             </div>
 
@@ -176,18 +152,18 @@
                     <table>
                         <thead id="table-header">
                             <tr>
+                                <th>Image</th>
                                 <th>Food</th>
-                                <th>Description</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Status</th>
+                                <th>Payment</th>
+                                <th>Action</th>
                                 <th></th>
                             </tr>
                         </thead>
 
                         <tbody id="table-body">
                             <!-- Table data will be dynamically added here -->
+                            <h3 id="noitem" style="display:none">Your dont have any orders yet</h3>
                         </tbody>
                     </table>
                 </div>
@@ -200,7 +176,7 @@
 
         </main>
     </div>
-    <script type="text/javascript" src="public/scripts/modal.js"></script>
+    <!-- <script type="text/javascript" src="public/scripts/modal.js"></script> -->
 </body>
 
 </html>
