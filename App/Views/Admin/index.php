@@ -9,15 +9,17 @@
 
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <title>
-        <?php 
+        <?php
+        session_start();
         if (isset($_SESSION['res_name']))
             echo $_SESSION['res_name'];
         else
             echo "Restaurant";
-            // header()
-
+        // header()
+        
         ?>
     </title>
+    <link rel="stylesheet" href="public\css\profile.css">
     <link rel="stylesheet" href="public\css\styles.css" />
     <link rel="stylesheet" href="public\css\new-food.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -27,71 +29,16 @@
 
 <body>
 <?php
-    // if (!isset($_SESSION['restaurant_id'])) {
+    if (!isset($_SESSION['restaurant_id'])) {
 
-    //     header("location: /fast-foodies/login");
-    //     exit();
+        header("location: /fast-foodies/login");
+        exit();
 
-     ?>
+    } ?>
 
     <div class="s-layout">
         <!-- Sidebar -->
-        <div class="s-layout__sidebar">
-            <a class="s-sidebar__trigger" href="#0">
-                <i style="color:white" class="bx bx-menu"></i>
-            </a>
-
-            <nav class="s-sidebar__nav">
-                <ul>
-
-                    <li>
-                        <a class="s-sidebar__nav-link name" href="#">
-                            
-                            <i class="bx bx-dashboard"></i><em>Dashboard</em>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="s-sidebar__nav-link" href="/fast-foodies/restaurant">
-                            <i class="bx bx-home"></i><em>Home</em>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="s-sidebar__nav-link" href="/fast-foodies/new_menu">
-                            <i class="bx bx-plus"></i><em>New Food</em>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="s-sidebar__nav-link" href="/fast-foodies/published">
-                            <i class="bx bx-dish"></i><em>Published Foods</em>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="s-sidebar__nav-link" href="/fast-foodies/orders">
-                            <i class="bx bx-dish"></i><em>Orders Placed</em>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="s-sidebar__nav-link" href="/fast-foodies/analytics">
-                            <i class="bx bx-bar-chart"></i><em>Analytics</em>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="s-sidebar__nav-link" href="/fast-foodies/logout">
-                            <i class="bx bx-log-out-circle"></i><em>Logout</em>
-                        </a>
-                    </li>
-
-                    <li>
-                
-                </ul>
-            </nav>
-        </div>
+        <?php require("sidebar-items.php")?>
 
 
         <!-- Main Content -->
@@ -103,7 +50,9 @@
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
-                        <li class="nav__item"><h3 class="nav__item" id="res_name"></h3></li>
+                        <li class="nav__item">
+                            <h3 class="nav__item " id="res_name"></h3>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -116,7 +65,20 @@
             <!-- Add new food -->
             <div class="new_food_wrapper">
                 <form class="form" name="food-form">
-
+                <div class="container">
+                    <div class="profile">
+                        <div class="info">
+                            <h2>Restaurant Name:<span id="res_name2"></span></h2>
+                            <p id="address">Address: Example Address</p>
+                            <p id="phone">Phone Number: 123-456-7890</p>
+                            <p>Email: example@restaurant.com</p>
+                            <p>Unique Code: 12345</p>
+                        </div>
+                        <div class="image">
+                            <img id="avartar2" alt="Restaurant Image">
+                        </div>
+                        </div>
+                </div>
                 </form>
             </div>
 
@@ -127,3 +89,4 @@
 </body>
 
 </html>
+
