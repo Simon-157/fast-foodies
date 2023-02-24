@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var cartNo = document.getElementById('cartbtn');
     $.ajax({
         url: '/fast-foodies/allmenus',
         type: 'GET',
@@ -17,6 +18,8 @@ $(document).ready(function () {
                 + '</div>';
             });
             $('.menu__container').empty().append(table_body);
+            cartNo.value = data.length;
+            // console.log()
         },
         error: function (xhr, status, error) {
             console.log('Error:', error);

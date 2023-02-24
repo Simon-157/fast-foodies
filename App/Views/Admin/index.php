@@ -14,15 +14,25 @@
             echo $_SESSION['res_name'];
         else
             echo "Restaurant";
+            // header()
 
         ?>
     </title>
     <link rel="stylesheet" href="public\css\styles.css" />
     <link rel="stylesheet" href="public\css\new-food.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="public/scripts/resprofile.js"></script>
 
 </head>
 
 <body>
+<?php
+    // if (!isset($_SESSION['restaurant_id'])) {
+
+    //     header("location: /fast-foodies/login");
+    //     exit();
+
+     ?>
 
     <div class="s-layout">
         <!-- Sidebar -->
@@ -36,6 +46,7 @@
 
                     <li>
                         <a class="s-sidebar__nav-link name" href="#">
+                            
                             <i class="bx bx-dashboard"></i><em>Dashboard</em>
                         </a>
                     </li>
@@ -70,6 +81,14 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a class="s-sidebar__nav-link" href="/fast-foodies/logout">
+                            <i class="bx bx-log-out-circle"></i><em>Logout</em>
+                        </a>
+                    </li>
+
+                    <li>
+                
                 </ul>
             </nav>
         </div>
@@ -84,7 +103,7 @@
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
-                        <li class="nav__item"><a href="index.html" class="nav__link ">Jack Maaye </a></li>
+                        <li class="nav__item"><h3 class="nav__item" id="res_name"></h3></li>
                     </ul>
                 </div>
             </nav>

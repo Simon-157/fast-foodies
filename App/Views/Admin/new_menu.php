@@ -28,6 +28,7 @@
     <!-- <script charset="utf-8" src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script> -->
     <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="public/scripts/resprofile.js"></script>
 
 
 </head>
@@ -95,9 +96,7 @@
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
-                        <li class="nav__item"><a href="" class="nav__link ">
-                                <?php echo $_SESSION['res_name'] ?>
-                            </a></li>
+                        <li class="nav__item"><h3 id="res_name" class="nav__link "></h3></li>
                     </ul>
                 </div>
             </nav>

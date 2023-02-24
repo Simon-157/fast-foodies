@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use PDO;
+use PDOException;
 
 class User extends \Core\Model
-
 {
 
     private $conn;
@@ -14,6 +14,37 @@ class User extends \Core\Model
     {
 
     }
+
+    public static function getUser($user_id)
+    {
+        // echo $user_id;
+        $response = array();
+        try {
+            $conn = static::getDB();
+            $stmt = $conn->prepare(
+                " SELECT * from users where id = :user_id
+                "
+            );
+            $stmt->bindParam(':user_id', $user_id);
+            $stmt->execute();
+            $user = $stmt->fetch();
+
+            if ($user) {
+                $response['status'] = 'success';
+                $response['data'] = $user;
+            } else {
+                $response['status'] = 'error';
+                $response['message'] = 'Not Authenticated';
+            }
+        } catch (PDOException $e) {
+            $response['status'] = 'error';
+            $response['message'] = 'Error retrieving user info: ' . $e->getMessage();
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+
+
 
     public static function getAll()
     {
@@ -88,7 +119,7 @@ class User extends \Core\Model
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user) {
             if (password_verify($password, $user['user_password'])) {
-               
+
                 return $user;
             } else {
                 return false;
@@ -110,7 +141,7 @@ class User extends \Core\Model
 
         $restaurant_admin = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($restaurant_admin) {
-                return $restaurant_admin;
+            return $restaurant_admin;
             /** to do: hash the random unique key before this line will be uncommented **/
             // if (password_verify($password, $restaurant_admin['user_password'])) {
             //     echo "Successfully authenticated";

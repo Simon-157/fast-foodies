@@ -10,39 +10,28 @@ $(document).ready(function () {
         success: (response) => {
 
             if (response.status === 'success') {
-                $(".Cart-Items").html("");
+                $(".shop").html("");
 
                 // Replace cart content div with cart items
                 var total_amt = 0;
                 $.each(response.data, (index, item) => {
-                    total_amt += parseInt(item.subtotal);
+                    total_amt += parseFloat(item.subtotal);
                     var item_html = `
-                <div class="item" id = ${index}>
-                  <div class="image-box">
-                    <img src="${item.food_imgUrl}" alt="" class="menu__img">
+                  <div class="box" id = ${index}>
+                    <img src=${item.food_imgUrl}>
+                    <div class="content">
+                      <h3>${item.food_name}</h3>
+                      <h4>Price: $${item.price_per_one}</h4>
+                      <p class="unit">Quantity: <input name="" value=${item.quantity}></p>
+                      <p class="btn-area"><i aria-hidden="true" class="fa fa-trash del-food-btn"></i> <span class="btn2">Remove</span></p>
+                    </div>
+                    <input style="display:none" type="hidden" id="itemid" value = ${item.id}></input>
                   </div>
-                  <div class="about">
-                    <h1 class="title">${item.food_name}</h1>
-                    <h3 class="subtitle">${item.food_description}</h3>
-                  </div>
-                  <div class="counter">
-                    <div class="btn">+</div>
-                    <div class="count">${item.quantity}</div>
-                    <div class="btn">-</div>
-                  </div>
-                  <div class="Subtotal">GHC ${item.price_per_one
-                        }</div>
-                  <div class="amount">Sub Total: ${item.subtotal}</div>
-                  <input style="display:none" type="hidden" id="itemid" value = ${item.id}></input>
-                  <div class="prices">
-                    <div class="remove"><i class='bx bxs-trash-alt del-food-btn'></i></div>
-                  </div>
-                </div>
-              `;
-                    $(".Cart-Items").append(item_html);
+                `;
+                    $(".shop").append(item_html);
                 });
 
-                $('#total-amt').html(total_amt);
+                $('#total-amt').html('GHC ' + total_amt);
                 $('#total-items').html(Object.keys( response.data ).length);
             }
 
@@ -56,7 +45,6 @@ $(document).ready(function () {
     $(document).on('click', '.del-food-btn', function () {
 
         // const menu_id = $(this).closest('tr').find('td:eq(4)').text();
-       
 
         const idContent = $('#itemid').val();
         console.log(idContent);
@@ -71,7 +59,7 @@ $(document).ready(function () {
             success: function (response) {
                 $('#msg').text(response.message);
                 console.log("Form data submitted successfully");
-                // location.reload()
+                location.reload()
                 return false;
             },
             error: function (xhr, status, error) {

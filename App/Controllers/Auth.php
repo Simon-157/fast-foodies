@@ -39,7 +39,7 @@ class Auth extends \Core\Controller
             $newUser = User::register($firstName, $lastName, $email, $password, '', 'native');
             if ($newUser) {
 
-                echo '<h3 style="color:green">Successfully registered</h3>';
+                echo '<h3 style="color:green;font-size:14px;display:flex;justify-content:center;">Successfully registered</h3>';
                 return false;
                 # code...
             } else {

@@ -87,6 +87,18 @@ class Restaurants extends \Core\Controller
 
     }
 
+    public function get_restaurantAction()
+    {
+        session_start();
+        if (isset($_SESSION['restaurant_id'])) {
+
+            $res_id = $_SESSION['restaurant_id'];
+            Restaurant::getRestaurant($res_id);}
+
+        else echo "No restaurant was provided";
+
+    }
+
     public function getAllAction()
     {
 

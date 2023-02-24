@@ -20,11 +20,13 @@ require './client-routes.php';
 
 // Server routes
 $router->add('create', ['controller' => 'Auth', 'action' => 'create']);
+$router->add('getuser', ['controller' => 'Home', 'action' => 'getuser']);
 $router->add('authenticate', ['controller' => 'Auth', 'action' => 'authenticate']);
 $router->add('auth_res', ['controller' => 'Auth', 'action' => 'auth_res']);
 $router->add('logout', ['controller' => 'Auth', 'action' => 'logout']);
 $router->add('addrestaurant', ['controller' => 'Restaurants', 'action' => 'create']);
 $router->add('getrestaurant', ['controller' => 'Restaurants', 'action' => 'get']);
+$router->add('getrestaurantinfo', ['controller' => 'Restaurants', 'action' => 'get_restaurant']);
 $router->add('getrestaurants', ['controller' => 'Restaurants', 'action' => 'getAll']);
 $router->add('analytics', ['controller' => 'Analytic', 'action' => 'analytics']);
 $router->add('googleauth', ['controller' => 'GoogleAuth', 'action' => 'index']);
@@ -38,7 +40,6 @@ $router->add('delete_menu', ['controller' => 'Menus', 'action' => 'deletemenu'])
 $router->add('remove_cart', ['controller' => 'Carts', 'action' => 'removefromCart']);
 $router->add('add_cartitem', ['controller' => 'Carts', 'action' => 'add_cartItem']);
 $router->add('getuser_cart', ['controller' => 'Carts', 'action'=>'getCart']);
-
 
 //default routes
 $router->add('{controller}/{action}');

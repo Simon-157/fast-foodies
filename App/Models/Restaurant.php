@@ -111,4 +111,36 @@ class Restaurant extends \Core\Model
         }
     }
 
+
+
+    public static function getRestaurant($res_id)
+    {
+        // echo $user_id;   
+            $response = array();
+            try {
+                $conn = static::getDB();
+                $stmt = $conn->prepare(
+                    " SELECT * from restaurants where id = :restaurant
+                    "
+                );
+                $stmt->bindParam(':restaurant', $res_id);
+                $stmt->execute();
+                $restaurant = $stmt->fetch();
+    
+                if ($restaurant) {
+                    $response['status'] = 'success';
+                    $response['data'] = $restaurant;
+                } else {
+                    $response['status'] = 'error';
+                    $response['message'] = 'Not Authenticated';
+                }
+            } catch (PDOException $e) {
+                $response['status'] = 'error';
+                $response['message'] = 'Error retrieving user info: ' . $e->getMessage();
+            }
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        
+        }
+
 }

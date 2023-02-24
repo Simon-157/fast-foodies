@@ -272,6 +272,7 @@ img {
   bottom: 1.5rem;
 }
 
+
 /*========== HOME ==========*/
 .home__container {
   height: calc(100vh - var(--header-height));
