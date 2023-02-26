@@ -6,34 +6,41 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fname VARCHAR(255) NOT NULL,
     lname VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	UNIQUE KEY (email),
-    CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
-);
-
-CREATE TABLE restaurants (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(255) NOT NULL,
+    user_email VARCHAR(255) NOT NULL UNIQUE,
+    user_password VARCHAR(255) NOT NULL UNIQUE,
+    profileImg VARCHAR(255) DEFAULT 'https://i.pravatar.cc/75',
+    user_address VARCHAR(255) NOT NULL DEFAULT("Accra Ghana"),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE menus (
+
+
+CREATE TABLE restaurants (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    restaurant_id INT NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
+    res_name VARCHAR(255) NOT NULL,
+    res_address VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(255) NOT NULL,
+    res_email VARCHAR(255) NOT NULL UNIQUE,
+    uniquecode INT NOT NULL unique,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE menu (
+    id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    restaurant_id INT(11) UNSIGNED NOT NULL,
+    food_name VARCHAR(255) NOT NULL,
+    food_description TEXT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    quantity INT(11) NOT NULL,
+    food_imgUrl VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
 );
+
 
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -63,6 +70,21 @@ CREATE TABLE order_items (
     FOREIGN KEY (menu_id) REFERENCES menus(id) ON DELETE CASCADE
 );
 
+CREATE TABLE cart_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    menu_id INT NOT NULL,
+    quantity INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (menu_id) REFERENCES menus(id) ON DELETE CASCADE,
+    UNIQUE KEY (user_id, menu_id),
+    INDEX (user_id),
+    INDEX (menu_id)
+);
+
+
 CREATE TABLE payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
@@ -75,140 +97,55 @@ CREATE TABLE payments (
 );
 
 
-
-START TRANSACTION;
-
-INSERT INTO users (fname, lname, email, password, address) 
-VALUES 
-('John', 'Doe', 'johndoe@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '123 Main St'),
-('Jane', 'Doe', 'janedoe@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '456 Elm St'),
-('Jim', 'Smith', 'jimsmith@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '789 Oak St'),
-('Jane', 'Smith', 'janesmith@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '987 Pine St'),
-('Jack', 'Johnson', 'jackjohnson@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '654 Cedar St'),
-('Jill', 'Johnson', 'jilljohnson@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '321 Maple St'),
-('James', 'Brown', 'jamesbrown@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '654 Cedar St'),
-('Janet', 'Brown', 'janetbrown@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '987 Pine St'),
-('Joe', 'Davis', 'joedavis@email.com', '$2y$10$1WgKfZptJxqo9n9rLnYzQOufoMrwHJE1LnBDPWZJ1zZxlx98QPJ9W', '123 Main St'),
-('Jessica', 'Davis', 'jessicadavis@email.com', '$2y$10', '986 cantonment');
-
--- Users
-INSERT INTO users (fname, lname, email, password, address) VALUES
-("John", "Doe", "johndoe1@email.com", SHA2("password1", 256), "123 Main St"),
-("Jane", "Doe", "janedoe1@email.com", SHA2("password2", 256), "456 Main St"),
-("Jim", "Smith", "jimsmith1@email.com", SHA2("password3", 256), "789 Main St"),
-("Sarah", "Johnson", "sarahjohnson1@email.com", SHA2("password4", 256), "246 Main St"),
-("Tom", "Brown", "tombrown1@email.com", SHA2("password5", 256), "369 Main St"),
-("Amy", "Williams", "amywilliams1@email.com", SHA2("password6", 256), "159 Main St"),
-("Michael", "Jones", "michaeljones1@email.com", SHA2("password7", 256), "753 Main St"),
-("Emily", "Davis", "emilydavis1@email.com", SHA2("password8", 256), "951 Main St"),
-("William", "Martin", "williammartin1@email.com", SHA2("password9", 256), "147 Main St"),
-("Ashley", "Anderson", "ashleyanderson1@email.com", SHA2("password10", 256), "753 Main St");
-
--- Restaurants
-INSERT INTO restaurants (name, address, phone_number) VALUES
-("McDonald's", "111 Main St", "111-111-1111"),
-("Burger King", "222 Main St", "222-222-2222"),
-("Wendy's", "333 Main St", "333-333-3333"),
-("Taco Bell", "444 Main St", "444-444-4444"),
-("KFC", "555 Main St", "555-555-5555"),
-("Pizza Hut", "666 Main St", "666-666-6666"),
-("Subway", "777 Main St", "777-777-7777"),
-("Dunkin' Donuts", "888 Main St", "888-888-8888"),
-("Domino's", "999 Main St", "999-999-9999"),
-("Starbucks", "000 Main St", "000-000-0000");
-
--- Menus
-INSERT INTO menus (restaurant_id, name, description, price) VALUES
-(1, "Big Mac", "Two 100% beef patties, special sauce, lettuce, cheese, pickles, onions on a sesame seed bun.", 5.99),
-(2, "Whopper", "A flame-grilled beef patty topped with juicy tomatoes, fresh lettuce, creamy mayonnaise, ketchup, crunchy pickles, and sliced white onions on a soft sesame seed bun.", 6.49),
-(3, "Spicy Chicken Sandwich", "A juicy, breaded chicken patty topped with spicy mayo and served on a bun.", 4.99),
-(4, "Crunchwrap Supreme", "A crispy tortilla filled with seasoned beef, warm nacho cheese, a crispy tostada shell, and cool sour cream.", 5.49);
-
-
-INSERT INTO restaurants (name, address, phone_number)
+INSERT INTO restaurants (res_name, res_address, phone_number, res_email, uniquecode)
 VALUES
-    ('Pizza Palace', '123 Main St', '555-555-5555'),
-    ('Burger Joint', '456 Elm St', '555-555-5556'),
-    ('Mexican Grill', '789 Oak St', '555-555-5557');
+('Burger Joint', '123 Main St, Anytown USA', '555-1234', 'burgerjoint@example.com', 1001),
+('Pizzeria', '456 First Ave, Anytown USA', '555-5678', 'pizzeria@example.com', 1002),
+('Indian Restaurant', '789 Second St, Anytown USA', '555-9012', 'indianrestaurant@example.com', 1003),
+('Sushi Bar', '012 Third Ave, Anytown USA', '555-3456', 'sushibar@example.com', 1004),
+('Mexican Restaurant', '345 Fourth St, Anytown USA', '555-7890', 'mexicanrestaurant@example.com', 1005);
+('Mexican Restaurant', '345 Fourth Arena, Anytown USA', '555-7890', 'mexicanrestaurant@example.com', 1005);
 
 INSERT INTO menus (restaurant_id, name, description, price)
 VALUES
-    (1, 'Pepperoni Pizza', 'A classic pepperoni pizza with tomato sauce and mozzarella cheese', 15.99),
-    (1, 'Margherita Pizza', 'A traditional margherita pizza with tomato sauce, mozzarella cheese and basil', 14.99),
-    (2, 'Cheeseburger', 'A juicy beef patty with melted cheese, lettuce, tomato and pickles', 8.99),
-    (2, 'Bacon Cheeseburger', 'A juicy beef patty with melted cheese, bacon, lettuce, tomato and pickles', 10.99),
-    (3, 'Beef Tacos', 'Three soft tacos with grilled beef, cheese, lettuce, tomato and sour cream', 9.99),
-    (3, 'Chicken Quesadilla', 'A large quesadilla filled with grilled chicken and cheese', 11.99);
-
-INSERT INTO orders (user_id, restaurant_id, menu_id, status)
-VALUES
-    (1, 1, 1, 'confirmed'),
-    (1, 2, 2, 'confirmed'),
-    (2, 3, 5, 'delivered'),
-    (3, 1, 2, 'pending'),
-    (3, 3, 6, 'confirmed');
-
-INSERT INTO order_items (order_id, menu_id, quantity)
-VALUES
-    (1, 1, 1),
-    (1, 2, 2),
-    (2, 2, 1),
-    (2, 3, 2),
-    (3, 5, 3),
-    (4, 2, 2),
-    (5, 6, 1);
-
-INSERT INTO payments (order_id, amount, payment_method)
-VALUES
-    (1, 25.98, 'credit_card'),
-    (2, 23.97, 'debit_card'),
-    (3, 29.97, 'paypal'),
-    (4, 23.98, 'credit_card'),
-    (5, 11.99, 'cash');
-
-
-INSERT INTO orders (user_id, restaurant_id, menu_id)
-VALUES
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 5);
-
-INSERT INTO order_items (order_id, menu_id, quantity)
-VALUES
-(1, 1, 2),
-(2, 2, 1),
-(3, 3, 3),
-(4, 4, 4),
-(5, 5, 5);
-
-INSERT INTO payments (order_id, amount, payment_method)
-VALUES
-(1, 20.00, 'credit_card'),
-(2, 10.00, 'debit_card'),
-(3, 30.00, 'paypal'),
-(4, 40.00, 'cash'),
-(5, 50.00, 'credit_card');
+(1, 'Cheeseburger', 'Juicy beef patty with melted cheese', 9.99),
+(1, 'Fries', 'Crispy and golden fries', 3.99),
+(1, 'Milkshake', 'Creamy vanilla milkshake', 4.99),
+(2, 'Margherita Pizza', 'Classic pizza with tomato sauce and mozzarella cheese', 12.99),
+(2, 'Caesar Salad', 'Romaine lettuce with croutons, parmesan cheese and caesar dressing', 8.99),
+(2, 'Garlic Bread', 'Toasty garlic bread with a sprinkle of parsley', 3.99),
+(3, 'Chicken Tikka Masala', 'Grilled chicken in creamy tomato sauce', 14.99),
+(3, 'Naan Bread', 'Soft and fluffy bread', 2.99),
+(3, 'Samosa', 'Crispy pastry filled with spiced vegetables or meat', 5.99),
+(4, 'Sushi Roll', 'Assorted fresh fish and vegetables wrapped in rice and seaweed', 16.99);
 
 
 
 
+INSERT INTO menu (restaurant_id, food_name, food_description, price, quantity, food_imgUrl) VALUES
+(1, 'Grilled Salmon', 'Freshly caught grilled salmon with mixed vegetables', 25.99, 10, 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(1, 'Pesto Pasta', 'Penne pasta with homemade pesto sauce and cherry tomatoes', 15.99, 15, 'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(1, 'Classic Caesar Salad', 'Romaine lettuce, croutons, shaved parmesan cheese, and classic Caesar dressing', 12.99, 20, 'https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(1, 'New York Cheesecake', 'Classic creamy cheesecake with graham cracker crust', 8.99, 12, 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(2, 'Kung Pao Chicken', 'Spicy stir-fry dish with chicken, peanuts, and vegetables', 18.99, 10, 'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(2, 'Beef and Broccoli', 'Stir-fry dish with tender beef and broccoli in a savory sauce', 19.99, 10, 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(2, 'Vegetable Fried Rice', 'Fluffy fried rice with mixed vegetables', 10.99, 20, 'https://images.pexels.com/photos/5768972/pexels-photo-5768972.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(2, 'Fortune Cookies', 'Classic crispy cookies with fortunes inside', 2.99, 30, 'https://images.pexels.com/photos/15532964/pexels-photo-15532964.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(3, 'Margherita Pizza', 'Classic pizza with tomato sauce, fresh mozzarella, and basil', 14.99, 8, 'https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(3, 'Pepperoni Pizza', 'Classic pizza with tomato sauce, pepperoni, and mozzarella cheese', 16.99, 10, 'https://images.pexels.com/photos/15476360/pexels-photo-15476360.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(3, 'Caesar Salad', 'Classic Caesar salad with romaine lettuce, croutons, and parmesan cheese', 12.99, 15, 'https://images.pexels.com/photos/15476372/pexels-photo-15476372.jpeg?auto=compress&cs=tinysrgb&w');
 
 
+INSERT INTO menu (restaurant_id, food_name, food_description, price, quantity, food_imgUrl) 
+VALUES 
+(10, 'Miso Soup', 'Traditional Japanese soup with tofu, seaweed, and green onions', 4.99, 10, 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(10, 'Teriyaki Chicken', 'Grilled chicken with teriyaki sauce, served with rice and steamed vegetables', 12.99, 5, 'https://images.pexels.com/photos/1633578/pexels-photo-1633578.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(10, 'Beef Stir Fry', 'Stir-fried beef with mixed vegetables, served with rice', 14.99, 8, 'https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(10, 'Spicy Tuna Roll', 'Sushi roll with spicy tuna, cucumber, and avocado', 8.99, 12, 'https://images.pexels.com/photos/5768972/pexels-photo-5768972.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(10, 'California Roll', 'Sushi roll with crab, avocado, and cucumber', 6.99, 10, 'https://images.pexels.com/photos/15532964/pexels-photo-15532964.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(10, 'Salmon Sashimi', 'Thinly sliced fresh salmon', 15.99, 4, 'https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(10, 'Tuna Sashimi', 'Thinly sliced fresh tuna', 17.99, 4, 'https://images.pexels.com/photos/15476360/pexels-photo-15476360.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(10, 'Green Tea Ice Cream', 'Creamy green tea-flavored ice cream', 4.99, 6, 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(10, 'Mochi', 'Chewy rice cake filled with ice cream', 3.99, 8, 'https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&w=400'),
+(10, 'Matcha Latte', 'Creamy and frothy green tea latte', 5.99, 10, 'https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=400');
 
-
-
-
-
-
-
-
-
-
-
-
-select * from orders;
-select * from menus;
-select * from payments;
-select * from users;

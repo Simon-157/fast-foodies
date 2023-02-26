@@ -17,9 +17,9 @@
       <div class="main-container">
         <!-- Leaf icon -->
         <div class="leaf-wrapper">
-          <img class="leaf-icon" src="img/dish.svg" alt="leaf-icon" />
+          <img class="leaf-icon" src="public/assets/dish.svg" alt="leaf-icon" />
         </div>
-
+        
         <!-- Welcome message -->
         <div class="header-message">
           <h3 class="welcome-message">Register a new account🚀</h3>
@@ -27,15 +27,14 @@
 
         <!-- Form -->
         <form
-          action="/fast-foodies/create"
-          method="POST"
-          name="form"
-          id="register"
-          class="form-wrapper"
+        name="form"
+        id="register"
+        class="form-wrapper"
         >
-          <!-- Alert message -->
-          <h6 class="alert">Input fields cannot be empty</h6>
-
+        <!-- Alert message -->
+        <h6 class="alert">Input fields cannot be empty</h6>
+        <span id="msg"></span>
+        
           <!-- Input fields -->
           <div class="input-wrapper">
             <input
@@ -79,6 +78,7 @@
             />
           </div>
 
+
           <!-- Forgot password -->
           <div class="forgot-password">
             <a href="#">
@@ -88,7 +88,7 @@
 
           <!-- Submit button -->
           <div class="submit-wrapper">
-            <button type="" id="sub" class="btn" onclick="clearInput()">Sign In</button>
+            <button type="" id="sub" class="btn">Register</button>
           </div>
 
           <div class="footer-wrapper">
@@ -96,31 +96,11 @@
               Already have an account? Log in <a href="/fast-foodies/login">here</a>
             </h6>
           </div>
-          <span id="msg"></span>
         </form>
       </div>
     </main>
-    <script type="text/javascript">
-      $("#sub").click(() => {
-        var data = $("#register :input").serializeArray();
+    <script type="text/javascript" src="public/scripts/auth.js">
 
-        $.post($("#register").attr("action"), data, (info) => {
-          $("#msg").html(info);
-        });
-        clearInput();
-      });
-
-      $("#register").submit(() => {
-        return false;
-      });
-
-      function clearInput (){
-        $("#register :input").each(element => {
-
-        });(() => {
-          $(this).val(' ');
-        });
-      };
     </script>
   </body>
 </html>

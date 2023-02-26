@@ -3,52 +3,108 @@
 namespace App\Models;
 
 class Menu extends \Core\Model
-
 {
     private $db;
 
-    public function __construct($db)
+    public function __construct()
     {
-        $this->db = $db;
+        $this->db = static::getDB();
     }
 
-    public function getAllMenus()
+    public static function getAllMenus($unique)
     {
-        $stmt = $this->db->prepare("SELECT * FROM menus");
-        $stmt->execute();
 
-        return $stmt->fetchAll();
+        $conn = static::getDB();
+
+        switch($unique){
+            case true:
+                session_start();
+                if(isset($_SESSION['restaurant_id'])){
+
+                    $restaurantId = $_SESSION['restaurant_id'];
+                    $stmt = $conn->prepare("SELECT * FROM menu where restaurant_id = ?");
+                    $stmt->bindParam(1, $restaurantId);
+                    $stmt->execute();
+                    $result = $stmt->fetchAll();
+            
+                    // Return the data in JSON format
+                    echo json_encode($result);
+                    return json_encode($result);
+                }
+                else{
+                    header("location: /fast-foodies/login");
+                    exit();
+                }
+
+            case false:
+                $stmt = $conn->prepare("SELECT * FROM menu");
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+        
+                // Return the data in JSON format
+                echo json_encode($result);
+                return json_encode($result);
+
+        }
     }
 
     public function getMenuById($id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM menus WHERE id = ?");
+        $stmt = $this->db->prepare("SELECT * FROM menu WHERE id = ?");
         $stmt->execute([$id]);
 
         return $stmt->fetch();
     }
 
-    public function addMenu($restaurantId, $name, $description, $price)
+    public function addMenu($restaurantId, $food_name, $food_description, $price, $quantity, $food_imgUrl)
     {
-        $stmt = $this->db->prepare("INSERT INTO menus (restaurant_id, name, description, price) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$restaurantId, $name, $description, $price]);
-
-        return $this->db->lastInsertId();
+        $conn = static::getDB();
+        $stmt = $conn->prepare("INSERT INTO menu (restaurant_id, food_name, food_description, price, quantity, food_imgUrl) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bindParam(1, $restaurantId);
+        $stmt->bindParam(2, $food_name);
+        $stmt->bindParam(3, $food_description);
+        $stmt->bindParam(4, $price);
+        $stmt->bindParam(5, $quantity);
+        $stmt->bindParam(6, $food_imgUrl);
+        if ($stmt->execute()) {
+            $id = $conn->lastInsertId();
+            return $id;
+        } else {
+            return false;
+        }
     }
 
-    public function updateMenu($id, $restaurantId, $name, $description, $price)
-    {
-        $stmt = $this->db->prepare("UPDATE menus SET restaurant_id = ?, name = ?, description = ?, price = ? WHERE id = ?");
-        $stmt->execute([$restaurantId, $name, $description, $price, $id]);
 
-        return $stmt->rowCount();
+    public function updateMenu($menuId, $food_name, $food_description, $price, $quantity)
+    {
+        $conn = static::getDB();
+        $restaurantId = $_SESSION['restaurant_id'];
+        $stmt = $conn->prepare("UPDATE menu SET food_name=?, food_description=?, price=?, quantity=?  WHERE id=? AND restaurant_id=?");
+        $stmt->bindParam(1, $food_name);
+        $stmt->bindParam(2, $food_description);
+        $stmt->bindParam(3, $price);
+        $stmt->bindParam(4, $quantity);
+        $stmt->bindParam(5, $menuId);
+        $stmt->bindParam(6, $restaurantId);
+        if ($stmt->execute()) {
+            return $menuId;
+        } else {
+            return false;
+        }
     }
 
-    public function deleteMenu($id)
+    public function deleteMenu($menuId)
     {
-        $stmt = $this->db->prepare("DELETE FROM menus WHERE id = ?");
-        $stmt->execute([$id]);
-
-        return $stmt->rowCount();
+        $conn = static::getDB();
+        $restaurantId = $_SESSION['restaurant_id'];
+        $stmt = $conn->prepare("DELETE FROM menu WHERE id=? AND restaurant_id=?");
+        $stmt->bindParam(1, $menuId);
+        $stmt->bindParam(2, $restaurantId);
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
+    
 }
