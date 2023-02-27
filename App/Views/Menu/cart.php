@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>CART</title>
+    <title>My Cart</title>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -24,7 +24,10 @@
     echo $_SESSION['user_id']; ?>>
 
     <div class="wrapper">
-		<h1>Foodies in My Basket</h1>
+        <div class="header-cart">
+            <a href="/fast-foodies/menu">Continue Ordering</a>
+            <h1>Foodies in My Basket</h1>
+        </div>
 
 		<div class="project">
 			<div class="shop">
@@ -35,9 +38,9 @@
                     <hr>
 				<p><span>Subtotal</span> <span id="total-amt"></span></p>
 				<hr>
-				<p><span>Delivery</span> <span id="delivery">$15</span></p>
+				<p><span>Delivery</span> <span id="delivery">GHC 15.00</span></p>
 				<hr>
-				<p><span>Total</span> <span>$141</span></p><a href="#"><i class="fa fa-shopping-cart"></i>Checkout</a>
+				<p><span>Total</span> <span id = "overall-total"></span></p><a href="/fast-foodies/checkout"><i class="fa fa-shopping-cart"></i>Checkout</a>
 			</div>
 		</div>
 	</div>

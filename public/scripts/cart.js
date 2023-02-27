@@ -17,25 +17,25 @@ $(document).ready(function () {
                 $.each(response.data, (index, item) => {
                     total_amt += parseFloat(item.subtotal);
                     var item_html = `
-                  <div class="box" id = ${index}>
+                  <div class="box" id=${index}>
                     <img src=${item.food_imgUrl}>
                     <div class="content">
                       <h3>${item.food_name}</h3>
                       <h4>Price: $${item.price_per_one}</h4>
-                      <p class="unit">Quantity: <input name="" value=${item.quantity}></p>
+                      <p class="unit">Quantity: <input class="item-quantity" name="" value=${item.quantity}></p>
                       <p class="btn-area"><i aria-hidden="true" class="fa fa-trash del-food-btn"></i> <span class="btn2">Remove</span></p>
                     </div>
-                    <input style="display:none" type="hidden" id="itemid" value = ${item.id}></input>
+                    <input style="display:none" type="hidden" class="item-id" value=${item.id}></input>
                   </div>
                 `;
                     $(".shop").append(item_html);
                 });
 
-                $('#total-amt').html('GHC ' + total_amt);
-                $('#total-items').html(Object.keys( response.data ).length);
-            }
-
-            else {
+                $('#total-amt').html('GHC ' + total_amt.toFixed(2));
+                $('#total-items').html(Object.keys(response.data).length);
+                const delivery = $('#delivery').html();
+                $('#overall-total').html('GHC ' + (parseFloat(delivery.replace("GHC "," "))+  total_amt).toFixed(2))
+            } else {
                 console.error(response.message);
             }
         }
@@ -44,12 +44,10 @@ $(document).ready(function () {
 
     $(document).on('click', '.del-food-btn', function () {
 
-        // const menu_id = $(this).closest('tr').find('td:eq(4)').text();
-
-        const idContent = $('#itemid').val();
+        const idContent = $(this).closest(".box").find(".item-id").val();
         console.log(idContent);
 
-        const edit_id = { id: id, item_id: idContent }; // add menu_id key-value pair
+        const edit_id = { id: id, item_id: idContent };
 
         // Submit menu id to be deleted
         $.ajax({
@@ -59,7 +57,7 @@ $(document).ready(function () {
             success: function (response) {
                 $('#msg').text(response.message);
                 console.log("Form data submitted successfully");
-                location.reload()
+                location.reload();
                 return false;
             },
             error: function (xhr, status, error) {

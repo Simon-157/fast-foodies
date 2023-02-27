@@ -41,6 +41,8 @@ $router->add('remove_cart', ['controller' => 'Carts', 'action' => 'removefromCar
 $router->add('add_cartitem', ['controller' => 'Carts', 'action' => 'add_cartItem']);
 $router->add('getuser_cart', ['controller' => 'Carts', 'action'=>'getCart']);
 
+
+$router ->add('confirm_order', ['controller'=>'PaymentGateway', 'action' => 'make_payment']);
 //default routes
 $router->add('{controller}/{action}');
 $router->add('{controller}/?');

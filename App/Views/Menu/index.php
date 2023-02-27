@@ -8,7 +8,7 @@
   <!--========== BOX ICONS ==========-->
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
+  <link rel="stylesheet" href="public/css/menu.css">
   <!--========== CSS ==========-->
   <link rel="stylesheet" type="text/css" href="public/css/menu.css" />
   <script src="public/scripts/main.js"></script>
@@ -87,7 +87,13 @@
   <section class="menu section bd-container" id="menu">
     <div class="search-title">
       <h2 class="section-title">Menu</h2>
-      <?php require("search.php"); ?>
+  
+<div class="search">
+    <input type="text" class="searchTerm" id="search-input" placeholder="What are you looking for?">
+    <button type="submit" class="searchButton">
+    <i class='bx bx-search-alt-2'  ></i>
+</button>
+</div>
 
     </div>
 
