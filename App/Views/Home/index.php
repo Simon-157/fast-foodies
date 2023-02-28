@@ -7,7 +7,6 @@
 
   <!--========== BOX ICONS ==========-->
   <link rel="stylesheet" href="public/css/index.css" />
-
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="public/scripts/main.js"></script>
@@ -21,7 +20,7 @@
 
 <body>
   <!--========== SCROLL TOP ==========-->
-  
+
   <a href="#" class="scrolltop" id="scroll-top">
     <i class="bx bx-chevron-up scrolltop__icon"></i>
   </a>
@@ -37,11 +36,10 @@
         <?php
         session_start();
         if (isset($_SESSION['user_id'])) {
-          
+
           echo '
             <ul class="nav__list">
-            <li class="nav__item">
-              <a href="/fast-foodies/logout" class="nav__link">logout</a>
+          
             </li>
             <li class="nav__item">
               <a href="/fast-foodies/menu" class="nav__link">Menu</a>
@@ -58,7 +56,7 @@
           </ul>
           
             ';
-            require("profile.php");
+          require("profile.php");
         } else {
           echo '
             <ul class="nav__list">
@@ -99,13 +97,13 @@
           <h3 class="home__subtitle">
             Order delicious food at the comfort of your home
           </h3>
-          <a href="/fast-foodies/register" class="button">Sign Up Now</a>
+          <?php if (!isset($_SESSION['user_id'])) {echo '<a href="/fast-foodies/register" class="button">Sign Up Now</a>';}?>
           <a href="/fast-foodies/register_restaurant" class="button">Register Your Business</a>
         </div>
 
         <img src="assets/new_dish.png" alt="" class="home__img" />
       </div>
-    </section>
+    </section>  
 
     <!--========== ABOUT ==========-->
     <section class="about section bd-container" id="about">

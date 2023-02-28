@@ -12,6 +12,10 @@
   <!--========== CSS ==========-->
   <link rel="stylesheet" type="text/css" href="public/css/menu.css" />
   <script src="public/scripts/main.js"></script>
+    <script src="public/scripts/main.js"></script>
+    <link rel="stylesheet" href="public/css/index.css" />
+
+
 
   <title>Menu</title>
 </head>
@@ -51,7 +55,7 @@
                 echo '
                   <ul class="nav__list">
                   <li class="nav__item">
-                  <a href="/fast-foodies/logout" class="nav__link">logout</a>
+                  <a href="/fast-foodies/logout" class="nav__link">Logout</a>
                 </li>
                   <li class="nav__item">
                     <a href="/fast-foodies/menu" class="nav__link">Menu</a>
@@ -67,7 +71,8 @@
                 </div>
                 </ul>
                 
-                  ';
+                ';
+                require("profile.php");
               }
               ?>
           </li>

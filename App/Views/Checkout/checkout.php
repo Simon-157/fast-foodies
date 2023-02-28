@@ -10,6 +10,16 @@
 </head>
 
 <body>
+
+
+<?php
+
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header('location: /fast-foodies/login');
+}
+
+?>
   <div class="wrapper">
 
     <div class="header-cart">

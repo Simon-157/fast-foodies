@@ -21,7 +21,7 @@ $(document).ready(function () {
                     <img src=${item.food_imgUrl}>
                     <div class="content">
                       <h3>${item.food_name}</h3>
-                      <h4>Price: $${item.price_per_one}</h4>
+                      <h4>Price: &#8373;${item.price_per_one}</h4>
                       <p class="unit">Quantity: <input class="item-quantity" name="" value=${item.quantity}></p>
                       <p class="btn-area"><i aria-hidden="true" class="fa fa-trash del-food-btn"></i> <span class="btn2">Remove</span></p>
                     </div>
