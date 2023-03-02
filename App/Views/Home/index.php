@@ -116,8 +116,8 @@
             tasty food
           </h2>
           <p class="about__description">
-            We cook the best food in the entire city, with excellent customer
-            service, the best meals and at the best price, visit us.
+            We help you connect to your favourite restaurants in the city
+            at the convenience of your homes.
           </p>
           <a href="#" class="button">Explore history</a>
         </div>
