@@ -70,19 +70,19 @@ CREATE TABLE order_items (
     FOREIGN KEY (menu_id) REFERENCES menus(id) ON DELETE CASCADE
 );
 
-CREATE TABLE cart_items (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    menu_id INT NOT NULL,
-    quantity INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (menu_id) REFERENCES menus(id) ON DELETE CASCADE,
-    UNIQUE KEY (user_id, menu_id),
-    INDEX (user_id),
-    INDEX (menu_id)
-);
+    CREATE TABLE cart_items (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        user_id INT NOT NULL,
+        menu_id INT NOT NULL,
+        quantity INT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY (menu_id) REFERENCES menus(id) ON DELETE CASCADE,
+        UNIQUE KEY (user_id, menu_id),
+        INDEX (user_id),
+        INDEX (menu_id)
+    );
 
 
 CREATE TABLE payments (

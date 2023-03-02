@@ -21,6 +21,7 @@
 
     <!-- icons cdn -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="public/assets/fafod.ico" type="image/x-icon">
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/new-food.css">
@@ -109,15 +110,13 @@
         <main class="s-layout__content">
             <nav class="nav bd-container">
                 <a href="/fast-foodies" class="header_name">
-                    <h1>Foodie</h1>
+                    <h1 style="margin-left:20px;">Foodie</h1>
                 </a>
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
 
-                        <li class="nav__item"><a href="" class="nav__link ">
-                                <?php echo $_SESSION['res_name'] ?>
-                            </a></li>
+                        <li class="nav__item"><h1 id="res_name"></h1></li>
 
 
                     </ul>

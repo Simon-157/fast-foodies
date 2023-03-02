@@ -4,14 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="public/assets/fafod.ico" type="image/x-icon">
 
   <!--========== BOX ICONS ==========-->
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
+  <link rel="stylesheet" href="public/css/menu.css">
   <!--========== CSS ==========-->
   <link rel="stylesheet" type="text/css" href="public/css/menu.css" />
   <script src="public/scripts/main.js"></script>
+    <script src="public/scripts/main.js"></script>
+    <link rel="stylesheet" href="public/css/index.css" />
+
+
 
   <title>Menu</title>
 </head>
@@ -51,7 +56,7 @@
                 echo '
                   <ul class="nav__list">
                   <li class="nav__item">
-                  <a href="/fast-foodies/logout" class="nav__link">logout</a>
+                  <a href="/fast-foodies/logout" class="nav__link">Logout</a>
                 </li>
                   <li class="nav__item">
                     <a href="/fast-foodies/menu" class="nav__link">Menu</a>
@@ -60,14 +65,15 @@
                     <a href="" class="nav__link"><span id = "username" ></span></a>
                   </li>
                   <li class="nav__item">
-                  <a href="/fast-foodies/cart"><i id ="cartbtn" class="bx bx-cart-alt cart__button"  value=2 ></i></a>
+                  <a href="/fast-foodies/cart"><i id ="cartbtn" class="bx bx-cart-alt cart__button value=2 "   ></i></a>
                 </li>
                 <div class="avartar">
                   <img class="proImg" id ="avartar" ></img>
                 </div>
                 </ul>
                 
-                  ';
+                ';
+                require("profile.php");
               }
               ?>
           </li>
@@ -87,21 +93,23 @@
   <section class="menu section bd-container" id="menu">
     <div class="search-title">
       <h2 class="section-title">Menu</h2>
-      <?php require("search.php"); ?>
+  
+<div class="search">
+    <input type="text" class="searchTerm" id="search-input" placeholder="What are you looking for?">
+    <button type="submit" class="searchButton">
+    <i class='bx bx-search-alt-2'  ></i>
+</button>
+</div>
 
     </div>
 
     <!-- ========== ITEMS ==========-->
+    <?php require("loader.php")?>
     <div class="menu__container bd-grid">
       <div class="menu__content">
-        <img src="public/assets/burger.png" alt="" class="menu__img" />
-        <h3 class="menu__name">Hot Burger</h3>
-        <span class="menu_detail"> A nice food for you</span>
-        <span class="menu__price">GHC 20.00</span>
-        <a href="" class="button-order">Order</a>
       </div>
     </div>
-    <?php echo $title ?>
+
   </section>
   <!-- ========== MENU ENDS ==========-->
 

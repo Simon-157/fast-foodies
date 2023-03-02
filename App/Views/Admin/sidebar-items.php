@@ -8,7 +8,6 @@
                 <ul>
                     <div class="avartar">
                         <img class="proImg" id="avartar"> </img>
-    
                     </div>
 
                     <li>

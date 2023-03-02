@@ -25,7 +25,8 @@ a {
 /* Layout */
 .s-layout {
    display: flex;
-   width: 100%;
+   overflow-x: hidden;
+   /* width: 100%; */
    min-height: 100vh;
 }
 
@@ -37,6 +38,13 @@ a {
 }
 
 
+#nav-menu{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 1.3rem;
+}
+
 /* MAIN CONTENT STARTS HERE*/
 
 
@@ -44,8 +52,10 @@ a {
 
 #container{
      width: 940px;
-     margin: 0 auto;
-     margin-bottom: 100px;
+     display: flex;
+      align-items: center;
+      justify-content: center;
+
 }
 #chartContainer{
      width: 900px;
@@ -65,7 +75,7 @@ a {
 
 
 .analytics_container{
-  width: 940px;
+  width: 40rem;
   display: flex;
   gap:3rem;
   margin: 2rem auto;
@@ -133,12 +143,14 @@ a {
    left: -15em;
    overflow: hidden;
    transition: all .3s ease-in;
-   width: 15em;
+   width: 10em;
    height: 100%;
    background: #ec7b4e;
    color: white;
    font-size:18px;
 }
+
+
 
 .s-sidebar__nav:hover,
 .s-sidebar__nav:focus,
@@ -162,7 +174,7 @@ a {
 
 .s-sidebar__nav-link {
    position: relative;
-   display: inline-block;
+   display: flex;
    width: 100%;
    height: 4em;
 }
@@ -177,7 +189,6 @@ a {
 .s-sidebar__nav-link:hover {
    background: #f1ab8f;
 }
-
 
 .name:hover{
   background-color: #ec7b4e;

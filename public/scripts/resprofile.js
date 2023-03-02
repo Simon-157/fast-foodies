@@ -12,8 +12,8 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (response) {
             console.log(response.data);
-            restaurant_name.innerHTML =  response.data.res_name;
-            restaurant_name2.innerHTML = " "+response.data.res_name;
+            restaurant_name.innerHTML =  response.data.res_name + " ";
+            restaurant_name2.innerHTML = " "+response.data.res_name + " ";
             restaurant_address.innerHTML ="Address: " + response.data.res_address;
             restaurant_phone.innerHTML = "Phone Number:"+" "+response.data.phone_number;
             imgElement.src = response.data.img_url

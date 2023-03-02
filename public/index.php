@@ -28,7 +28,7 @@ $router->add('addrestaurant', ['controller' => 'Restaurants', 'action' => 'creat
 $router->add('getrestaurant', ['controller' => 'Restaurants', 'action' => 'get']);
 $router->add('getrestaurantinfo', ['controller' => 'Restaurants', 'action' => 'get_restaurant']);
 $router->add('getrestaurants', ['controller' => 'Restaurants', 'action' => 'getAll']);
-$router->add('analytics', ['controller' => 'Analytic', 'action' => 'analytics']);
+$router->add('getanalytics', ['controller' => 'Analytic', 'action' => 'analytics']);
 $router->add('googleauth', ['controller' => 'GoogleAuth', 'action' => 'index']);
 $router->add('allmenus', ['controller' => 'Menus', 'action' => 'allmenus']);
 $router->add('allmenus_res', ['controller' => 'Menus', 'action' => 'allmenus_res']);
@@ -41,6 +41,8 @@ $router->add('remove_cart', ['controller' => 'Carts', 'action' => 'removefromCar
 $router->add('add_cartitem', ['controller' => 'Carts', 'action' => 'add_cartItem']);
 $router->add('getuser_cart', ['controller' => 'Carts', 'action'=>'getCart']);
 
+
+$router ->add('confirm_order', ['controller'=>'PaymentGateway', 'action' => 'make_payment']);
 //default routes
 $router->add('{controller}/{action}');
 $router->add('{controller}/?');

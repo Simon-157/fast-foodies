@@ -15,7 +15,7 @@ class Analytics extends \Core\Model
                 DATE_FORMAT(p.created_at, '%Y-%m-%d') AS Day,
                 SUM(p.amount) AS Revenue
                 FROM payments p
-                INNER JOIN orders o ON p.order_id = o.id
+                INNER JOIN placed_orders o ON p.order_id = o.id
                 INNER JOIN restaurants r ON o.restaurant_id = r.id
                 WHERE r.id = :res_id
                 GROUP BY DATE_FORMAT(p.created_at, '%Y-%m-%d')

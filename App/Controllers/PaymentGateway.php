@@ -1,111 +1,89 @@
-<?php
+<?php 
 
 namespace App\Controllers;
 
-use App\Config;
-use Core\View;
+class PaymentGateWay extends \Core\Controller{
 
-class PaymentGateway extends \Core\Controller
+    private $api_key;
+    private $api_secret;
+    private $environment;
+    private $base_url;
+    private $headers;
 
-{
-    private static $api_key = Config::MOMO_PAY_API_KEY;
-
-    public function __construct()
-    {
-
-    }
-
-    public function testAction()
-    {
-        View::render('Test/test.php');
-    }
-
-    // public function process_paymentAction($phone_number, $amount, $description)
-    public static function process_paymentAction()
-    {
-        $url = 'https://mobilemoneyapi.mtn.com/collection/v1_0/requesttopay';
-        $data = [
-            'phone_number' => '0552592929',
-            'amount' => 10,
-            'description' => 'Fried rice payment',
-        ];
-        $headers = [
+    public function __construct($api_key, $api_secret, $environment) {
+        $this->api_key = $api_key;
+        $this->api_secret = $api_secret;
+        $this->environment = $environment;
+        $this->base_url = 'https://api.' . $this->environment . '.momoapi.com';
+        $this->headers = array(
             'Content-Type: application/json',
-            'Ocp-Apim-Subscription-Key: 87c728fa540d4c91b6773b25d9316952',
-            'X-Reference-Id: ' . uniqid(),
-        ];
+            'Authorization: Basic ' . base64_encode($this->api_key . ':' . $this->api_secret)
+        );
+    }
 
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    public function make_payment() {
 
-        $response = curl_exec($ch);
-        curl_close($ch);
+        $amount = $_POST['amount'];
+        
+        $phone_number =$_POST['phone_number'];
+        
+        $order = $_POST['order'];
 
-        $data = json_decode($response, true);
-        if (isset($data['transaction_reference'])) {
-            echo 'transaction successful';
-            return true;
-        } else {echo "transaction failed";}
-        return false;
+
+        $url = $this->base_url . '/v1_0/transaction/payment';
+        $callback_url = 'https://your-callback-url.com';
+        $reference_id = uniqid();
+
+        $body = array(
+            'amount' => $amount,
+            'currency' => 'EUR', // or any other supported currency
+            'externalId' => $reference_id,
+            'payer' => array(
+                'partyIdType' => 'MSISDN',
+                'partyId' => $phone_number
+            ),
+            'payerMessage' => 'Payment for ' . $order,
+            'payeeNote' => 'Thank you for your purchase!',
+            'callbackUrl' => $callback_url
+        );
+
+        $response = $this->send_request('POST', $url, $body);
+
+        return $response;
+    }
+
+    private function send_request($method, $url, $body = null) {
+        $curl = curl_init($url);
+
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
+
+        if ($body !== null) {
+            $json_body = json_encode($body);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $json_body);
+        }
+
+        $response = curl_exec($curl);
+
+        if (!$response) {
+            $error = curl_error($curl);
+            throw new \Exception('Error making Momo Pay API request: ' . $error);
+        }
+
+        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+        curl_close($curl);
+
+        if ($http_code >= 400) {
+            $error_message = $response ? json_decode($response, true)['message'] : 'Unknown error';
+            throw new \Exception('Error making Momo Pay API request: ' . $error_message);
+        }
+
+        return json_decode($response, true);
     }
 }
 
 
 
-// <?php
-// require_once('vendor/autoload.php');
-
-// class PaymentGateway {
-//   private $stripe_secret_key;
-//   private $db_servername;
-//   private $db_username;
-//   private $db_password;
-//   private $db_name;
-
-//   public function __construct($stripe_secret_key, $db_servername, $db_username, $db_password, $db_name) {
-//     $this->stripe_secret_key = $stripe_secret_key;
-//     $this->db_servername = $db_servername;
-//     $this->db_username = $db_username;
-//     $this->db_password = $db_password;
-//     $this->db_name = $db_name;
-//     \Stripe\Stripe::setApiKey($this->stripe_secret_key);
-//   }
-
-//   public function processPayment($token, $amount) {
-//     try {
-//       // Create the charge with Stripe
-//       $charge = \Stripe\Charge::create([
-//         'amount' => $amount,
-//         'currency' => 'usd',
-//         'description' => 'Example charge',
-//         'source' => $token,
-//       ]);
-
-//       // Insert the payment details into the database
-//       $conn = new mysqli($this->db_servername, $this->db_username, $this->db_password, $this->db_name);
-
-//       if ($conn->connect_error) {
-//         die('Connection failed: ' . $conn->connect_error);
-//       }
-
-//       $sql = "INSERT INTO orders (amount, payment_method) VALUES ('$amount', 'stripe')";
-//       if ($conn->query($sql) === TRUE) {
-//         return 'Payment successful';
-//       } else {
-//         return 'Error: ' . $sql . '<br>' . $conn->error;
-//       }
-
-//       $conn->close();
-//     } catch (Exception $e) {
-//       return 'Error: ' . $e->getMessage();
-//     }
-//   }
-// }
-
-
-
-
-
+?>
