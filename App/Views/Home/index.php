@@ -116,8 +116,8 @@
             tasty food
           </h2>
           <p class="about__description">
-            We cook the best food in the entire city, with excellent customer
-            service, the best meals and at the best price, visit us.
+            We help you connect to your favourite restaurants in the city
+            at the convenience of your homes.
           </p>
           <a href="#" class="button">Explore history</a>
         </div>
@@ -195,10 +195,9 @@
                             46.6405 18.816 45.964 18.3989 45.5466Z" />
           </svg>
           <!-- <img src="/img/dish.svg" class="services__img" alt="dish" /> -->
-          <h3 class="services__title">Table Reservation</h3>
+          <h3 class="services__title">Realtime Tracking</h3>
           <p class="services__description">
-            We offer our clients excellent quality services for many years,
-            with the best and delicious food in the city.
+            We offer our clients realtime tracking from their phones using realtime data from Google Maps
           </p>
         </div>
 
@@ -364,7 +363,7 @@
           <h3 class="services__title">Online Food Order</h3>
           <p class="services__description">
             We offer our clients excellent quality services for many years,
-            with the best and delicious food in the city.
+            with the best and delicious food in the city. We deliver food within minutes
           </p>
         </div>
 
@@ -421,11 +420,10 @@
               </clipPath>
             </defs>
           </svg>
-          <h3 class="services__title">Delivery Tracking</h3>
+          <h3 class="services__title">Better Payment Systems</h3>
           <p class="services__description">
-            We offer our clients excellent quality services for many years,
-            with the best and delicious food in the city.
-          </p>
+            We offer our clients a wide range of excellent payment options
+            ranging from mobile money to the use of VISA cards.
         </div>
       </div>
     </section>
@@ -435,7 +433,7 @@
     <section class="contact section bd-container" id="contact">
       <div class="contact__container bd-grid">
         <div class="contact__data">
-          <span class="section-subtitle contact__initial">Let's talk</span>
+          <span class="section-subtitle contact__initial">Let's chat</span>
           <h2 class="section-title contact__initial">Contact us</h2>
           <p class="contact__description">
             We would love to hear from you!<br />
