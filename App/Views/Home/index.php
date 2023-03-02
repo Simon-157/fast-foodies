@@ -195,10 +195,9 @@
                             46.6405 18.816 45.964 18.3989 45.5466Z" />
           </svg>
           <!-- <img src="/img/dish.svg" class="services__img" alt="dish" /> -->
-          <h3 class="services__title">Table Reservation</h3>
+          <h3 class="services__title">Realtime Tracking</h3>
           <p class="services__description">
-            We offer our clients excellent quality services for many years,
-            with the best and delicious food in the city.
+            We offer our clients realtime tracking from their phones using realtime data from Google Maps
           </p>
         </div>
 
@@ -421,11 +420,10 @@
               </clipPath>
             </defs>
           </svg>
-          <h3 class="services__title">Delivery Tracking</h3>
+          <h3 class="services__title">Better Payment Systems</h3>
           <p class="services__description">
-            We offer our clients excellent quality services for many years,
-            with the best and delicious food in the city.
-          </p>
+            We offer our clients a wide range of excellent payment options
+            ranging from mobile money to the use of all types of cards
         </div>
       </div>
     </section>
