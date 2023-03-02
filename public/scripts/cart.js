@@ -8,7 +8,7 @@ $(document).ready(function () {
         type: 'GET',
         dataType: "json",
         success: (response) => {
-
+            
             if (response.status === 'success') {
                 $(".shop").html("");
 
@@ -38,6 +38,9 @@ $(document).ready(function () {
             } else {
                 console.error(response.message);
             }
+
+            $(".loader-wrapper").remove();
+
         }
     });
 
@@ -46,26 +49,41 @@ $(document).ready(function () {
 
         const idContent = $(this).closest(".box").find(".item-id").val();
         console.log(idContent);
-
+    
         const edit_id = { id: id, item_id: idContent };
-
-        // Submit menu id to be deleted
-        $.ajax({
-            url: "/fast-foodies/remove_cart",
-            method: "POST",
-            data: edit_id,
-            success: function (response) {
-                $('#msg').text(response.message);
-                console.log("Form data submitted successfully");
-                location.reload();
-                return false;
-            },
-            error: function (xhr, status, error) {
-                console.log("Error submitting form data");
-                console.log("error. " + error, "status . " + status);
-            }
+    
+        // Display custom confirmation pop-up
+        const popup = $('<div/>', {
+            id: 'custom-popup',
+            html: '<p>Are you sure you want to delete this item?</p><button id="delete-btn">Delete</button><button id="cancel-btn">Cancel</button>'
+        }).appendTo('body');
+    
+        // Handle delete button click
+        $('#delete-btn').on('click', function () {
+            // Submit menu id to be deleted
+            $.ajax({
+                url: "/fast-foodies/remove_cart",
+                method: "POST",
+                data: edit_id,
+                success: function (response) {
+                    $('#msg').text(response.message);
+                    console.log("Form data submitted successfully");
+                    location.reload();
+                    return false;
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error submitting form data");
+                    console.log("error. " + error, "status . " + status);
+                }
+            });
+            popup.remove();
         });
-
+    
+        // Handle cancel button click
+        $('#cancel-btn').on('click', function () {
+            popup.remove();
+        });
     });
+    
 
 });

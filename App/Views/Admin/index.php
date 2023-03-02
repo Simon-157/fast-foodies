@@ -19,6 +19,8 @@
         
         ?>
     </title>
+    <link rel="shortcut icon" href="public/assets/fafod.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="public\css\profile.css">
     <link rel="stylesheet" href="public\css\styles.css" />
     <link rel="stylesheet" href="public\css\new-food.css" />

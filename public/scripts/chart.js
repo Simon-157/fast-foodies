@@ -1,50 +1,74 @@
-   
-        window.onload = function () {
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                theme: "light2", // "light1", "light2", "dark1", "dark2"
-                title:{
-                    text: "Order Volume by Day"
-                },
-                axisY: {
-                    title: "Order Volume"
-                },
-                data: [{
-                    type: "column",
-                    showInLegend: true,
-                    legendMarkerColor: "grey",
-                    legendText: "Days",
-                    dataPoints: [
-                        { y: 10, label: "Monday" },
-                        { y: 8, label: "Tuesday" },
-                        { y: 15, label: "Wednesday" },
-                        { y: 25, label: "Thursday" },
-                        { y: 14, label: "Friday" },
-                        { y: 18, label: "Saturday" },
-                        { y: 25, label: "Sunday" }
-                    ]
-                }]
-            });
-            chart.render();
 
-            
-        }
-        var ctx = document.getElementById("chart").getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-            labels: ['Pizza', 'Burgers', 'Sushi', 'Chinese', 'Mexican'],
-            datasets: [{
-                label: 'Food Delivery Orders',
-                data: [20, 15, 10, 5, 25],
-                backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(153, 102, 255)'
-                ]
-            }]
-            },
-            options: {}
+$(document).ready(function() {
+
+    // Use AJAX to get data from the API
+    $.ajax({
+      url: '/fast-foodies/getanalytics',
+      type: 'GET',
+      success: function(response) {
+  
+        // Parse the response and extract the data
+
+        response = JSON.parse(response); // Parse the JSON string
+        
+        let newValues = response.map(function (row) {
+          return parseFloat(row.Revenue);
         });
+    
+        let newLabels = response.map(function (row) {
+          return row.Day;
+        });
+        
+
+        var sum = 0;
+     
+        // Calculation the sum using forEach
+        newValues.forEach(x => {
+            sum += x;
+        });
+
+         var rev = document.getElementById("total_rev")
+         var ini = document.getElementById("total_rev").innerText;
+         var cus = document.getElementById("total_cus");
+         console.log(ini);
+         rev.innerText = ini + " " + sum;
+         cus.innerText = newValues.length;
+        // Use Chart.js to create a bar graph
+        var ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: newLabels,
+            datasets: [{
+              label: 'Revenue',
+              data: newValues,
+              backgroundColor: [
+                "rgb(255, 99, 32)",
+                "rgba(255, 99, 190)",
+                "rgb(54, 162, 231)",
+                "rgb(255, 255, 255)",
+                "rgb(105, 105, 105)",
+                "rgb(14, 162, 131)",
+                "rgb(35, 65, 55)",
+                "rgb(25, 205, 105)",
+              ],
+              borderColor: "rgba(255, 99, 132, 0.2)",
+              weight: 5,
+              borderWidth: 2,
+              barThickness: 40,
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  // Remove the ticks property
+                }
+              }]
+            }
+          }
+        });
+      }
+    });
+  });
+  

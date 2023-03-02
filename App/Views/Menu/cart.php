@@ -12,6 +12,7 @@
     <!-- stylesheets -->
     <!-- <link rel="stylesheet" type="text/css" href="public/css/style-cart.css"> -->
     <link rel="stylesheet" type="text/css" href="public/css/cart.css">
+    <link rel="shortcut icon" href="public/assets/fafod.ico" type="image/x-icon">
 
     <!-- Javascipt libraries and scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -36,6 +37,7 @@
             <a href="/fast-foodies/menu">Continue Ordering</a>
             <h1>Foodies in My Basket</h1>
         </div>
+        <?php require("loader.php")?>
 
         <div class="project">
             <div class="shop">

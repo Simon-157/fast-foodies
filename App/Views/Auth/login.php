@@ -9,6 +9,7 @@
 
   <!-- CSS styling -->
   <link rel="stylesheet" href="public\css\login.css" />
+  <link rel="shortcut icon" href="public/assets/fafod.ico" type="image/x-icon">
 
   <!-- Javascript -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

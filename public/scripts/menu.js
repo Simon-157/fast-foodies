@@ -8,10 +8,13 @@ $(document).ready(function () {
       type: 'GET',
       dataType: 'json',
       success: function (response) {
+        $(".loader-wrapper").remove();
         allData = response;
         filteredData = allData;
         updateTable(filteredData);
-        cartNo.value = allData.length;
+        // cartNo.value = (response.length)
+        // console.log(cartNo.value)
+
       },
       error: function (xhr, status, error) {
         console.log('Error:', error);
@@ -57,7 +60,11 @@ $(document).ready(function () {
         </div>`;
       });
       $('.menu__container').empty().append(table_body);
-      cartNo.value = data.length;
+     
     }
+
+
+    // console.log(cartNo.value)
+
   });
   

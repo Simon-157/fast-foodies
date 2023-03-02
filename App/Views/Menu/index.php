@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="public/assets/fafod.ico" type="image/x-icon">
 
   <!--========== BOX ICONS ==========-->
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
@@ -64,7 +65,7 @@
                     <a href="" class="nav__link"><span id = "username" ></span></a>
                   </li>
                   <li class="nav__item">
-                  <a href="/fast-foodies/cart"><i id ="cartbtn" class="bx bx-cart-alt cart__button"  value=2 ></i></a>
+                  <a href="/fast-foodies/cart"><i id ="cartbtn" class="bx bx-cart-alt cart__button value=2 "   ></i></a>
                 </li>
                 <div class="avartar">
                   <img class="proImg" id ="avartar" ></img>
@@ -103,16 +104,12 @@
     </div>
 
     <!-- ========== ITEMS ==========-->
+    <?php require("loader.php")?>
     <div class="menu__container bd-grid">
       <div class="menu__content">
-        <img src="public/assets/burger.png" alt="" class="menu__img" />
-        <h3 class="menu__name">Hot Burger</h3>
-        <span class="menu_detail"> A nice food for you</span>
-        <span class="menu__price">GHC 20.00</span>
-        <a href="" class="button-order">Order</a>
       </div>
     </div>
-    <?php echo $title ?>
+
   </section>
   <!-- ========== MENU ENDS ==========-->
 

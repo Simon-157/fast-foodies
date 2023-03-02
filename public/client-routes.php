@@ -13,4 +13,6 @@ $router->add('orders', ['controller' => 'Restaurants', 'action' => 'orders']);
 $router->add('new_menu', ['controller' => 'Restaurants', 'action' => 'newmenu']);
 $router->add('cart', ['controller' => 'Carts', 'action' => 'view']);
 $router->add('checkout', ['controller' => 'Checkout', 'action' => 'view']);
+$router->add('analytics', ['controller' => 'Analytic', 'action' => 'view']);
+
 
