@@ -363,7 +363,7 @@
           <h3 class="services__title">Online Food Order</h3>
           <p class="services__description">
             We offer our clients excellent quality services for many years,
-            with the best and delicious food in the city.
+            with the best and delicious food in the city. We deliver food within minutes
           </p>
         </div>
 
@@ -423,7 +423,7 @@
           <h3 class="services__title">Better Payment Systems</h3>
           <p class="services__description">
             We offer our clients a wide range of excellent payment options
-            ranging from mobile money to the use of all types of cards
+            ranging from mobile money to the use of VISA cards.
         </div>
       </div>
     </section>
@@ -433,7 +433,7 @@
     <section class="contact section bd-container" id="contact">
       <div class="contact__container bd-grid">
         <div class="contact__data">
-          <span class="section-subtitle contact__initial">Let's talk</span>
+          <span class="section-subtitle contact__initial">Let's chat</span>
           <h2 class="section-title contact__initial">Contact us</h2>
           <p class="contact__description">
             We would love to hear from you!<br />
