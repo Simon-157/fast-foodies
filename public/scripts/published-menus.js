@@ -29,25 +29,41 @@ $(document).ready(function () {
 
         const menu_id = $(this).closest('tr').find('td:eq(4)').text();
         const edit_id = { id: menu_id, menu_id: menu_id }; // add menu_id key-value pair
-        
+
+        // confirmation pop up
+        const popup = $('<div/>', {
+            id: 'custom-popup',
+            html: '<p>Are you sure you want to delete this item?</p><button id="delete-btn">Delete</button><button id="cancel-btn">Cancel</button>'
+        }).appendTo('body');
+
         // Submit menu id to be deleted
-        $.ajax({
-            url: "/fast-foodies/delete_menu",
-            method: "POST",
-            data: edit_id,
-            success: function (response) {
-                $('#msg').text(response.message);
-                console.log("Form data submitted successfully");
-                location.reload()
-                return false;
-            },
-            error: function (xhr, status, error) {
-                console.log("Error submitting form data");
-                console.log("error. " + error, "status . " + status);
-            }
+        $('#delete-btn').on('click', function () {
+            $.ajax({
+                url: "/fast-foodies/delete_menu",
+                method: "POST",
+                data: edit_id,
+                success: function (response) {
+                    $('#msg').text(response.message);
+                    console.log("Form data submitted successfully");
+                    location.reload()
+                    return false;
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error submitting form data");
+                    console.log("error. " + error, "status . " + status);
+                }
+            });
+
+            popup.remove();
+        })
+
+        $('#cancel-btn').on('click', function () {
+            popup.remove();
         });
-        
     });
 
 
 });
+
+
+

@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="input_wrapper">
-                        <input class="submit_btn" type="submit">
+                        <input value = "submit" class="submit_btn" type="submit">
                     </div>
 
                 </form>

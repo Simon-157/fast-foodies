@@ -13,7 +13,6 @@
   <!--========== CSS ==========-->
   <link rel="stylesheet" type="text/css" href="public/css/menu.css" />
   <script src="public/scripts/main.js"></script>
-    <script src="public/scripts/main.js"></script>
     <link rel="stylesheet" href="public/css/index.css" />
 
 

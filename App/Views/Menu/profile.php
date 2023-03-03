@@ -6,11 +6,11 @@
         <!-- <div class="container"> -->
             <div class="card">
                 <div class="card__border">
-                    <img src="https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80"
+                    <img id = "avartar2"
                         alt="card image" class="card__img" />
                 </div>
 
-                <h3 class="card__name">Mia Miranda</h3>
+                <h3 class="card__name" id="user-name"></h3>
                 <span class="card__profession">Interpreter</span>
 
                 <div class="card__social" id="card-social">
