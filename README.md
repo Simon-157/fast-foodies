@@ -13,5 +13,7 @@ FastFoodies is a web application designed to make food ordering and delivery eas
 * then in the project root directory, open a terminal and type `composer update` or `composer install`
 
 
+# Live Demo
+`http://13.41.186.245/`
 
 ## Suggested Admin Design
