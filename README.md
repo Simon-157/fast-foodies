@@ -18,3 +18,8 @@ FastFoodies is a web application designed to make food ordering and delivery eas
 
 ![image](https://user-images.githubusercontent.com/79936608/216309298-f0bdbe3f-5bc4-48c5-9414-51d8407f4aa1.png)
 
+
+
+## Actual Menu Design 
+<img width="1050" alt="Screenshot 2023-03-03 at 12 32 31 AM" src="https://user-images.githubusercontent.com/59709993/222601367-9739fb89-c206-4b72-a1f3-31d3edce0d4b.png">
+
