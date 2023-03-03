@@ -67,6 +67,8 @@
             <h2 class="modal_header">Edit food details</h2>
             <div class="new_food_wrapper_edit">
                 <form class="table_form" class="form" name="food-form" id="food-form">
+                <div style="text-align:center" id="msg"></div>
+                <input id="menuid" name="menu_id"   type="hidden">
 
                     <div class="input_wrapper">
                         <label for="food_name">Food Name</label>
@@ -94,7 +96,6 @@
                     </div>
 
                 </form>
-                <div style="text-align:center" id="msg"></div>
             </div>
         </div>
 

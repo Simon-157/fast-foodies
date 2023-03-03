@@ -5,8 +5,6 @@ namespace App\Controllers;
 require_once '../vendor/autoload.php';
 
 use App\Config;
-use Google\Service\Batch\Message;
-use Google\Service\CloudSearch\ErrorMessage;
 use SendGrid\Mail\Mail;
 class Email extends \Core\Controller{
 

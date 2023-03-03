@@ -22,11 +22,11 @@ class Order extends \Core\Model
             try {
                 $restaurantId = $_SESSION['restaurant_id'];
                 $stmt = $conn->prepare(
-                    "SELECT o.*, m.food_name, m.price, m.food_imgUrl
+                    "SELECT o.*, m.food_name, m.price, m.food_imgUrl, u.user_address
                     FROM placed_orders o
                     INNER JOIN menu m ON o.menu_id = m.id
-                    WHERE o.restaurant_id = ?
-                    LIMIT 5
+                    INNER JOIN users u ON o.user_id = u.id
+                    WHERE o.restaurant_id = ?                    
                     ");
                 $stmt->bindParam(1, $restaurantId);
                 $stmt->execute();

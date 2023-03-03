@@ -27,6 +27,7 @@ a {
 #msg {
   color: rgba(85, 246, 85, 0.781);
   text-align: center;
+  padding-right: 6rem;
   font-weight: 400;
 }
 
@@ -158,6 +159,7 @@ input {
   border: none;
   font-size: 15px;
   border-radius: 4px;
+  width: 90%;
 }
 
 input:focus {
@@ -272,6 +274,43 @@ input[type="button"]:hover {
 .nav {
   margin-left: 4rem;
 }
+
+
+
+#custom-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #E9913E;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#custom-popup p {
+  margin-bottom: 10px;
+}
+
+#custom-popup button {
+  background-color: #E9913E;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+#custom-popup button:hover {
+  background-color: #ecc744;
+}
+
+
+
 
 /* Mobile First */
 @media (min-width: 42em) {
