@@ -27,6 +27,7 @@ a {
 #msg {
   color: rgba(85, 246, 85, 0.781);
   text-align: center;
+  padding-right: 6rem;
   font-weight: 400;
 }
 
@@ -158,6 +159,7 @@ input {
   border: none;
   font-size: 15px;
   border-radius: 4px;
+  width: 85%;
 }
 
 input:focus {

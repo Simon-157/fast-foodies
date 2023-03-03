@@ -38,14 +38,13 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- JS scripts-->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCijWSH4--ZN34vfPan6N88A-LUwC9FTbI"></script>
-    <script src="public/scripts/orders.js" defer></script>
-    <script src="public/scripts/deliveryMap.js"></script>
-    <script src="public/scripts/resprofile.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCijWSH4--ZN34vfPan6N88A-LUwC9FTbI">
+    </script>
 
-
+    <script src="public/scripts/orders.js"></script>
 
 </head>
 
@@ -59,7 +58,7 @@
     }
     ?>
 
-    
+
 
     <!-- Modal PopUp-->
 
@@ -69,7 +68,9 @@
             <h2 class="modal_header">Track Customer Location</h2>
             <div class="new_food_wrapper_edit">
                 <form class="table_form" class="form" name="food-form" id="food-form">
-                    <div id="map" style="width: 100%; height: 400px;"></div>
+
+                    <div id="map" style="width: 85%; height: 400px;"></div>
+
 
                 </form>
                 <div style="text-align:center" id="msg"></div>
@@ -81,7 +82,7 @@
 
     <div class="s-layout">
         <!-- Sidebar -->
-        <?php require("sidebar-items.php")?>
+        <?php require("sidebar-items.php") ?>
 
 
         <!-- Main Content -->
@@ -94,7 +95,7 @@
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <!-- <li class="nav__item" ><h1 id="res_name">Foodie</h1></li> -->
-
+                        <h3 class="nav__item " id="res_name"></h3>
 
                     </ul>
                 </div>
@@ -140,6 +141,9 @@
         </main>
     </div>
     <!-- <script type="text/javascript" src="public/scripts/modal.js"></script> -->
+
+    <script src="public/scripts/deliveryMap.js" defer></script>
+    <script src="public/scripts/resprofile.js"></script>
 </body>
 
 </html>

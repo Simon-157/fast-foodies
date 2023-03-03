@@ -12,6 +12,7 @@ $(document).ready(function () {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
+            console.log(data);
             if(data.length == 0){
                 console.log("empty");
                 $("#noitem").css("display", "flex");
@@ -27,7 +28,8 @@ $(document).ready(function () {
                 table_body += '<td>' + item.status + '</td>';
                 // table_body += '<td>' + item.payment +  '</td>';
                 table_body += '<td>' + item.price + '</td>';
-                table_body += '<td style="display:none" hidden id="#id">' + item.id + '</td>';
+                table_body += '<td style="display:none" hidden id="id">' + item.id + '</td>';
+                table_body += '<td style="display:none" hidden  class="user_address">' + item.user_address + '</td>';
                 table_body += '<td><i class="bx bx-street-view edit-food-btn" id="track-btn"></i></td>';
                 table_body += '<td></td>';
                 table_body += '</tr>';
@@ -69,7 +71,8 @@ $(document).ready(function () {
     $(document).on('click', '#track-btn', function () {
         console.log('clicked')
         $('#mySizeChartModal').show();
-        
+
+                
 
     })
 });
